@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@formspree/react";
+import { motion } from "framer-motion";
 import {
   Menu,
   X,
@@ -145,7 +146,14 @@ const HeroSection = () => (
 
 // --- Componente Sobre Mim ---
 const AboutSection = () => (
-  <section id="about" className="py-20 sm:py-32 bg-slate-800 text-gray-300">
+  <motion.section
+    id="about"
+    className="py-20 sm:py-32 bg-slate-800 text-gray-300"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+  >
     <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Imagem (agora primeira na ordem visual em telas maiores) */}
@@ -182,7 +190,7 @@ const AboutSection = () => (
         </div>
       </div>
     </div>
-  </section>
+  </motion.section>
 );
 
 // --- Componente Serviços ---
@@ -209,9 +217,13 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="services"
       className="py-20 sm:py-32 bg-slate-900 text-gray-300"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -239,7 +251,7 @@ const ServicesSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
@@ -279,9 +291,13 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="projects"
       className="py-20 sm:py-32 bg-slate-800 text-gray-300"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -343,7 +359,7 @@ const ProjectsSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
