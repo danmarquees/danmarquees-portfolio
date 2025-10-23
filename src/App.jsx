@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "@formspree/react";
 import {
   Menu,
   X,
@@ -348,16 +349,7 @@ const ProjectsSection = () => {
 
 // --- Componente Contato ---
 const ContactSection = () => {
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aqui iria a lógica de envio para um backend (ex: Netlify Forms, Formspree)
-    // Por enquanto, apenas simulamos o envio.
-    setStatus("Mensagem enviada com sucesso! (Simulação)");
-    e.target.reset();
-    setTimeout(() => setStatus(""), 3000);
-  };
+  const [state, handleSubmit] = useForm("mjkanygy"); // Substitua pelo seu Form ID do Formspree
 
   return (
     <section id="contact" className="py-20 sm:py-32 bg-slate-900 text-gray-300">
@@ -458,12 +450,22 @@ const ContactSection = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors duration-300"
+                disabled={state.submitting}
+                className="w-full bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar Mensagem
+                {state.submitting ? "Enviando..." : "Enviar Mensagem"}
               </button>
             </div>
-            {status && <p className="text-center text-green-400">{status}</p>}
+            {state.succeeded && (
+              <p className="text-center text-green-400">
+                Mensagem enviada com sucesso!
+              </p>
+            )}
+            {state.errors && state.errors.length > 0 && (
+              <p className="text-center text-red-400">
+                Erro ao enviar mensagem. Tente novamente.
+              </p>
+            )}
           </form>
         </div>
       </div>
