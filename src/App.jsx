@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@formspree/react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { useTheme } from "./contexts/ThemeContext";
+import Header from "./components/Header";
 import PrivacyPolicy from "./components/Privacy";
 import CookiePolicy from "./components/Cookies";
 import {
-  Menu,
-  X,
   Code,
   Server,
   Database,
@@ -17,7 +18,6 @@ import {
   ArrowUp,
   Briefcase,
   User,
-  Home,
   Award,
   Shield,
   Zap,
@@ -25,100 +25,18 @@ import {
   Cpu,
 } from "lucide-react";
 
-// --- Componente Header (Cabeçalho e Navegação) ---
-const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Adiciona sombra ao header ao rolar a página
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Início", href: "#home", icon: Home },
-    { name: "Sobre", href: "#about", icon: User },
-    { name: "Serviços", href: "#services", icon: Briefcase },
-    { name: "Habilidades", href: "#skills", icon: Award },
-    { name: "Projetos", href: "#projects", icon: Code },
-    { name: "Contato", href: "#contact", icon: Mail },
-  ];
-
-  const renderNavLinks = (isMobile = false) =>
-    navLinks.map((link) => (
-      <a
-        key={link.name}
-        href={link.href}
-        onClick={() => isMobile && setIsMobileMenuOpen(false)}
-        className={`
-          ${isMobile ? "flex items-center px-4 py-3 text-lg text-gray-200 hover:bg-indigo-700 rounded-lg" : "text-sm font-medium text-gray-300 hover:text-white transition-colors"}
-        `}
-      >
-        {isMobile && <link.icon className="w-5 h-5 mr-3" />}
-        {link.name}
-      </a>
-    ));
-
-  return (
-    <header
-      className={`
-      fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${isScrolled ? "bg-slate-900/90 shadow-lg backdrop-blur-lg" : "bg-transparent"}
-    `}
-    >
-      <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo / Nome */}
-          <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl font-bold text-white">
-              DanMarques<span className="text-indigo-400">.dev</span>
-            </a>
-          </div>
-
-          {/* Navegação Desktop */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {renderNavLinks()}
-          </div>
-
-          {/* Botão de Menu Mobile */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            >
-              <span className="sr-only">Abrir menu</span>
-              {isMobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Menu Mobile (Dropdown) */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-slate-800 shadow-lg p-4 border-t border-slate-700">
-          <div className="flex flex-col space-y-2">{renderNavLinks(true)}</div>
-        </div>
-      )}
-    </header>
-  );
-};
 
 // --- Componente Hero (Seção Inicial) ---
-const HeroSection = () => (
-  <section
-    id="home"
-    className="relative h-screen flex items-center justify-center text-center bg-slate-900 text-white overflow-hidden"
-  >
-    {/* Efeito de fundo (opcional) */}
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-900 opacity-80"></div>
+const HeroSection = () => {
+  const { isDark, themeClasses } = useTheme();
+  return (
+    <section
+      id="home"
+      className={`relative h-screen flex items-center justify-center text-center ${themeClasses.bgPrimary} ${themeClasses.textPrimary} overflow-hidden`}
+    >
+      {/* Efeito de fundo (opcional) */}
+      <div className={`absolute inset-0 ${isDark ? "bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-900" : "bg-gradient-to-br from-gray-50 via-gray-100 to-indigo-100"} opacity-80`}></div>
     <div className="absolute inset-0 grain-bg opacity-5"></div>
 
     <div className="relative z-10 p-4">
@@ -130,7 +48,7 @@ const HeroSection = () => (
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
         Olá, eu sou <span className="text-indigo-400">Danilo Marques</span>
       </h1>
-      <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+      <p className={`text-xl sm:text-2xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-8`}>
         Desenvolvedor Full Stack | Especialista em Marketplaces e Soluções Web
         Sustentáveis
       </p>
@@ -150,18 +68,21 @@ const HeroSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // --- Componente Sobre Mim ---
-const AboutSection = () => (
-  <motion.section
-    id="about"
-    className="py-20 sm:py-32 bg-slate-800 text-gray-300"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-  >
+const AboutSection = () => {
+  const { themeClasses } = useTheme();
+  return (
+    <motion.section
+      id="about"
+      className={`py-20 sm:py-32 ${themeClasses.bgSecondary} ${themeClasses.textSecondary}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
     <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Imagem (agora primeira na ordem visual em telas maiores) */}
@@ -176,7 +97,7 @@ const AboutSection = () => (
         </div>
         {/* Texto (agora segunda na ordem visual em telas maiores) */}
         <div>
-          <h2 className="text-3xl font-bold text-white mb-6">Sobre Mim</h2>
+          <h2 className={`text-3xl font-bold ${themeClasses.textPrimary} mb-6`}>Sobre Mim</h2>
           <p className="text-lg mb-4">
             Profissional em Tecnologia da Informação com experiência no
             desenvolvimento de soluções digitais, especialmente em plataformas
@@ -199,10 +120,12 @@ const AboutSection = () => (
       </div>
     </div>
   </motion.section>
-);
+  );
+};
 
 // --- Componente Serviços ---
 const ServicesSection = () => {
+  const { themeClasses } = useTheme();
   const services = [
     {
       icon: Code,
@@ -227,7 +150,7 @@ const ServicesSection = () => {
   return (
     <motion.section
       id="services"
-      className="py-20 sm:py-32 bg-slate-900 text-gray-300"
+      className={`py-20 sm:py-32 ${themeClasses.bgPrimary} ${themeClasses.textSecondary}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -235,10 +158,10 @@ const ServicesSection = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}>
             Meus Serviços
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}>
             Ofereço um ciclo completo de desenvolvimento para sua aplicação.
           </p>
         </div>
@@ -246,15 +169,15 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-700 transition-all duration-300 hover:border-indigo-500 hover:shadow-indigo-500/10"
+              className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-8 rounded-lg shadow-lg border transition-all duration-300 hover:border-indigo-500 hover:shadow-indigo-500/10`}
             >
               <div className="mb-6">
                 <service.icon className="h-10 w-10 text-indigo-400" />
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-4">
+              <h3 className={`text-2xl font-semibold ${themeClasses.textPrimary} mb-4`}>
                 {service.title}
               </h3>
-              <p className="text-gray-400">{service.description}</p>
+              <p className={themeClasses.textTertiary}>{service.description}</p>
             </div>
           ))}
         </div>
@@ -265,6 +188,7 @@ const ServicesSection = () => {
 
 // --- Componente Habilidades & Certificações ---
 const SkillsCertificationsSection = () => {
+  const { themeClasses } = useTheme();
   const skills = [
     { name: "Python", icon: Code, level: "Avançado" },
     { name: "JavaScript", icon: Zap, level: "Avançado" },
@@ -304,7 +228,7 @@ const SkillsCertificationsSection = () => {
   return (
     <motion.section
       id="skills"
-      className="py-20 sm:py-32 bg-slate-900 text-gray-300"
+      className={`py-20 sm:py-32 ${themeClasses.bgPrimary} ${themeClasses.textSecondary}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -312,10 +236,10 @@ const SkillsCertificationsSection = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}>
             Habilidades & Certificações
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}>
             Meu arsenal técnico e conquistas profissionais.
           </p>
         </div>
@@ -330,13 +254,13 @@ const SkillsCertificationsSection = () => {
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-indigo-500 transition-colors"
+                  className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-4 rounded-lg border hover:border-indigo-500 transition-colors`}
                 >
                   <div className="flex items-center mb-2">
                     <skill.icon className="w-5 h-5 text-indigo-400 mr-2" />
-                    <span className="text-white font-medium">{skill.name}</span>
+                    <span className={`${themeClasses.textPrimary} font-medium`}>{skill.name}</span>
                   </div>
-                  <span className="text-sm text-gray-400">{skill.level}</span>
+                  <span className={`text-sm ${themeClasses.textTertiary}`}>{skill.level}</span>
                 </div>
               ))}
             </div>
@@ -349,17 +273,17 @@ const SkillsCertificationsSection = () => {
             </h3>
             <div className="space-y-4">
               {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-indigo-500 transition-colors"
-                >
+                  <div
+                    key={index}
+                    className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-6 rounded-lg border hover:border-indigo-500 transition-colors`}
+                  >
                   <div className="flex items-start">
                     <cert.icon className="w-6 h-6 text-indigo-400 mr-4 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-1">
+                      <h4 className={`text-lg font-semibold ${themeClasses.textPrimary} mb-1`}>
                         {cert.name}
                       </h4>
-                      <p className="text-gray-400 mb-1">{cert.issuer}</p>
+                      <p className={`${themeClasses.textTertiary} mb-1`}>{cert.issuer}</p>
                       <p className="text-sm text-indigo-400">{cert.date}</p>
                     </div>
                   </div>
@@ -375,6 +299,7 @@ const SkillsCertificationsSection = () => {
 
 // --- Componente Projetos ---
 const ProjectsSection = () => {
+  const { themeClasses } = useTheme();
   const projects = [
     {
       title: "OrganyxHub (Marketplace Sustentável)",
@@ -411,7 +336,7 @@ const ProjectsSection = () => {
   return (
     <motion.section
       id="projects"
-      className="py-20 sm:py-32 bg-slate-800 text-gray-300"
+      className={`py-20 sm:py-32 ${themeClasses.bgSecondary} ${themeClasses.textSecondary}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -419,10 +344,10 @@ const ProjectsSection = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}>
             Projetos Recentes
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}>
             Uma seleção de projetos que demonstram minhas habilidades.
           </p>
         </div>
@@ -430,7 +355,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-slate-900 rounded-lg shadow-xl overflow-hidden group transition-transform duration-300 hover:scale-[1.02]"
+              className={`${themeClasses.bgTertiary} rounded-lg shadow-xl overflow-hidden group transition-transform duration-300 hover:scale-[1.02]`}
             >
               <img
                 src={project.imageUrl}
@@ -438,10 +363,10 @@ const ProjectsSection = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-semibold text-white mb-3">
+                <h3 className={`text-2xl font-semibold ${themeClasses.textPrimary} mb-3`}>
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
+                <p className={`${themeClasses.textTertiary} mb-4`}>{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
                     <span
@@ -483,16 +408,17 @@ const ProjectsSection = () => {
 
 // --- Componente Contato ---
 const ContactSection = () => {
+  const { themeClasses } = useTheme();
   const [state, handleSubmit] = useForm("mjkanygy"); // Substitua pelo seu Form ID do Formspree
 
   return (
-    <section id="contact" className="py-20 sm:py-32 bg-slate-900 text-gray-300">
+    <section id="contact" className={`py-20 sm:py-32 ${themeClasses.bgPrimary} ${themeClasses.textSecondary}`}>
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}>
             Vamos Conversar
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}>
             Tem um projeto em mente ou quer bater um papo? Me envie uma
             mensagem.
           </p>
@@ -500,11 +426,11 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Informações de Contato */}
           <div className="space-y-6">
-            <div className="flex items-start p-4 bg-slate-800 rounded-lg">
+            <div className={`flex items-start p-4 ${themeClasses.bgSecondary} rounded-lg`}>
               <Mail className="w-6 h-6 text-indigo-400 mt-1 flex-shrink-0" />
               <div className="ml-4">
-                <h3 className="text-xl font-semibold text-white">Email</h3>
-                <p className="text-gray-400">
+                <h3 className={`text-xl font-semibold ${themeClasses.textPrimary}`}>Email</h3>
+                <p className={`${themeClasses.textTertiary}`}>
                   Entre em contato para orçamentos
                 </p>
                 <a
@@ -515,13 +441,13 @@ const ContactSection = () => {
                 </a>
               </div>
             </div>
-            <div className="flex items-start p-4 bg-slate-800 rounded-lg">
+            <div className={`flex items-start p-4 ${themeClasses.bgSecondary} rounded-lg`}>
               <Phone className="w-6 h-6 text-indigo-400 mt-1 flex-shrink-0" />
               <div className="ml-4">
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className={`text-xl font-semibold ${themeClasses.textPrimary}`}>
                   Telefone / WhatsApp
                 </h3>
-                <p className="text-gray-400">
+                <p className={`${themeClasses.textTertiary}`}>
                   Disponível para contato comercial
                 </p>
                 <a
@@ -543,13 +469,13 @@ const ContactSection = () => {
               >
                 Nome
               </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                required
-                className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  className={`w-full px-4 py-3 rounded-lg ${themeClasses.bgCard} ${themeClasses.borderSecondary} ${themeClasses.textPrimary} focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+                />
             </div>
             <div>
               <label
@@ -558,13 +484,13 @@ const ContactSection = () => {
               >
                 Email
               </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  className={`w-full px-4 py-3 rounded-lg ${themeClasses.bgCard} ${themeClasses.borderSecondary} ${themeClasses.textPrimary} focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+                />
             </div>
             <div>
               <label
@@ -573,13 +499,13 @@ const ContactSection = () => {
               >
                 Mensagem
               </label>
-              <textarea
-                name="message"
-                id="message"
-                rows="5"
-                required
-                className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              ></textarea>
+                <textarea
+                  name="message"
+                  id="message"
+                  rows="5"
+                  required
+                  className={`w-full px-4 py-3 rounded-lg ${themeClasses.bgCard} ${themeClasses.borderSecondary} ${themeClasses.textPrimary} focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+                ></textarea>
             </div>
             <div>
               <button
@@ -608,8 +534,10 @@ const ContactSection = () => {
 };
 
 // --- Componente Footer (Rodapé) ---
-const Footer = () => (
-  <footer className="bg-slate-950 text-gray-400 py-12">
+const Footer = () => {
+  const { themeClasses } = useTheme();
+  return (
+    <footer className={`${themeClasses.bgFooter} ${themeClasses.textTertiary} py-12`}>
     <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
       <div className="flex justify-center space-x-6 mb-6">
         <a
@@ -638,10 +566,12 @@ const Footer = () => (
       <p className="text-xs mt-2">Feito com React, Tailwind CSS e ❤️</p>
     </div>
   </footer>
-);
+  );
+};
 
 // --- Componente Cookie Banner ---
 const CookieBanner = () => {
+  const { themeClasses } = useTheme();
   const [isVisible, setIsVisible] = useState(() => {
     // Verifica se já foi aceito
     return !localStorage.getItem('cookiesAccepted');
@@ -655,11 +585,11 @@ const CookieBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-4 z-50">
+    <div className={`fixed bottom-0 left-0 right-0 ${themeClasses.bgCard} ${themeClasses.borderPrimary} p-4 z-50`}>
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex-1">
-            <p className="text-gray-300 text-sm">
+            <p className={`text-sm ${themeClasses.textSecondary}`}>
               Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa{" "}
               <button
                 onClick={() => {
@@ -737,6 +667,7 @@ const ScrollToTop = () => {
 // --- Componente Principal App ---
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const { themeClasses } = useTheme();
 
   // Adiciona scroll suave e padding no topo para o header fixo
   useEffect(() => {
@@ -779,21 +710,31 @@ export default function App() {
   };
 
   return (
-    <div className="bg-slate-900">
+    <div className={themeClasses.bgPrimary}>
       <style>{`
         /* Webkit Scrollbar */
         ::-webkit-scrollbar {
           width: 8px;
         }
-        ::-webkit-scrollbar-track {
+        .dark ::-webkit-scrollbar-track {
           background: #1e293b; /* slate-800 */
         }
-        ::-webkit-scrollbar-thumb {
+        ::-webkit-scrollbar-track {
+          background: #f3f4f6; /* gray-100 */
+        }
+        .dark ::-webkit-scrollbar-thumb {
           background: #4f46e5; /* indigo-600 */
           border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
+        ::-webkit-scrollbar-thumb {
+          background: #6366f1; /* indigo-500 */
+          border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
           background: #4338ca; /* indigo-700 */
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #4f46e5; /* indigo-600 */
         }
         /* Padrão de "grãos" (opcional, para o hero) */
         .grain-bg {
