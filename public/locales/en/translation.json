@@ -1,0 +1,146 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "theme": "Theme"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm Danilo Marques, a Full Stack developer passionate about creating innovative and sustainable solutions. Specialist in marketplaces, modern web applications, and smart automation."
+  },
+  "services": {
+    "title": "Services",
+    "description": "See how I can help you or your business with cutting-edge technology.",
+    "items": {
+      "web": "Frontend Development",
+      "webDesc": "Rich and responsive interfaces with React, HTML5, CSS3, and Tailwind. Focused on performance and UX.",
+      "automation": "Backend Development",
+      "automationDesc": "Robust and scalable APIs with Python (Django, FastAPI) and Node.js. Microservices architectures.",
+      "mlops": "Database & DevOps",
+      "mlopsDesc": "Modeling and management of databases (PostgreSQL, MySQL, MongoDB) and CI/CD pipelines with Docker, AWS, and Google Cloud.",
+      "consulting": "Technical Consulting"
+    }
+  },
+  "projects": {
+    "title": "Recent Projects",
+    "description": "A selection of projects that showcase my skills.",
+    "details": "Learn more",
+    "github": "GitHub",
+    "demo": "View Demo",
+    "techs": "Technologies used",
+    "organyxhub": {
+      "title": "OrganyxHub (Sustainable Marketplace)",
+      "description": "Sustainable marketplace platform with payment integration and scalable architecture.",
+      "payment": "Payments",
+      "marketplace": "Marketplace"
+    },
+    "symplifika": {
+      "title": "Symplifika (Text Automation with AI)",
+      "description": "Web app for smart management of text shortcuts, boosting productivity by automatically expanding 'triggers'.",
+      "productivity": "Productivity"
+    },
+    "sentimind": {
+      "title": "Sentimind API (MLOps)",
+      "description": "Microservice for sentiment analysis and text summarization, built with FastAPI and Hugging Face models. MLOps focused.",
+      "microservice": "Microservice"
+    }
+  },
+  "skills": {
+    "title": "Skills & Certifications",
+    "description": "Main technologies, tools, and certifications I have.",
+    "level": {
+      "advanced": "Advanced",
+      "intermediate": "Intermediate",
+      "basic": "Basic"
+    },
+    "technicalTitle": "Technical Skills",
+    "cert": {
+      "aws": "AWS Certified Solutions Architect",
+      "gcp": "Google Cloud Professional Developer",
+      "k8s": "Certified Kubernetes Administrator"
+    },
+    "certificationsTitle": "Certifications"
+  },
+  "contact": {
+    "title": "Let's Talk",
+    "description": "Have a project in mind or want to chat? Send me a message.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again.",
+    "emailTitle": "Email",
+    "emailDesc": "Contact for quotes",
+    "phoneTitle": "Phone / WhatsApp",
+    "phoneDesc": "Available for business contact"
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "accept": "Accept",
+    "description": "This website uses cookies to improve your experience.",
+    "back": "Back to Portfolio",
+    "lastUpdate": "Last update",
+    "whatAreCookiesTitle": "1. What are Cookies",
+    "whatAreCookiesDesc": "Cookies are small text files stored on your device when you visit a website. They help improve your browsing experience and allow the site to function properly.",
+    "essentialTitle": "2.1 Essential Cookies",
+    "essentialDesc": "Necessary for the basic functioning of the site. Includes cookies for accepting privacy policies and secure browsing.",
+    "analyticsTitle": "2.2 Analytics Cookies",
+    "analyticsDesc": "Used to understand how visitors interact with the site, helping to improve user experience. These cookies do not collect personally identifiable information.",
+    "thirdPartyTitle": "2.3 Third-Party Cookies",
+    "thirdPartyDesc": "This site may use third-party services that set their own cookies, such as Google Analytics.",
+    "controlTitle": "3. Cookie Control",
+    "controlDesc": "You can control and manage cookies in the following ways:",
+    "controlList": [
+      "Most browsers allow you to block or delete cookies",
+      "You can set your browser to notify you before accepting cookies",
+      "Some cookies can be managed through site settings"
+    ],
+    "disableWarning": "Note that disabling cookies may affect site functionality.",
+    "specificTitle": "4. Specific Cookies Used",
+    "consentTitle": "5. Consent",
+    "consentDesc": "By continuing to browse this site after seeing the cookie banner, you agree to the use of cookies as described in this policy.",
+    "changesTitle": "6. Changes to this Policy",
+    "changesDesc": "We may update this Cookie Policy periodically. Any changes will be communicated via the cookie banner or published on this page.",
+    "contactTitle": "7. Contact",
+    "contactDesc": "For questions about cookies or this policy, contact me via the form on my portfolio or by email: d.silvamarques@gmail.com"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "back": "Back to Portfolio",
+    "lastUpdate": "Last update",
+    "introTitle": "1. Introduction",
+    "introDesc": "This Privacy Policy describes how Danilo Marques ('we', 'our' or 'I') collects, uses, and protects your personal information when you visit my online portfolio.",
+    "infoTitle": "2. Information We Collect",
+    "infoVoluntary": "2.1 Information Provided Voluntarily",
+    "infoVoluntaryDesc": "When you contact me via the contact form, I may collect: Name, Email, Message.",
+    "infoAuto": "2.2 Information Collected Automatically",
+    "infoAutoDesc": "When you visit my site, I may automatically collect: IP address, Browsing data, Cookies.",
+    "useTitle": "3. How We Use Your Information",
+    "useDesc": "We use the information collected to: Respond to your contact messages, Improve the site, Fulfill legal obligations.",
+    "shareTitle": "4. Information Sharing",
+    "shareDesc": "I do not sell, rent, or share your personal information with third parties, except: When required by law, To protect rights and security.",
+    "cookiesTitle": "5. Cookies",
+    "cookiesDesc": "This site uses cookies to improve your experience. For more details, see our Cookie Policy.",
+    "securityTitle": "6. Security",
+    "securityDesc": "I implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+    "rightsTitle": "7. Your Rights",
+    "rightsDesc": "You have the right to: Access your personal information, Request correction or deletion, Withdraw consent.",
+    "contactTitle": "8. Contact",
+    "contactDesc": "If you have questions about this Privacy Policy, contact me via the form on my portfolio or by email: d.silvamarques@gmail.com",
+    "changesTitle": "9. Changes to this Policy",
+    "changesDesc": "I may update this Privacy Policy periodically. Any changes will be published on this page with the date of the last update."
+  },
+  "hero": {
+    "greeting": "Hello, I am",
+    "subtitle": "Full Stack Developer | Specialist in Software Architecture and Web/SaaS Solutions",
+    "projectsBtn": "My Projects",
+    "contactBtn": "Contact Me"
+  }
+}

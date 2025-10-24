@@ -1,0 +1,149 @@
+{
+  "header": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "projects": "Projetos",
+    "skills": "Habilidades",
+    "contact": "Contato",
+    "theme": "Tema"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "description": "Sou Danilo Marques, desenvolvedor Full Stack apaixonado por criar soluções inovadoras e sustentáveis. Especialista em marketplaces, aplicações web modernas e automação inteligente."
+  },
+  "services": {
+    "title": "Serviços",
+    "description": "Veja como posso ajudar você ou seu negócio com tecnologia de ponta.",
+    "items": {
+      "web": "Desenvolvimento Frontend",
+      "webDesc": "Interfaces ricas e responsivas com React, HTML5, CSS3 e Tailwind. Foco em performance e UX.",
+      "automation": "Desenvolvimento Backend",
+      "automationDesc": "APIs robustas e escaláveis com Python (Django, FastAPI) e Node.js. Arquiteturas de microsserviços.",
+      "mlops": "Banco de Dados & DevOps",
+      "mlopsDesc": "Modelagem e gestão de bancos de dados (PostgreSQL, MySQL, MongoDB) e pipelines de CI/CD com Docker, AWS e Google Cloud.",
+      "consulting": "Consultoria Técnica"
+    }
+  },
+  "projects": {
+    "title": "Projetos Recentes",
+    "description": "Uma seleção de projetos que demonstram minhas habilidades.",
+    "details": "Saiba mais",
+    "github": "GitHub",
+    "demo": "Ver Demo",
+    "techs": "Tecnologias empregadas",
+    "organyxhub": {
+      "title": "OrganyxHub (Marketplace Sustentável)",
+      "description": "Plataforma de marketplace sustentável com integração de pagamentos e arquitetura escalável.",
+      "payment": "Pagamentos",
+      "marketplace": "Marketplace"
+    },
+    "symplifika": {
+      "title": "Symplifika (Automação de textos com IA)",
+      "description": "Aplicação web para gestão inteligente de atalhos de texto, aumentando a produtividade ao expandir 'gatilhos' automaticamente.",
+      "productivity": "Produtividade"
+    },
+    "sentimind": {
+      "title": "Sentimind API (MLOps)",
+      "description": "Microsserviço para análise de sentimento e sumarização de texto, construído com FastAPI e modelos Hugging Face. Foco em MLOps.",
+      "microservice": "Microsserviço"
+    }
+  },
+  "skills": {
+    "title": "Habilidades & Certificações",
+    "description": "Principais tecnologias, ferramentas e certificações que possuo.",
+    "level": {
+      "advanced": "Avançado",
+      "intermediate": "Intermediário",
+      "basic": "Básico"
+    },
+    "cert": {
+      "aws": "Arquiteto de Soluções Certificado AWS",
+      "gcp": "Desenvolvedor Profissional Google Cloud",
+      "k8s": "Administrador Certificado Kubernetes"
+    },
+    "technicalTitle": "Habilidades Técnicas",
+    "certificationsTitle": "Certificações"
+  },
+  "contact": {
+    "title": "Vamos Conversar",
+    "description": "Tem um projeto em mente ou quer bater um papo? Me envie uma mensagem.",
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "send": "Enviar",
+    "sendMessage": "Enviar Mensagem",
+    "sending": "Enviando...",
+    "success": "Mensagem enviada com sucesso!",
+    "error": "Erro ao enviar mensagem. Tente novamente.",
+    "emailTitle": "Email",
+    "emailDesc": "Entre em contato para orçamentos",
+    "phoneTitle": "Telefone / WhatsApp",
+    "phoneDesc": "Disponível para contato comercial"
+  },
+  "cookies": {
+    "title": "Política de Cookies",
+    "accept": "Aceitar",
+    "description": "Este site utiliza cookies para melhorar sua experiência.",
+    "back": "Voltar ao Portfólio",
+    "lastUpdate": "Última atualização",
+    "whatAreCookiesTitle": "1. O que são Cookies",
+    "whatAreCookiesDesc": "Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita um site. Eles ajudam a melhorar sua experiência de navegação e permitem que o site funcione corretamente.",
+    "essentialTitle": "2.1 Cookies Essenciais",
+    "essentialDesc": "Necessários para o funcionamento básico do site. Incluem cookies para aceitar políticas de privacidade e navegação segura.",
+    "analyticsTitle": "2.2 Cookies de Análise",
+    "analyticsDesc": "Usados para entender como os visitantes interagem com o site, ajudando a melhorar a experiência do usuário. Estes cookies não coletam informações pessoais identificáveis.",
+    "thirdPartyTitle": "2.3 Cookies de Terceiros",
+    "thirdPartyDesc": "Este site pode usar serviços de terceiros que definem seus próprios cookies, como Google Analytics.",
+    "controlTitle": "3. Controle de Cookies",
+    "controlDesc": "Você pode controlar e gerenciar cookies das seguintes maneiras:",
+    "controlList": [
+      "A maioria dos navegadores permite bloquear ou excluir cookies",
+      "Você pode configurar seu navegador para notificá-lo antes de aceitar cookies",
+      "Alguns cookies podem ser gerenciados através das configurações do site"
+    ],
+    "disableWarning": "Observe que desabilitar cookies pode afetar a funcionalidade do site.",
+    "specificTitle": "4. Cookies Específicos Usados",
+    "consentTitle": "5. Consentimento",
+    "consentDesc": "Ao continuar navegando neste site após ver o banner de cookies, você concorda com o uso de cookies conforme descrito nesta política.",
+    "changesTitle": "6. Alterações nesta Política",
+    "changesDesc": "Podemos atualizar esta Política de Cookies periodicamente. Qualquer alteração será comunicada através do banner de cookies ou publicada nesta página.",
+    "contactTitle": "7. Contato",
+    "contactDesc": "Para dúvidas sobre cookies ou esta política, entre em contato através do formulário em meu portfólio ou pelo e-mail: d.silvamarques@gmail.com"
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "back": "Voltar ao Portfólio",
+    "lastUpdate": "Última atualização",
+    "introTitle": "1. Introdução",
+    "introDesc": "Esta Política de Privacidade descreve como Danilo Marques ('nós', 'nosso' ou 'eu') coleta, usa e protege suas informações pessoais quando você visita meu portfólio online.",
+    "infoTitle": "2. Informações que Coletamos",
+    "infoVoluntary": "2.1 Informações Fornecidas Voluntariamente",
+    "infoVoluntaryDesc": "Quando você entra em contato comigo através do formulário de contato, posso coletar: Nome, E-mail, Mensagem.",
+    "infoAuto": "2.2 Informações Coletadas Automaticamente",
+    "infoAutoDesc": "Quando você visita meu site, posso coletar automaticamente: Endereço IP, Dados de navegação, Cookies.",
+    "useTitle": "3. Como Usamos suas Informações",
+    "useDesc": "Usamos as informações coletadas para: Responder às suas mensagens de contato, Melhorar o site, Cumprir obrigações legais.",
+    "shareTitle": "4. Compartilhamento de Informações",
+    "shareDesc": "Não vendo, alugo ou compartilho suas informações pessoais com terceiros, exceto: Quando exigido por lei, Para proteger direitos e segurança.",
+    "cookiesTitle": "5. Cookies",
+    "cookiesDesc": "Este site utiliza cookies para melhorar sua experiência. Para mais detalhes, consulte nossa Política de Cookies.",
+    "securityTitle": "6. Segurança",
+    "securityDesc": "Implemento medidas de segurança apropriadas para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição.",
+    "rightsTitle": "7. Seus Direitos",
+    "rightsDesc": "Você tem o direito de: Acessar suas informações pessoais, Solicitar correção ou exclusão, Retirar consentimento.",
+    "contactTitle": "8. Contato",
+    "contactDesc": "Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato comigo através do formulário em meu portfólio ou pelo e-mail: d.silvamarques@gmail.com",
+    "changesTitle": "9. Alterações nesta Política",
+    "changesDesc": "Posso atualizar esta Política de Privacidade periodicamente. Qualquer alteração será publicada nesta página com a data da última atualização."
+  },
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "subtitle": "Desenvolvedor Full Stack | Especialista em Arquitetura de Software e Soluções Web e SaaS",
+    "projectsBtn": "Meus Projetos",
+    "contactBtn": "Entrar em Contato"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  }
+}

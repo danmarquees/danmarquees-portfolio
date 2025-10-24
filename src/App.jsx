@@ -27,8 +27,12 @@ import {
 } from "lucide-react";
 
 // --- Componente Hero (Seção Inicial) ---
+import { useTranslation } from "react-i18next";
+
 const HeroSection = () => {
   const { isDark, themeClasses } = useTheme();
+  const { t } = useTranslation();
+
   return (
     <section
       id="home"
@@ -47,26 +51,29 @@ const HeroSection = () => {
           className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-indigo-400 shadow-lg"
         />
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Olá, eu sou <span className="text-indigo-400">Danilo Marques</span>
+          {t("hero.greeting", "Olá, eu sou")}{" "}
+          <span className="text-indigo-400">Danilo Marques</span>
         </h1>
         <p
           className={`text-xl sm:text-2xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-8`}
         >
-          Desenvolvedor Full Stack | Especialista em Arquitetura de Software e
-          Soluções Web e SaaS
+          {t(
+            "hero.subtitle",
+            "Desenvolvedor Full Stack | Especialista em Arquitetura de Software e Soluções Web e SaaS",
+          )}
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
             href="#projects"
             className="inline-block bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 duration-300"
           >
-            Meus Projetos
+            {t("hero.projectsBtn", "Meus Projetos")}
           </a>
           <a
             href="#contact"
             className="inline-block bg-slate-700 text-gray-200 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-slate-600 transition-transform transform hover:scale-105 duration-300"
           >
-            Entrar em Contato
+            {t("hero.contactBtn", "Entrar em Contato")}
           </a>
         </div>
       </div>
@@ -75,8 +82,10 @@ const HeroSection = () => {
 };
 
 // --- Componente Sobre Mim ---
+
 const AboutSection = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   return (
     <motion.section
       id="about"
@@ -103,13 +112,9 @@ const AboutSection = () => {
             <h2
               className={`text-3xl font-bold ${themeClasses.textPrimary} mb-6`}
             >
-              Sobre Mim
+              {t("about.title")}
             </h2>
-            <p className="text-lg mb-4">
-              Profissional em Tecnologia da Informação com experiência no
-              desenvolvimento de soluções digitais, especialmente em plataformas
-              de marketplace e sistemas web.
-            </p>
+            <p className="text-lg mb-4">{t("about.description")}</p>
             <p className="text-lg mb-4">
               Atuo em todas as etapas do ciclo de desenvolvimento, desde o
               planejamento da arquitetura até a integração de pagamentos e
@@ -133,24 +138,31 @@ const AboutSection = () => {
 // --- Componente Serviços ---
 const ServicesSection = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   const services = [
     {
       icon: Code,
-      title: "Desenvolvimento Frontend",
-      description:
+      title: t("services.items.web"),
+      description: t(
+        "services.items.webDesc",
         "Interfaces ricas e responsivas com React, HTML5, CSS3 e Tailwind. Foco em performance e UX.",
+      ),
     },
     {
       icon: Server,
-      title: "Desenvolvimento Backend",
-      description:
+      title: t("services.items.automation"),
+      description: t(
+        "services.items.automationDesc",
         "APIs robustas e escaláveis com Python (Django, FastAPI) e Node.js. Arquiteturas de microsserviços.",
+      ),
     },
     {
       icon: Database,
-      title: "Banco de Dados & DevOps",
-      description:
+      title: t("services.items.mlops"),
+      description: t(
+        "services.items.mlopsDesc",
         "Modelagem e gestão de bancos de dados (PostgreSQL, MySQL, MongoDB) e pipelines de CI/CD com Docker, AWS e Google Cloud.",
+      ),
     },
   ];
 
@@ -168,12 +180,12 @@ const ServicesSection = () => {
           <h2
             className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
           >
-            Meus Serviços
+            {t("services.title")}
           </h2>
           <p
             className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
           >
-            Ofereço um ciclo completo de desenvolvimento para sua aplicação.
+            {t("services.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -202,36 +214,41 @@ const ServicesSection = () => {
 // --- Componente Habilidades & Certificações ---
 const SkillsCertificationsSection = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   const skills = [
-    { name: "Python", icon: Code, level: "Avançado" },
-    { name: "JavaScript", icon: Zap, level: "Avançado" },
-    { name: "React", icon: Code, level: "Avançado" },
-    { name: "Django", icon: Server, level: "Avançado" },
-    { name: "FastAPI", icon: Server, level: "Intermediário" },
-    { name: "PostgreSQL", icon: Database, level: "Avançado" },
-    { name: "MongoDB", icon: Database, level: "Intermediário" },
-    { name: "Docker", icon: Cloud, level: "Intermediário" },
-    { name: "AWS", icon: Cloud, level: "Intermediário" },
-    { name: "Google Cloud", icon: Cloud, level: "Básico" },
-    { name: "Machine Learning", icon: Cpu, level: "Intermediário" },
-    { name: "Tailwind CSS", icon: Code, level: "Avançado" },
+    { name: "Python", icon: Code, level: t("skills.level.advanced") },
+    { name: "JavaScript", icon: Zap, level: t("skills.level.advanced") },
+    { name: "React", icon: Code, level: t("skills.level.advanced") },
+    { name: "Django", icon: Server, level: t("skills.level.advanced") },
+    { name: "FastAPI", icon: Server, level: t("skills.level.intermediate") },
+    { name: "PostgreSQL", icon: Database, level: t("skills.level.advanced") },
+    { name: "MongoDB", icon: Database, level: t("skills.level.intermediate") },
+    { name: "Docker", icon: Cloud, level: t("skills.level.intermediate") },
+    { name: "AWS", icon: Cloud, level: t("skills.level.intermediate") },
+    { name: "Google Cloud", icon: Cloud, level: t("skills.level.basic") },
+    {
+      name: "Machine Learning",
+      icon: Cpu,
+      level: t("skills.level.intermediate"),
+    },
+    { name: "Tailwind CSS", icon: Code, level: t("skills.level.advanced") },
   ];
 
   const certifications = [
     {
-      name: "AWS Certified Solutions Architect",
+      name: t("skills.cert.aws"),
       issuer: "Amazon Web Services",
       date: "2023",
       icon: Shield,
     },
     {
-      name: "Google Cloud Professional Developer",
+      name: t("skills.cert.gcp"),
       issuer: "Google Cloud",
       date: "2022",
       icon: Shield,
     },
     {
-      name: "Certified Kubernetes Administrator",
+      name: t("skills.cert.k8s"),
       issuer: "Cloud Native Computing Foundation",
       date: "2023",
       icon: Award,
@@ -252,12 +269,12 @@ const SkillsCertificationsSection = () => {
           <h2
             className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
           >
-            Habilidades & Certificações
+            {t("skills.title")}
           </h2>
           <p
             className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
           >
-            Meu arsenal técnico e conquistas profissionais.
+            {t("skills.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -265,7 +282,7 @@ const SkillsCertificationsSection = () => {
           <div>
             <h3 className="text-2xl font-semibold text-white mb-8 flex items-center">
               <Code className="w-6 h-6 mr-3 text-indigo-400" />
-              Habilidades Técnicas
+              {t("skills.technicalTitle")}
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {skills.map((skill, index) => (
@@ -290,7 +307,7 @@ const SkillsCertificationsSection = () => {
           <div>
             <h3 className="text-2xl font-semibold text-white mb-8 flex items-center">
               <Award className="w-6 h-6 mr-3 text-indigo-400" />
-              Certificações
+              {t("skills.certificationsTitle")}
             </h3>
             <div className="space-y-4">
               {certifications.map((cert, index) => (
@@ -325,33 +342,43 @@ const SkillsCertificationsSection = () => {
 // --- Componente Projetos ---
 const ProjectsSection = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   const [selectedProject, setSelectedProject] = useState(null);
   const projects = [
     {
-      title: "OrganyxHub (Marketplace Sustentável)",
-      description:
-        "Plataforma de marketplace sustentável com integração de pagamentos e arquitetura escalável.",
-      tags: ["Django", "Python", "PostgreSQL", "Pagamentos", "Marketplace"],
+      title: t("projects.organyxhub.title"),
+      description: t("projects.organyxhub.description"),
+      tags: [
+        "Django",
+        "Python",
+        "PostgreSQL",
+        t("projects.organyxhub.payment"),
+        t("projects.organyxhub.marketplace"),
+      ],
       imageUrl:
         "https://placehold.co/600x400/1e293b/6366f1?text=OrganyxHub&font=inter",
       liveUrl: "#",
       githubUrl: "#",
     },
     {
-      title: "Symplifika (Automação de textos com IA)",
-      description:
-        'Aplicação web para gestão inteligente de atalhos de texto, aumentando a produtividade ao expandir "gatilhos" automaticamente.',
-      tags: ["React", "IA", "Web App", "Produtividade"],
+      title: t("projects.symplifika.title"),
+      description: t("projects.symplifika.description"),
+      tags: ["React", "IA", "Web App", t("projects.symplifika.productivity")],
       imageUrl:
         "https://placehold.co/600x400/1e293b/6366f1?text=Symplifika&font=inter",
       liveUrl: "#",
       githubUrl: "#",
     },
     {
-      title: "Sentimind API (MLOps)",
-      description:
-        "Microsserviço para análise de sentimento e sumarização de texto, construído com FastAPI e modelos Hugging Face. Foco em MLOps.",
-      tags: ["FastAPI", "Python", "MLOps", "Hugging Face", "Microsserviço"],
+      title: t("projects.sentimind.title"),
+      description: t("projects.sentimind.description"),
+      tags: [
+        "FastAPI",
+        "Python",
+        "MLOps",
+        "Hugging Face",
+        t("projects.sentimind.microservice"),
+      ],
       imageUrl:
         "https://placehold.co/600x400/1e293b/6366f1?text=Sentimind+API&font=inter",
       liveUrl: "#",
@@ -373,12 +400,12 @@ const ProjectsSection = () => {
           <h2
             className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
           >
-            Projetos Recentes
+            {t("projects.title")}
           </h2>
           <p
             className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
           >
-            Uma seleção de projetos que demonstram minhas habilidades.
+            {t("projects.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -417,7 +444,7 @@ const ProjectsSection = () => {
                     type="button"
                     onClick={() => setSelectedProject(project)}
                   >
-                    Saiba mais
+                    {t("projects.details")}
                   </button>
                   <a
                     href={project.githubUrl}
@@ -426,7 +453,7 @@ const ProjectsSection = () => {
                     className="flex items-center text-gray-400 hover:text-white transition-colors"
                   >
                     <Github className="w-5 h-5 mr-2" />
-                    GitHub
+                    {t("projects.github")}
                   </a>
                 </div>
               </div>
@@ -447,6 +474,7 @@ const ProjectsSection = () => {
 // --- Componente Contato ---
 const ContactSection = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   const [state, handleSubmit] = useForm("mjkanygy"); // Substitua pelo seu Form ID do Formspree
 
   return (
@@ -459,13 +487,12 @@ const ContactSection = () => {
           <h2
             className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
           >
-            Vamos Conversar
+            {t("contact.title")}
           </h2>
           <p
             className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
           >
-            Tem um projeto em mente ou quer bater um papo? Me envie uma
-            mensagem.
+            {t("contact.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -479,10 +506,10 @@ const ContactSection = () => {
                 <h3
                   className={`text-xl font-semibold ${themeClasses.textPrimary}`}
                 >
-                  Email
+                  {t("contact.emailTitle", "Email")}
                 </h3>
                 <p className={`${themeClasses.textTertiary}`}>
-                  Entre em contato para orçamentos
+                  {t("contact.emailDesc", "Entre em contato para orçamentos")}
                 </p>
                 <a
                   href="mailto:d.silvamarques@gmail.com"
@@ -500,10 +527,10 @@ const ContactSection = () => {
                 <h3
                   className={`text-xl font-semibold ${themeClasses.textPrimary}`}
                 >
-                  Telefone / WhatsApp
+                  {t("contact.phoneTitle", "Telefone / WhatsApp")}
                 </h3>
                 <p className={`${themeClasses.textTertiary}`}>
-                  Disponível para contato comercial
+                  {t("contact.phoneDesc", "Disponível para contato comercial")}
                 </p>
                 <a
                   href="tel:+5511970943345"
@@ -522,7 +549,7 @@ const ContactSection = () => {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-300 mb-2"
               >
-                Nome
+                {t("contact.name")}
               </label>
               <input
                 type="text"
@@ -537,7 +564,7 @@ const ContactSection = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-300 mb-2"
               >
-                Email
+                {t("contact.email")}
               </label>
               <input
                 type="email"
@@ -552,7 +579,7 @@ const ContactSection = () => {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-300 mb-2"
               >
-                Mensagem
+                {t("contact.message")}
               </label>
               <textarea
                 name="message"
@@ -568,17 +595,22 @@ const ContactSection = () => {
                 disabled={state.submitting}
                 className="w-full bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {state.submitting ? "Enviando..." : "Enviar Mensagem"}
+                {state.submitting
+                  ? t("contact.sending", "Enviando...")
+                  : t("contact.sendMessage", "Enviar Mensagem")}
               </button>
             </div>
             {state.succeeded && (
               <p className="text-center text-green-400">
-                Mensagem enviada com sucesso!
+                {t("contact.success", "Mensagem enviada com sucesso!")}
               </p>
             )}
             {state.errors && state.errors.length > 0 && (
               <p className="text-center text-red-400">
-                Erro ao enviar mensagem. Tente novamente.
+                {t(
+                  "contact.error",
+                  "Erro ao enviar mensagem. Tente novamente.",
+                )}
               </p>
             )}
           </form>
@@ -816,9 +848,11 @@ const ScrollToTop = () => {
 };
 
 // --- Componente Principal App ---
+
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
 
   // Adiciona scroll suave e padding no topo para o header fixo
   useEffect(() => {
@@ -894,6 +928,12 @@ export default function App() {
       `}</style>
 
       {renderContent()}
+      <footer className="w-full py-8 text-center text-sm text-gray-400 bg-transparent">
+        <span>
+          © {new Date().getFullYear()} Danilo Marques.{" "}
+          {t("footer.rights", "Todos os direitos reservados.")}
+        </span>
+      </footer>
     </div>
   );
 }

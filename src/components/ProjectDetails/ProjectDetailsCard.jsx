@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const overlayStyle =
   "fixed inset-0 flex items-center justify-center z-40 transition-opacity duration-300 bg-gradient-to-br from-indigo-100/60 via-white/40 to-indigo-200/60 backdrop-blur-lg";
@@ -33,6 +34,7 @@ const styleTag = (
 );
 
 export default function ProjectDetailsCard({ project, onClose }) {
+  const { t } = useTranslation();
   if (!project) return null;
 
   // Ícones SVG para botões
@@ -75,7 +77,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
         className={overlayStyle}
         onClick={onClose}
         tabIndex={-1}
-        aria-label="Fechar detalhes do projeto"
+        aria-label={t("projects.details")}
       >
         <div
           className={cardStyle + " sm:m-0 m-2"}
@@ -88,7 +90,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
         >
           <button
             className={closeBtnStyle}
-            aria-label="Fechar"
+            aria-label={t("projects.details")}
             onClick={onClose}
           >
             &times;
@@ -112,7 +114,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
             </p>
             <div className="mb-4">
               <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-2">
-                Tecnologias empregadas:
+                {t("projects.techs")}
               </span>
               <div className="flex flex-wrap gap-2 mt-1">
                 {project.tags.map((tag) => (
@@ -134,7 +136,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
                   className="flex items-center px-5 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-900 transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 >
                   {githubIcon}
-                  GitHub
+                  {t("projects.github")}
                 </a>
               )}
               {project.liveUrl && (
@@ -145,7 +147,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
                   className="flex items-center px-5 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 >
                   {demoIcon}
-                  Ver Demo
+                  {t("projects.demo")}
                 </a>
               )}
             </div>
