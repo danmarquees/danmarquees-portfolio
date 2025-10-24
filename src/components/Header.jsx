@@ -65,7 +65,7 @@ const Header = () => {
             <img
               src="/logo.svg"
               alt="Ícone SVG do Projeto"
-              className="w-12 h-12 mr-2"
+              className="w-12 h-12 mr-1"
             />
             <a
               href="#home"
@@ -73,7 +73,6 @@ const Header = () => {
             >
               DanMarques<span className="text-indigo-400">.dev</span>
             </a>
-            <img src="/icon.png" alt="Ícone PNG" className="w-12 h-12 ml-2" />
           </div>
 
           {/* Navegação Desktop */}

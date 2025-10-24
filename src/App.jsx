@@ -51,8 +51,8 @@ const HeroSection = () => {
         <p
           className={`text-xl sm:text-2xl ${themeClasses.textSecondary} max-w-3xl mx-auto mb-8`}
         >
-          Desenvolvedor Full Stack | Especialista em Marketplaces e Soluções Web
-          Sustentáveis
+          Desenvolvedor Full Stack | Especialista em Arquitetura de Software e
+          Soluções Web e SaaS
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
@@ -600,14 +600,13 @@ const Footer = () => {
                 className="w-12 h-12 mr-2"
               />
               <h3 className={`text-xl font-bold ${themeClasses.textPrimary}`}>
-                DanMarques.dev
+                DanMarques<span className="text-indigo-400">.dev</span>
               </h3>
             </div>
             <p className="text-sm mb-4">
               Desenvolvedor Full Stack especializado em soluções web
               sustentáveis e marketplaces.
             </p>
-            <p className="text-xs">Feito com React, Tailwind CSS e ❤️</p>
           </div>
 
           {/* Links Rápidos */}
