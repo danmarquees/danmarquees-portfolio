@@ -355,8 +355,7 @@ const ProjectsSection = () => {
         t("projects.organyxhub.payment"),
         t("projects.organyxhub.marketplace"),
       ],
-      imageUrl:
-        "https://placehold.co/600x400/1e293b/6366f1?text=OrganyxHub&font=inter",
+      imageUrl: "/banner_organyxhub.png",
       liveUrl: "#",
       githubUrl: "#",
     },
@@ -364,8 +363,7 @@ const ProjectsSection = () => {
       title: t("projects.symplifika.title"),
       description: t("projects.symplifika.description"),
       tags: ["React", "IA", "Web App", t("projects.symplifika.productivity")],
-      imageUrl:
-        "https://placehold.co/600x400/1e293b/6366f1?text=Symplifika&font=inter",
+      imageUrl: "/banner_symplifika.png",
       liveUrl: "#",
       githubUrl: "#",
     },
