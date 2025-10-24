@@ -6,6 +6,7 @@ import { useTheme } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import PrivacyPolicy from "./components/Privacy";
 import CookiePolicy from "./components/Cookies";
+import ProjectDetailsCard from "./components/ProjectDetails/ProjectDetailsCard";
 import {
   Code,
   Server,
@@ -324,6 +325,7 @@ const SkillsCertificationsSection = () => {
 // --- Componente Projetos ---
 const ProjectsSection = () => {
   const { themeClasses } = useTheme();
+  const [selectedProject, setSelectedProject] = useState(null);
   const projects = [
     {
       title: "OrganyxHub (Marketplace Sustentável)",
@@ -410,15 +412,13 @@ const ProjectsSection = () => {
                   ))}
                 </div>
                 <div className="flex items-center space-x-4">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-indigo-400 hover:text-indigo-300 transition-colors"
+                  <button
+                    className="px-4 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors"
+                    type="button"
+                    onClick={() => setSelectedProject(project)}
                   >
-                    <ExternalLink className="w-5 h-5 mr-2" />
-                    Ver Demo
-                  </a>
+                    Saiba mais
+                  </button>
                   <a
                     href={project.githubUrl}
                     target="_blank"
@@ -433,6 +433,12 @@ const ProjectsSection = () => {
             </div>
           ))}
         </div>
+        {selectedProject && (
+          <ProjectDetailsCard
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </motion.section>
   );
