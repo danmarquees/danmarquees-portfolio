@@ -61,10 +61,19 @@ const Header = () => {
       <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Nome */}
-          <div className="flex-shrink-0">
-            <a href="#home" className={`text-2xl font-bold ${themeClasses.textPrimary}`}>
+          <div className="flex-shrink-0 flex items-center">
+            <img
+              src="/logo.svg"
+              alt="Ícone SVG do Projeto"
+              className="w-12 h-12 mr-2"
+            />
+            <a
+              href="#home"
+              className={`text-2xl font-bold ${themeClasses.textPrimary}`}
+            >
               DanMarques<span className="text-indigo-400">.dev</span>
             </a>
+            <img src="/icon.png" alt="Ícone PNG" className="w-12 h-12 ml-2" />
           </div>
 
           {/* Navegação Desktop */}
@@ -107,7 +116,9 @@ const Header = () => {
 
       {/* Menu Mobile (Dropdown) */}
       {isMobileMenuOpen && (
-        <div className={`md:hidden absolute top-16 left-0 right-0 ${themeClasses.bgSecondary} shadow-lg ${themeClasses.borderPrimary} p-4 border-t`}>
+        <div
+          className={`md:hidden absolute top-16 left-0 right-0 ${themeClasses.bgSecondary} shadow-lg ${themeClasses.borderPrimary} p-4 border-t`}
+        >
           <div className="flex flex-col space-y-2">{renderNavLinks(true)}</div>
         </div>
       )}
