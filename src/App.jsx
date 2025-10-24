@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "@formspree/react";
 import { motion } from "framer-motion";
+import PrivacyPolicy from "./components/Privacy";
+import CookiePolicy from "./components/Cookies";
 import {
   Menu,
   X,
@@ -638,6 +640,60 @@ const Footer = () => (
   </footer>
 );
 
+// --- Componente Cookie Banner ---
+const CookieBanner = () => {
+  const [isVisible, setIsVisible] = useState(() => {
+    // Verifica se já foi aceito
+    return !localStorage.getItem('cookiesAccepted');
+  });
+
+  const acceptCookies = () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    setIsVisible(false);
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-4 z-50">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex-1">
+            <p className="text-gray-300 text-sm">
+              Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa{" "}
+              <button
+                onClick={() => {
+                  window.history.pushState(null, '', '/politica-privacidade');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="text-indigo-400 hover:text-indigo-300 underline"
+              >
+                Política de Privacidade
+              </button>{" "}
+              e{" "}
+              <button
+                onClick={() => {
+                  window.history.pushState(null, '', '/politica-cookies');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="text-indigo-400 hover:text-indigo-300 underline"
+              >
+                Política de Cookies
+              </button>.
+            </p>
+          </div>
+          <button
+            onClick={acceptCookies}
+            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium whitespace-nowrap"
+          >
+            Aceitar Cookies
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Componente Scroll to Top ---
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -680,12 +736,47 @@ const ScrollToTop = () => {
 
 // --- Componente Principal App ---
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
   // Adiciona scroll suave e padding no topo para o header fixo
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     // h-16 (header height) = 4rem
     document.documentElement.style.scrollPaddingTop = "4rem";
   }, []);
+
+  // Listen for path changes (simple routing without React Router)
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const renderContent = () => {
+    switch (currentPath) {
+      case '/politica-privacidade':
+        return <PrivacyPolicy />;
+      case '/politica-cookies':
+        return <CookiePolicy />;
+      default:
+        return (
+          <>
+            <Header />
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <ServicesSection />
+              <SkillsCertificationsSection />
+              <ProjectsSection />
+              <ContactSection />
+            </main>
+            <Footer />
+            <ScrollToTop />
+            <CookieBanner />
+          </>
+        );
+    }
+  };
 
   return (
     <div className="bg-slate-900">
@@ -710,17 +801,7 @@ export default function App() {
         }
       `}</style>
 
-      <Header />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <SkillsCertificationsSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <ScrollToTop />
+      {renderContent()}
     </div>
   );
 }
