@@ -142,5 +142,11 @@
     "subtitle": "Full Stack Developer | Specialist in Software Architecture and Web/SaaS Solutions",
     "projectsBtn": "My Projects",
     "contactBtn": "Contact Me"
+  },
+  "footer": {
+    "description": "Full Stack Developer specialized in sustainable web solutions and marketplaces.",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "rights": "All rights reserved."
   }
 }

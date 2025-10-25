@@ -144,6 +144,9 @@
     "contactBtn": "Entrar em Contato"
   },
   "footer": {
+    "description": "Desenvolvedor Full Stack especializado em soluções web sustentáveis e marketplaces.",
+    "quickLinks": "Links Rápidos",
+    "connect": "Conecte-se",
     "rights": "Todos os direitos reservados."
   }
 }

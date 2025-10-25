@@ -1,9 +1,11 @@
 import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import { useTranslation } from "react-i18next";
 import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const { themeClasses } = useTheme();
+  const { t } = useTranslation();
   return (
     <footer
       className={`${themeClasses.bgFooter} ${themeClasses.textTertiary} py-16 border-t ${themeClasses.borderPrimary}`}
@@ -24,8 +26,7 @@ const Footer = () => {
               </h3>
             </div>
             <p className="text-sm mb-4">
-              Desenvolvedor Full Stack especializado em soluções web
-              sustentáveis e marketplaces.
+              {t('footer.description')}
             </p>
           </div>
 
@@ -34,49 +35,49 @@ const Footer = () => {
             <h4
               className={`text-lg font-semibold ${themeClasses.textPrimary} mb-4`}
             >
-              Links Rápidos
+              {t('footer.quickLinks')}
             </h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#home"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Início
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Sobre
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Serviços
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#projects"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Projetos
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Contato
-                </a>
-              </li>
+               <li>
+                 <a
+                   href="#home"
+                   className="hover:text-indigo-400 transition-colors"
+                 >
+                   {t('header.home')}
+                 </a>
+               </li>
+               <li>
+                 <a
+                   href="#about"
+                   className="hover:text-indigo-400 transition-colors"
+                 >
+                   {t('header.about')}
+                 </a>
+               </li>
+               <li>
+                 <a
+                   href="#services"
+                   className="hover:text-indigo-400 transition-colors"
+                 >
+                   {t('header.services')}
+                 </a>
+               </li>
+               <li>
+                 <a
+                   href="#projects"
+                   className="hover:text-indigo-400 transition-colors"
+                 >
+                   {t('header.projects')}
+                 </a>
+               </li>
+               <li>
+                 <a
+                   href="#contact"
+                   className="hover:text-indigo-400 transition-colors"
+                 >
+                   {t('header.contact')}
+                 </a>
+               </li>
             </ul>
           </div>
 
@@ -85,7 +86,7 @@ const Footer = () => {
             <h4
               className={`text-lg font-semibold ${themeClasses.textPrimary} mb-4`}
             >
-              Conecte-se
+              {t('footer.connect')}
             </h4>
             <div className="flex justify-center md:justify-start space-x-4 mb-4">
               <a
@@ -121,8 +122,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} DanMarques.dev. Todos os direitos
-            reservados.
+            &copy; {new Date().getFullYear()} DanMarques.dev. {t('footer.rights')}
           </p>
         </div>
       </div>
