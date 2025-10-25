@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import {
   Menu,
   X,
@@ -65,10 +66,13 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo / Nome */}
           <div className="flex-shrink-0 flex items-center">
-            <img
+            <motion.img
               src="/logo.svg"
               alt="Ícone SVG do Projeto"
               className="w-12 h-12 mr-1"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             />
             <a
               href="#home"
