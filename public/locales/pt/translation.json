@@ -1,13 +1,14 @@
 {
-  "header": {
-    "home": "Início",
-    "about": "Sobre",
-    "services": "Serviços",
-    "projects": "Projetos",
-    "skills": "Habilidades",
-    "contact": "Contato",
-    "theme": "Tema"
-  },
+   "header": {
+     "home": "Início",
+     "about": "Sobre",
+     "services": "Serviços",
+     "projects": "Projetos",
+     "skills": "Habilidades",
+     "contact": "Contato",
+     "blog": "Blog",
+     "theme": "Tema"
+   },
   "about": {
     "title": "Sobre Mim",
     "description": "Sou Danilo Marques, desenvolvedor Full Stack apaixonado por criar soluções inovadoras e sustentáveis. Especialista em marketplaces, aplicações web modernas e automação inteligente."
@@ -43,11 +44,16 @@
       "description": "Aplicação web para gestão inteligente de atalhos de texto, aumentando a produtividade ao expandir 'gatilhos' automaticamente.",
       "productivity": "Produtividade"
     },
-    "sentimind": {
-      "title": "Sentimind API (MLOps)",
-      "description": "Microsserviço para análise de sentimento e sumarização de texto, construído com FastAPI e modelos Hugging Face. Foco em MLOps.",
-      "microservice": "Microsserviço"
-    }
+     "sentimind": {
+       "title": "Sentimind API (MLOps)",
+       "description": "Microsserviço para análise de sentimento e sumarização de texto, construído com FastAPI e modelos Hugging Face. Foco em MLOps.",
+       "microservice": "Microsserviço"
+     },
+     "indiaoasis": {
+       "title": "India Oasis",
+       "description": "Sistema de e-commerce completo desenvolvido em Django, otimizado para hospedagem cPanel da GoDaddy.",
+       "ecommerce": "E-commerce"
+     }
   },
   "skills": {
     "title": "Habilidades & Certificações",

@@ -1,13 +1,14 @@
 {
-  "header": {
-    "home": "Home",
-    "about": "About",
-    "services": "Services",
-    "projects": "Projects",
-    "skills": "Skills",
-    "contact": "Contact",
-    "theme": "Theme"
-  },
+   "header": {
+     "home": "Home",
+     "about": "About",
+     "services": "Services",
+     "projects": "Projects",
+     "skills": "Skills",
+     "contact": "Contact",
+     "blog": "Blog",
+     "theme": "Theme"
+   },
   "about": {
     "title": "About Me",
     "description": "I'm Danilo Marques, a Full Stack developer passionate about creating innovative and sustainable solutions. Specialist in marketplaces, modern web applications, and smart automation."
@@ -43,11 +44,16 @@
       "description": "Web app for smart management of text shortcuts, boosting productivity by automatically expanding 'triggers'.",
       "productivity": "Productivity"
     },
-    "sentimind": {
-      "title": "Sentimind API (MLOps)",
-      "description": "Microservice for sentiment analysis and text summarization, built with FastAPI and Hugging Face models. MLOps focused.",
-      "microservice": "Microservice"
-    }
+     "sentimind": {
+       "title": "Sentimind API (MLOps)",
+       "description": "Microservice for sentiment analysis and text summarization, built with FastAPI and Hugging Face models. MLOps focused.",
+       "microservice": "Microservice"
+     },
+     "indiaoasis": {
+       "title": "India Oasis",
+       "description": "Complete e-commerce system developed in Django, optimized for GoDaddy cPanel hosting.",
+       "ecommerce": "E-commerce"
+     }
   },
   "skills": {
     "title": "Skills & Certifications",

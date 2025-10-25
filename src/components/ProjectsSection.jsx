@@ -32,21 +32,41 @@ const ProjectsSection = () => {
       liveUrl: "#",
       githubUrl: "https://github.com/danmarquees/symplifika_django",
     },
-    {
-      title: t("projects.sentimind.title"),
-      description: t("projects.sentimind.description"),
-      tags: [
-        "FastAPI",
-        "Python",
-        "MLOps",
-        "Hugging Face",
-        t("projects.sentimind.microservice"),
-      ],
-      imageUrl:
-        "https://placehold.co/600x400/1e293b/6366f1?text=Sentimind+API&font=inter",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
+     {
+       title: t("projects.sentimind.title"),
+       description: t("projects.sentimind.description"),
+       tags: [
+         "FastAPI",
+         "Python",
+         "MLOps",
+         "Hugging Face",
+         t("projects.sentimind.microservice"),
+       ],
+       imageUrl:
+         "https://placehold.co/600x400/1e293b/6366f1?text=Sentimind+API&font=inter",
+       liveUrl: "#",
+       githubUrl: "#",
+     },
+     {
+       title: t("projects.indiaoasis.title"),
+       description: t("projects.indiaoasis.description"),
+       tags: [
+         "Django 5.2.3",
+         "Python 3.11+",
+         "MySQL/MariaDB",
+         "HTML5",
+         "CSS3",
+         "JavaScript",
+         "Bootstrap",
+         "MercadoPago API",
+         "Melhor Envio API",
+         "FileBasedCache",
+         t("projects.indiaoasis.ecommerce"),
+       ],
+       imageUrl: "/banner_india.png",
+       liveUrl: "#",
+       githubUrl: "#",
+     },
   ];
 
   return (

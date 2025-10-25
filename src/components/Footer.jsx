@@ -98,15 +98,15 @@ const Footer = () => {
               >
                 <Github className="w-6 h-6" />
               </a>
-              <a
-                href="https://linkedin.com/in/danilosmarques"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
+               <a
+                 href="https://linkedin.com/in/danilosmarques"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-gray-400 hover:text-white transition-colors"
+                 aria-label="LinkedIn"
+               >
+                 <Linkedin className="w-6 h-6" />
+               </a>
             </div>
             <p className="text-sm">
               <a

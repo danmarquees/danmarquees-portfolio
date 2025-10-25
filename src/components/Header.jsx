@@ -13,6 +13,7 @@ import {
   Mail,
   Sun,
   Moon,
+  BookOpen,
 } from "lucide-react";
 
 const Header = () => {
@@ -37,6 +38,7 @@ const Header = () => {
     { name: t("header.services"), href: "#services", icon: Briefcase },
     { name: t("header.skills"), href: "#skills", icon: Award },
     { name: t("header.projects"), href: "#projects", icon: Code },
+    { name: t("header.blog"), href: "https://substack.com/@danmarques", icon: BookOpen },
     { name: t("header.contact"), href: "#contact", icon: Mail },
   ];
 
@@ -46,6 +48,8 @@ const Header = () => {
         key={link.name}
         href={link.href}
         onClick={() => isMobile && setIsMobileMenuOpen(false)}
+        target={link.href.startsWith('http') ? '_blank' : undefined}
+        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={`
           ${isMobile ? `flex items-center px-4 py-3 text-lg ${isDark ? "text-gray-200" : "text-gray-700"} ${themeClasses.hoverBg} rounded-lg transition-colors` : `text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-600"} ${themeClasses.hoverText} transition-colors`}
         `}
