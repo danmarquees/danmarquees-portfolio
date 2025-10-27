@@ -10,6 +10,11 @@ const HeroSection = () => {
     <section
       id="home"
       className={`relative h-screen flex items-center justify-center text-center ${themeClasses.bgPrimary} ${themeClasses.textPrimary} overflow-hidden`}
+      style={{
+        backgroundImage: "url(/thumb.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* Efeito de fundo (opcional) */}
       <div
