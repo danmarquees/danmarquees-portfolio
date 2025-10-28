@@ -24,7 +24,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 p-4">
         <img
-          src="/profile_1.jpg"
+          src="/profile_2.jpg"
           alt="Danilo Marques"
           className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-indigo-400 shadow-lg"
           loading="lazy"
