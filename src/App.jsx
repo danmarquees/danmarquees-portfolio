@@ -4,12 +4,15 @@ import Header from "./components/Header";
 import PrivacyPolicy from "./components/Privacy";
 import CookiePolicy from "./components/Cookies";
 import CookieBanner from "./components/ConsentBanner";
+import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
 
 // Lazy load components
 const HeroSection = lazy(() => import("./components/HeroSection"));
 const AboutSection = lazy(() => import("./components/AboutSection"));
 const ServicesSection = lazy(() => import("./components/ServicesSection"));
-const SkillsCertificationsSection = lazy(() => import("./components/SkillsCertificationsSection"));
+const SkillsCertificationsSection = lazy(
+  () => import("./components/SkillsCertificationsSection"),
+);
 const ProjectsSection = lazy(() => import("./components/ProjectsSection"));
 const ContactSection = lazy(() => import("./components/ContactSection"));
 const Footer = lazy(() => import("./components/Footer"));
@@ -43,7 +46,13 @@ export default function App() {
         return <CookiePolicy />;
       default:
         return (
-          <Suspense fallback={<div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-500"></div></div>}>
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-500"></div>
+              </div>
+            }
+          >
             <Header />
             <main>
               <HeroSection />
@@ -95,6 +104,7 @@ export default function App() {
 
       {renderContent()}
       <CookieBanner />
+      <WhatsAppButton />
     </div>
   );
 }
