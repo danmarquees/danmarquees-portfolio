@@ -6,7 +6,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
 const buttonStyle = {
   position: "fixed",
   right: "24px",
-  bottom: "24px",
+  bottom: "88px", // Deixa o botão mais acima para não obstruir o botão de voltar ao topo
   zIndex: 1000,
   backgroundColor: "#25D366",
   borderRadius: "50%",
