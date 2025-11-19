@@ -1,24 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #4f46e5;
-    /* indigo-600 */
-    --color-primary-hover: #4338ca;
-    /* indigo-700 */
-    --color-secondary: #64748b;
-    /* slate-500 */
+    --color-primary: var(--color-primary-dynamic);
+    --color-primary-hover: var(--color-primary-hover-dynamic);
 
-    --color-background: #f8fafc;
-    /* slate-50 */
-    --color-surface: #ffffff;
-    /* white */
-    --color-surface-alt: #f1f5f9;
-    /* slate-100 */
+    --color-background: var(--bg-background);
+    --color-surface: var(--bg-surface);
+    --color-surface-alt: var(--bg-surface-alt);
 
-    --color-text: #0f172a;
-    /* slate-900 */
-    --color-text-muted: #475569;
-    /* slate-600 */
+    --color-text: var(--text-main);
+    --color-text-muted: var(--text-muted);
     --color-text-inverted: #ffffff;
 }
 
@@ -27,26 +18,42 @@
 
 @layer base {
     :root {
-        /* Light Mode Defaults */
-        --bg-background: var(--color-background);
-        --bg-surface: var(--color-surface);
-        --text-main: var(--color-text);
-        --text-muted: var(--color-text-muted);
+        /* Light Mode Values */
+        --bg-background: #f8fafc;
+        /* slate-50 */
+        --bg-surface: #ffffff;
+        /* white */
+        --bg-surface-alt: #f1f5f9;
+        /* slate-100 */
+
+        --text-main: #0f172a;
+        /* slate-900 */
+        --text-muted: #475569;
+        /* slate-600 */
+
+        --color-primary-dynamic: #4f46e5;
+        /* indigo-600 */
+        --color-primary-hover-dynamic: #4338ca;
+        /* indigo-700 */
     }
 
     .dark {
-        /* Dark Mode Overrides */
+        /* Dark Mode Values */
         --bg-background: #0f172a;
         /* slate-900 */
         --bg-surface: #1e293b;
         /* slate-800 */
+        --bg-surface-alt: #334155;
+        /* slate-700 */
+
         --text-main: #f8fafc;
         /* slate-50 */
         --text-muted: #94a3b8;
         /* slate-400 */
-        --color-primary: #6366f1;
-        /* indigo-500 (lighter for dark mode) */
-        --color-primary-hover: #818cf8;
+
+        --color-primary-dynamic: #6366f1;
+        /* indigo-500 */
+        --color-primary-hover-dynamic: #818cf8;
         /* indigo-400 */
     }
 
