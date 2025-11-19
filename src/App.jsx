@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import PrivacyPolicy from "./components/Privacy";
 import CookiePolicy from "./components/Cookies";
@@ -20,8 +21,6 @@ const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 // --- Componente Principal App ---
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
-
   // Adiciona scroll suave e padding no topo para o header fixo
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -29,47 +28,36 @@ export default function App() {
     document.documentElement.style.scrollPaddingTop = "4rem";
   }, []);
 
-  // Listen for path changes (simple routing without React Router)
-  useEffect(() => {
-    const handlePopState = () => setCurrentPath(window.location.pathname);
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
-
-  const renderContent = () => {
-    switch (currentPath) {
-      case "/politica-privacidade":
-        return <PrivacyPolicy />;
-      case "/politica-cookies":
-        return <CookiePolicy />;
-      default:
-        return (
-          <Suspense
-            fallback={
-              <div className="flex justify-center items-center h-screen bg-background">
-                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-              </div>
-            }
-          >
-            <Header />
-            <main>
-              <HeroSection />
-              <AboutSection />
-              <ServicesSection />
-              <SkillsCertificationsSection />
-              <ProjectsSection />
-              <ContactSection />
-            </main>
-            <Footer />
-            <ScrollToTop />
-          </Suspense>
-        );
-    }
-  };
-
   return (
     <div className="bg-background min-h-screen text-text transition-colors duration-300">
-      {renderContent()}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense
+              fallback={
+                <div className="flex justify-center items-center h-screen bg-background">
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+                </div>
+              }
+            >
+              <Header />
+              <main>
+                <HeroSection />
+                <AboutSection />
+                <ServicesSection />
+                <SkillsCertificationsSection />
+                <ProjectsSection />
+                <ContactSection />
+              </main>
+              <Footer />
+              <ScrollToTop />
+            </Suspense>
+          }
+        />
+        <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
+        <Route path="/politica-cookies" element={<CookiePolicy />} />
+      </Routes>
       <CookieBanner />
       <WhatsAppButton />
     </div>

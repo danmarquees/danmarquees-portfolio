@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom"; // Assuming we will use Link later, but for now keeping the button navigation or switching to Link if router is ready. But wait, the original code used window.history.pushState. I should stick to that or use Link if available. The original code didn't import Link but used it in Privacy.jsx? No, Privacy.jsx imported Link but it was not defined in the snippet I saw? Wait, Privacy.jsx snippet showed <Link> usage in line 119 but didn't import it. That's a bug in the original code. I will fix it to use the same button approach for now or just use <a> if it's external. But since we are refactoring, let's stick to the button approach for consistency until we add router.
+import { Link } from "react-router-dom";
 
 const CookiePolicy = () => {
   const { t, i18n } = useTranslation();
@@ -15,16 +15,13 @@ const CookiePolicy = () => {
       className="min-h-screen bg-background text-text-muted py-20"
     >
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <button
-          onClick={() => {
-            window.history.pushState(null, "", "/");
-            window.dispatchEvent(new PopStateEvent("popstate"));
-          }}
+        <Link
+          to="/"
           className="inline-flex items-center text-primary hover:text-primary-hover mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           {t("cookies.back", "Voltar ao Portfólio")}
-        </button>
+        </Link>
 
         <h1 className="text-4xl font-bold text-text mb-8">
           {t("cookies.title")}

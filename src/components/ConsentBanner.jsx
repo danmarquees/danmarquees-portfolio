@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(() => {
@@ -21,25 +22,19 @@ const CookieBanner = () => {
             <p className="text-sm text-text-muted">
               Este site utiliza cookies para melhorar sua experiência. Ao
               continuar navegando, você concorda com nossa{" "}
-              <button
-                onClick={() => {
-                  window.history.pushState(null, "", "/politica-privacidade");
-                  window.dispatchEvent(new PopStateEvent("popstate"));
-                }}
+              <Link
+                to="/politica-privacidade"
                 className="text-primary hover:text-primary-hover underline"
               >
                 Política de Privacidade
-              </button>{" "}
+              </Link>{" "}
               e{" "}
-              <button
-                onClick={() => {
-                  window.history.pushState(null, "", "/politica-cookies");
-                  window.dispatchEvent(new PopStateEvent("popstate"));
-                }}
+              <Link
+                to="/politica-cookies"
                 className="text-primary hover:text-primary-hover underline"
               >
                 Política de Cookies
-              </button>
+              </Link>
               .
             </p>
           </div>

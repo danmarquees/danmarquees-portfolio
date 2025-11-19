@@ -71,7 +71,7 @@ const HeroSection = () => {
           </a>
           <a
             href="#contact"
-            className="inline-block bg-slate-700 text-gray-200 dark:bg-slate-800 dark:text-gray-200 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-slate-600 dark:hover:bg-slate-700 transition-all transform hover:scale-105 duration-300"
+            className="inline-block bg-surface-alt text-text font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition-all transform hover:scale-105 duration-300 border border-gray-200 dark:border-slate-700"
           >
             {t("hero.contactBtn", "Entrar em Contato")}
           </a>

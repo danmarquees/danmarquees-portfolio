@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   const { t, i18n } = useTranslation();
@@ -14,16 +15,13 @@ const PrivacyPolicy = () => {
       className="min-h-screen bg-background text-text-muted py-20"
     >
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <button
-          onClick={() => {
-            window.history.pushState(null, "", "/");
-            window.dispatchEvent(new PopStateEvent("popstate"));
-          }}
+        <Link
+          to="/"
           className="inline-flex items-center text-primary hover:text-primary-hover mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           {t("privacy.back", "Voltar ao Portfólio")}
-        </button>
+        </Link>
 
         <h1 className="text-4xl font-bold text-text mb-8">
           {t("privacy.title")}
@@ -116,15 +114,12 @@ const PrivacyPolicy = () => {
             <p className="mb-4 text-text-muted">
               Este site utiliza cookies para melhorar sua experiência. Para mais
               detalhes, consulte nossa{" "}
-              <button
-                onClick={() => {
-                  window.history.pushState(null, "", "/politica-cookies");
-                  window.dispatchEvent(new PopStateEvent("popstate"));
-                }}
+              <Link
+                to="/politica-cookies"
                 className="text-primary hover:text-primary-hover underline"
               >
                 Política de Cookies
-              </button>
+              </Link>
               .
             </p>
           </section>
