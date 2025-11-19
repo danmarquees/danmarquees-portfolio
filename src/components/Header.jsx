@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
@@ -20,7 +20,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { isDark, toggleTheme, themeClasses } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
 
   // Adiciona sombra ao header ao rolar a página
@@ -51,7 +51,9 @@ const Header = () => {
         target={link.href.startsWith('http') ? '_blank' : undefined}
         rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={`
-          ${isMobile ? `flex items-center px-4 py-3 text-lg ${isDark ? "text-gray-200" : "text-gray-700"} ${themeClasses.hoverBg} rounded-lg transition-colors` : `text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-600"} ${themeClasses.hoverText} transition-colors`}
+          ${isMobile
+            ? "flex items-center px-4 py-3 text-lg text-text hover:bg-surface-alt rounded-lg transition-colors"
+            : "text-sm font-medium text-text-muted hover:text-primary transition-colors"}
         `}
       >
         {isMobile && <link.icon className="w-5 h-5 mr-3" />}
@@ -63,7 +65,7 @@ const Header = () => {
     <header
       className={`
       fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${isScrolled ? `${isDark ? "bg-slate-900/90" : "bg-white/90"} shadow-lg backdrop-blur-lg` : "bg-transparent"}
+      ${isScrolled ? "bg-surface/90 shadow-lg backdrop-blur-lg" : "bg-transparent"}
     `}
     >
       <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -80,9 +82,9 @@ const Header = () => {
             />
             <a
               href="#home"
-              className={`text-2xl font-bold ${themeClasses.textPrimary}`}
+              className="text-2xl font-bold text-text"
             >
-              DanMarques<span className="text-indigo-400">.dev</span>
+              DanMarques<span className="text-primary">.dev</span>
             </a>
           </div>
 
@@ -95,18 +97,14 @@ const Header = () => {
               <div className="flex items-center space-x-2 ml-4">
                 <div className="relative">
                   <button
-                    className={`flex items-center px-3 py-2 rounded-full border shadow transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 ${
-                      isDark
-                        ? "bg-slate-800 border-slate-700 text-gray-200 hover:bg-indigo-900"
-                        : "bg-gray-100 border-gray-300 text-gray-700 hover:bg-indigo-100"
-                    }`}
+                    className="flex items-center px-3 py-2 rounded-full border border-gray-200 dark:border-slate-700 shadow transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-text hover:bg-surface-alt"
                     aria-label="Selecionar idioma"
                     type="button"
                     onClick={() => setIsDropdownOpen((prev) => !prev)}
                     tabIndex={0}
                   >
                     <svg
-                      className="w-5 h-5 mr-2 text-indigo-500"
+                      className="w-5 h-5 mr-2 text-primary"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -117,7 +115,7 @@ const Header = () => {
                     </svg>
                     {i18n.language === "pt" ? "PT" : "EN"}
                     <svg
-                      className="w-4 h-4 ml-2 text-gray-400"
+                      className="w-4 h-4 ml-2 text-text-muted"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -127,47 +125,46 @@ const Header = () => {
                     </svg>
                   </button>
                   {/* Dropdown */}
-                  {isDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-24 bg-gray-100 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-lg shadow z-50 animate-fade-in">
-                      <button
-                        className={`w-full px-4 py-2 text-left rounded-lg transition-colors ${
-                          i18n.language === "pt"
-                            ? "bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-semibold"
-                            : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700"
-                        }`}
-                        onClick={() => {
-                          i18n.changeLanguage("pt");
-                          setIsDropdownOpen(false);
-                        }}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute right-0 mt-2 w-32 bg-surface border border-gray-200 dark:border-slate-700 rounded-lg shadow-xl z-50 overflow-hidden"
                       >
-                        🇧🇷 Português
-                      </button>
-                      <button
-                        className={`w-full px-4 py-2 text-left rounded-lg transition-colors ${
-                          i18n.language === "en"
-                            ? "bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-semibold"
-                            : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700"
-                        }`}
-                        onClick={() => {
-                          i18n.changeLanguage("en");
-                          setIsDropdownOpen(false);
-                        }}
-                      >
-                        🇺🇸 English
-                      </button>
-                    </div>
-                  )}
+                        <button
+                          className={`w-full px-4 py-2 text-left transition-colors ${i18n.language === "pt"
+                              ? "bg-primary/10 text-primary font-semibold"
+                              : "text-text hover:bg-surface-alt"
+                            }`}
+                          onClick={() => {
+                            i18n.changeLanguage("pt");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          🇧🇷 Português
+                        </button>
+                        <button
+                          className={`w-full px-4 py-2 text-left transition-colors ${i18n.language === "en"
+                              ? "bg-primary/10 text-primary font-semibold"
+                              : "text-text hover:bg-surface-alt"
+                            }`}
+                          onClick={() => {
+                            i18n.changeLanguage("en");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          🇺🇸 English
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {/* Toggle Theme Button */}
                 <button
                   onClick={toggleTheme}
-                  className={`flex items-center justify-center px-3 py-2 rounded-full border shadow transition-colors
-                     ${
-                       isDark
-                         ? "bg-slate-800 border-slate-700 text-indigo-500 hover:bg-indigo-900"
-                         : "bg-gray-100 border-gray-300 text-indigo-500 hover:bg-indigo-100"
-                     }
-                     focus:outline-none focus:ring-2 focus:ring-indigo-400`}
+                  className="flex items-center justify-center px-3 py-2 rounded-full border border-gray-200 dark:border-slate-700 shadow transition-colors bg-surface text-primary hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label={
                     isDark
                       ? "Alternar para tema claro"
@@ -187,11 +184,7 @@ const Header = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`inline-flex items-center justify-center p-3 rounded-md border shadow transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 ${
-                  isDark
-                    ? `bg-slate-800 text-indigo-500 hover:bg-indigo-900 ${isMobileMenuOpen ? 'border-white' : 'border-slate-700'}`
-                    : `bg-gray-100 text-indigo-500 hover:bg-indigo-100 ${isMobileMenuOpen ? 'border-white' : 'border-gray-300'}`
-                }`}
+                className="inline-flex items-center justify-center p-3 rounded-md border border-gray-200 dark:border-slate-700 shadow transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-primary hover:bg-surface-alt"
               >
                 <span className="sr-only">Abrir menu</span>
                 {isMobileMenuOpen ? (
@@ -206,70 +199,69 @@ const Header = () => {
       </nav>
 
       {/* Menu Mobile (Dropdown) */}
-      {isMobileMenuOpen && (
-        <div
-          className={`md:hidden absolute top-16 left-0 right-0 ${themeClasses.bgSecondary} shadow-lg ${themeClasses.borderPrimary} p-4 border-t`}
-        >
-          <div className="flex flex-col space-y-2">{renderNavLinks(true)}</div>
-          {/* Mobile Language and Theme Controls */}
-          <div className="flex flex-col space-y-4 mt-6 pt-4 border-t border-gray-200 dark:border-slate-700">
-            {/* Language Selector */}
-            <div className="flex space-x-2">
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-16 left-0 right-0 bg-surface shadow-lg border-t border-gray-200 dark:border-slate-700 p-4"
+          >
+            <div className="flex flex-col space-y-2">{renderNavLinks(true)}</div>
+            {/* Mobile Language and Theme Controls */}
+            <div className="flex flex-col space-y-4 mt-6 pt-4 border-t border-gray-200 dark:border-slate-700">
+              {/* Language Selector */}
+              <div className="flex space-x-2">
+                <button
+                  className={`flex-1 px-3 py-2 rounded-lg border transition-colors ${i18n.language === "pt"
+                      ? "bg-primary/10 border-primary/30 text-primary font-semibold"
+                      : "bg-surface border-gray-200 dark:border-slate-700 text-text hover:bg-surface-alt"
+                    }`}
+                  onClick={() => {
+                    i18n.changeLanguage("pt");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  🇧🇷 PT
+                </button>
+                <button
+                  className={`flex-1 px-3 py-2 rounded-lg border transition-colors ${i18n.language === "en"
+                      ? "bg-primary/10 border-primary/30 text-primary font-semibold"
+                      : "bg-surface border-gray-200 dark:border-slate-700 text-text hover:bg-surface-alt"
+                    }`}
+                  onClick={() => {
+                    i18n.changeLanguage("en");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  🇺🇸 EN
+                </button>
+              </div>
+              {/* Theme Toggle */}
               <button
-                className={`flex-1 px-3 py-2 rounded-lg border transition-colors ${
-                  i18n.language === "pt"
-                    ? "bg-indigo-100 dark:bg-indigo-900 border-indigo-300 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300"
-                    : `${themeClasses.bgCard} ${themeClasses.borderPrimary} ${themeClasses.textPrimary} hover:bg-indigo-100 dark:hover:bg-indigo-900`
-                }`}
                 onClick={() => {
-                  i18n.changeLanguage("pt");
+                  toggleTheme();
                   setIsMobileMenuOpen(false);
                 }}
+                className="flex items-center justify-center px-3 py-2 rounded-lg border border-gray-200 dark:border-slate-700 shadow transition-colors bg-surface text-primary hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-primary"
+                aria-label={
+                  isDark
+                    ? "Alternar para tema claro"
+                    : "Alternar para tema escuro"
+                }
+                type="button"
               >
-                🇧🇷 PT
-              </button>
-              <button
-                className={`flex-1 px-3 py-2 rounded-lg border transition-colors ${
-                  i18n.language === "en"
-                    ? "bg-indigo-100 dark:bg-indigo-900 border-indigo-300 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300"
-                    : `${themeClasses.bgCard} ${themeClasses.borderPrimary} ${themeClasses.textPrimary} hover:bg-indigo-100 dark:hover:bg-indigo-900`
-                }`}
-                onClick={() => {
-                  i18n.changeLanguage("en");
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                🇺🇸 EN
+                {isDark ? (
+                  <Sun className="h-5 w-5 mr-2" />
+                ) : (
+                  <Moon className="h-5 w-5 mr-2" />
+                )}
+                {isDark ? "Tema Claro" : "Tema Escuro"}
               </button>
             </div>
-            {/* Theme Toggle */}
-            <button
-              onClick={() => {
-                toggleTheme();
-                setIsMobileMenuOpen(false);
-              }}
-              className={`flex items-center justify-center px-3 py-2 rounded-lg border shadow transition-colors ${
-                isDark
-                  ? "bg-slate-800 border-slate-700 text-indigo-500 hover:bg-indigo-900"
-                  : "bg-gray-100 border-gray-300 text-indigo-500 hover:bg-indigo-100"
-              } focus:outline-none focus:ring-2 focus:ring-indigo-400`}
-              aria-label={
-                isDark
-                  ? "Alternar para tema claro"
-                  : "Alternar para tema escuro"
-              }
-              type="button"
-            >
-              {isDark ? (
-                <Sun className="h-5 w-5 mr-2" />
-              ) : (
-                <Moon className="h-5 w-5 mr-2" />
-              )}
-              {isDark ? "Tema Claro" : "Tema Escuro"}
-            </button>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen bg-slate-900 text-gray-300 py-20"
+      className="min-h-screen bg-background text-text-muted py-20"
     >
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <button
@@ -19,18 +19,18 @@ const PrivacyPolicy = () => {
             window.history.pushState(null, "", "/");
             window.dispatchEvent(new PopStateEvent("popstate"));
           }}
-          className="inline-flex items-center text-indigo-400 hover:text-indigo-300 mb-8 transition-colors"
+          className="inline-flex items-center text-primary hover:text-primary-hover mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           {t("privacy.back", "Voltar ao Portfólio")}
         </button>
 
-        <h1 className="text-4xl font-bold text-white mb-8">
+        <h1 className="text-4xl font-bold text-text mb-8">
           {t("privacy.title")}
         </h1>
 
         <div className="prose prose-invert max-w-none">
-          <p className="text-lg mb-6">
+          <p className="text-lg mb-6 text-text-muted">
             {t("privacy.lastUpdate", "Última atualização")}:{" "}
             {new Date().toLocaleDateString(
               i18n.language === "en" ? "en-US" : "pt-BR",
@@ -38,10 +38,10 @@ const PrivacyPolicy = () => {
           </p>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               {t("privacy.introTitle", "1. Introdução")}
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               {t(
                 "privacy.introDesc",
                 'Esta Política de Privacidade descreve como Danilo Marques ("nós", "nosso" ou "eu") coleta, usa e protege suas informações pessoais quando você visita meu portfólio online.',
@@ -50,29 +50,29 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               2. Informações que Coletamos
             </h2>
-            <h3 className="text-xl font-medium text-white mb-2">
+            <h3 className="text-xl font-medium text-text mb-2">
               2.1 Informações Fornecidas Voluntariamente
             </h3>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Quando você entra em contato comigo através do formulário de
               contato, posso coletar:
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
+            <ul className="list-disc list-inside mb-4 ml-4 text-text-muted">
               <li>Nome</li>
               <li>Endereço de e-mail</li>
               <li>Mensagem</li>
             </ul>
 
-            <h3 className="text-xl font-medium text-white mb-2">
+            <h3 className="text-xl font-medium text-text mb-2">
               2.2 Informações Coletadas Automaticamente
             </h3>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Quando você visita meu site, posso coletar automaticamente:
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
+            <ul className="list-disc list-inside mb-4 ml-4 text-text-muted">
               <li>Endereço IP</li>
               <li>Tipo de navegador e versão</li>
               <li>Páginas visitadas</li>
@@ -82,11 +82,11 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               3. Como Usamos suas Informações
             </h2>
-            <p className="mb-4">Usamos as informações coletadas para:</p>
-            <ul className="list-disc list-inside mb-4 ml-4">
+            <p className="mb-4 text-text-muted">Usamos as informações coletadas para:</p>
+            <ul className="list-disc list-inside mb-4 ml-4 text-text-muted">
               <li>Responder às suas mensagens de contato</li>
               <li>Melhorar meu site e serviços</li>
               <li>Analisar o tráfego do site</li>
@@ -95,14 +95,14 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               4. Compartilhamento de Informações
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Não vendo, alugo ou compartilho suas informações pessoais com
               terceiros, exceto:
             </p>
-            <ul className="list-disc list-inside mb-4 ml-4">
+            <ul className="list-disc list-inside mb-4 ml-4 text-text-muted">
               <li>Quando exigido por lei</li>
               <li>Com seu consentimento explícito</li>
               <li>Para proteger meus direitos legais</li>
@@ -110,27 +110,30 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               5. Cookies
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Este site utiliza cookies para melhorar sua experiência. Para mais
               detalhes, consulte nossa{" "}
-              <Link
-                to="/politica-cookies"
-                className="text-indigo-400 hover:text-indigo-300 underline"
+              <button
+                onClick={() => {
+                  window.history.pushState(null, "", "/politica-cookies");
+                  window.dispatchEvent(new PopStateEvent("popstate"));
+                }}
+                className="text-primary hover:text-primary-hover underline"
               >
                 Política de Cookies
-              </Link>
+              </button>
               .
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               6. Segurança
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Implemento medidas de segurança apropriadas para proteger suas
               informações pessoais contra acesso não autorizado, alteração,
               divulgação ou destruição.
@@ -138,11 +141,11 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               7. Seus Direitos
             </h2>
-            <p className="mb-4">Você tem o direito de:</p>
-            <ul className="list-disc list-inside mb-4 ml-4">
+            <p className="mb-4 text-text-muted">Você tem o direito de:</p>
+            <ul className="list-disc list-inside mb-4 ml-4 text-text-muted">
               <li>Acessar suas informações pessoais</li>
               <li>Corrigir informações inexatas</li>
               <li>Solicitar exclusão de seus dados</li>
@@ -151,10 +154,10 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               8. Contato
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Se você tiver dúvidas sobre esta Política de Privacidade, entre em
               contato comigo através do formulário em meu portfólio ou pelo
               e-mail: d.silvamarques@gmail.com
@@ -162,10 +165,10 @@ const PrivacyPolicy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">
+            <h2 className="text-2xl font-semibold text-text mb-4">
               9. Alterações nesta Política
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-text-muted">
               Posso atualizar esta Política de Privacidade periodicamente.
               Qualquer alteração será publicada nesta página com a data da
               última atualização.

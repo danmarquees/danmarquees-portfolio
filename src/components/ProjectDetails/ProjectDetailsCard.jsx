@@ -2,11 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const overlayStyle =
-  "fixed inset-0 flex items-center justify-center z-40 transition-opacity duration-300 bg-gradient-to-br from-indigo-100/60 via-white/40 to-indigo-200/60 backdrop-blur-lg";
+  "fixed inset-0 flex items-center justify-center z-40 transition-opacity duration-300 bg-black/50 backdrop-blur-sm";
 const cardStyle =
-  "bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-indigo-100 dark:border-indigo-900 max-w-lg w-full p-0 sm:p-0 relative transform scale-95 opacity-0 animate-expand-popup";
+  "bg-surface rounded-3xl shadow-2xl border border-gray-200 dark:border-slate-700 max-w-lg w-full p-0 sm:p-0 relative transform scale-95 opacity-0 animate-expand-popup";
 const closeBtnStyle =
-  "absolute top-4 right-4 text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-3xl font-bold cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-400";
+  "absolute top-4 right-4 text-text-muted hover:text-primary transition-colors text-3xl font-bold cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary";
 
 // Adiciona animação via Tailwind + keyframes
 const styleTag = (
@@ -105,22 +105,22 @@ export default function ProjectDetailsCard({ project, onClose }) {
           <div className="p-8 pt-6">
             <h2
               id="project-details-title"
-              className="text-3xl font-extrabold mb-2 text-indigo-600 dark:text-indigo-400 tracking-tight"
+              className="text-3xl font-extrabold mb-2 text-primary tracking-tight"
             >
               {project.title}
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-text-muted mb-4 text-base leading-relaxed">
               {project.description}
             </p>
             <div className="mb-4">
-              <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-2">
+              <span className="font-semibold text-text block mb-2">
                 {t("projects.techs")}
               </span>
               <div className="flex flex-wrap gap-2 mt-1">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full shadow-sm transition-transform duration-200 hover:scale-105 hover:bg-indigo-200 dark:hover:bg-indigo-800 cursor-default"
+                    className="bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full shadow-sm transition-transform duration-200 hover:scale-105 cursor-default"
                   >
                     {tag}
                   </span>
@@ -133,7 +133,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-5 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-900 transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="flex items-center px-5 py-2 bg-surface-alt text-text rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   {githubIcon}
                   {t("projects.github")}
@@ -144,7 +144,7 @@ export default function ProjectDetailsCard({ project, onClose }) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-5 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="flex items-center px-5 py-2 bg-primary text-white rounded-full hover:bg-primary-hover transition-colors font-semibold shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   {demoIcon}
                   {t("projects.demo")}

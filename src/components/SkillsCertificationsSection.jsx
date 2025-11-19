@@ -1,11 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { Code, Zap, Server, Database, Cloud, Cpu, Award, Shield } from "lucide-react";
 
 const SkillsCertificationsSection = () => {
-  const { themeClasses } = useTheme();
   const { t } = useTranslation();
   const skills = [
     { name: "Python", icon: Code, level: t("skills.level.advanced") },
@@ -50,7 +48,7 @@ const SkillsCertificationsSection = () => {
   return (
     <motion.section
       id="skills"
-      className={`py-20 sm:py-32 ${themeClasses.bgPrimary} ${themeClasses.textSecondary}`}
+      className="py-20 sm:py-32 bg-surface-alt text-text-muted"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -58,37 +56,33 @@ const SkillsCertificationsSection = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2
-            className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4">
             {t("skills.title")}
           </h2>
-          <p
-            className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
-          >
+          <p className="text-lg text-text-muted max-w-2xl mx-auto">
             {t("skills.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Habilidades Técnicas */}
           <div>
-            <h3 className="text-2xl font-semibold text-white mb-8 flex items-center">
-              <Code className="w-6 h-6 mr-3 text-indigo-400" />
+            <h3 className="text-2xl font-semibold text-text mb-8 flex items-center">
+              <Code className="w-6 h-6 mr-3 text-primary" />
               {t("skills.technicalTitle")}
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-4 rounded-lg border hover:border-indigo-500 transition-colors`}
+                  className="bg-surface border border-gray-200 dark:border-slate-700 p-4 rounded-lg hover:border-primary transition-colors"
                 >
                   <div className="flex items-center mb-2">
-                    <skill.icon className="w-5 h-5 text-indigo-400 mr-2" />
-                    <span className={`${themeClasses.textPrimary} font-medium`}>
+                    <skill.icon className="w-5 h-5 text-primary mr-2" />
+                    <span className="text-text font-medium">
                       {skill.name}
                     </span>
                   </div>
-                  <span className={`text-sm ${themeClasses.textTertiary}`}>
+                  <span className="text-sm text-text-muted">
                     {skill.level}
                   </span>
                 </div>
@@ -97,28 +91,26 @@ const SkillsCertificationsSection = () => {
           </div>
           {/* Certificações */}
           <div>
-            <h3 className="text-2xl font-semibold text-white mb-8 flex items-center">
-              <Award className="w-6 h-6 mr-3 text-indigo-400" />
+            <h3 className="text-2xl font-semibold text-text mb-8 flex items-center">
+              <Award className="w-6 h-6 mr-3 text-primary" />
               {t("skills.certificationsTitle")}
             </h3>
             <div className="space-y-4">
               {certifications.map((cert, index) => (
                 <div
                   key={index}
-                  className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-6 rounded-lg border hover:border-indigo-500 transition-colors`}
+                  className="bg-surface border border-gray-200 dark:border-slate-700 p-6 rounded-lg hover:border-primary transition-colors"
                 >
                   <div className="flex items-start">
-                    <cert.icon className="w-6 h-6 text-indigo-400 mr-4 mt-1 flex-shrink-0" />
+                    <cert.icon className="w-6 h-6 text-primary mr-4 mt-1 flex-shrink-0" />
                     <div>
-                      <h4
-                        className={`text-lg font-semibold ${themeClasses.textPrimary} mb-1`}
-                      >
+                      <h4 className="text-lg font-semibold text-text mb-1">
                         {cert.name}
                       </h4>
-                      <p className={`${themeClasses.textTertiary} mb-1`}>
+                      <p className="text-text-muted mb-1">
                         {cert.issuer}
                       </p>
-                      <p className="text-sm text-indigo-400">{cert.date}</p>
+                      <p className="text-sm text-primary">{cert.date}</p>
                     </div>
                   </div>
                 </div>

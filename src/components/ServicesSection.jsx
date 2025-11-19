@@ -1,11 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { Code, Server, Database } from "lucide-react";
 
 const ServicesSection = () => {
-  const { themeClasses } = useTheme();
   const { t } = useTranslation();
   const services = [
     {
@@ -37,7 +35,7 @@ const ServicesSection = () => {
   return (
     <motion.section
       id="services"
-      className={`py-20 sm:py-32 ${themeClasses.bgPrimary} ${themeClasses.textSecondary}`}
+      className="py-20 sm:py-32 bg-background text-text-muted"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -45,14 +43,10 @@ const ServicesSection = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2
-            className={`text-3xl sm:text-4xl font-bold ${themeClasses.textPrimary} mb-4`}
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4">
             {t("services.title")}
           </h2>
-          <p
-            className={`text-lg ${themeClasses.textTertiary} max-w-2xl mx-auto`}
-          >
+          <p className="text-lg text-text-muted max-w-2xl mx-auto">
             {t("services.description")}
           </p>
         </div>
@@ -60,17 +54,15 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`${themeClasses.bgCard} ${themeClasses.borderPrimary} p-8 rounded-lg shadow-lg border transition-all duration-300 hover:border-indigo-500 hover:shadow-indigo-500/10`}
+              className="bg-surface border border-gray-200 dark:border-slate-700 p-8 rounded-lg shadow-lg transition-all duration-300 hover:border-primary hover:shadow-primary/10"
             >
               <div className="mb-6">
-                <service.icon className="h-10 w-10 text-indigo-400" />
+                <service.icon className="h-10 w-10 text-primary" />
               </div>
-              <h3
-                className={`text-2xl font-semibold ${themeClasses.textPrimary} mb-4`}
-              >
+              <h3 className="text-2xl font-semibold text-text mb-4">
                 {service.title}
               </h3>
-              <p className={themeClasses.textTertiary}>{service.description}</p>
+              <p className="text-text-muted">{service.description}</p>
             </div>
           ))}
         </div>

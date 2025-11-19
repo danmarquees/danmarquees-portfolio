@@ -1,15 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
-  const { themeClasses } = useTheme();
   const { t } = useTranslation();
   return (
     <motion.section
       id="about"
-      className={`py-20 sm:py-32 ${themeClasses.bgSecondary} ${themeClasses.textSecondary}`}
+      className="py-20 sm:py-32 bg-surface-alt text-text-muted"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -30,9 +28,7 @@ const AboutSection = () => {
           </div>
           {/* Texto (agora segunda na ordem visual em telas maiores) */}
           <div>
-            <h2
-              className={`text-3xl font-bold ${themeClasses.textPrimary} mb-6`}
-            >
+            <h2 className="text-3xl font-bold text-text mb-6">
               {t("about.title")}
             </h2>
             <p className="text-lg mb-4">{t("about.description")}</p>
