@@ -4,7 +4,7 @@ import { useCursor } from '../../hooks/useCursor';
 import { ThemeIcon } from '../ui/ThemeIcon';
 import { supportedLanguages } from '../../translations';
 
-export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
+export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMenuOpen, setMobileMenuOpen, activeSection, scrollToSection }) {
   const cursorRef = useRef(null);
   useCursor(cursorRef);
 
@@ -24,13 +24,21 @@ export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMen
         </a>
 
         <ul className="nav-links">
-          {navItems.map(([href, index]) => (
-            <li key={href}>
-              <a href={href} onClick={e => scrollToSection(e, href)}>
-                {t.nav[index]}
-              </a>
-            </li>
-          ))}
+          {navItems.map(([href, index]) => {
+            const isActive = activeSection === href.slice(1);
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  className={isActive ? 'active' : ''}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={e => scrollToSection(e, href)}
+                >
+                  {t.nav[index]}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="nav-actions">

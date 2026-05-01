@@ -228,6 +228,16 @@
     width: 100%;
   }
 
+  /* Active section link */
+  .nav-links a.active {
+    color: var(--charcoal);
+  }
+
+  .nav-links a.active::after {
+    width: 100%;
+    background: var(--accent);
+  }
+
   .nav-links a:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: -4px;
@@ -628,9 +638,9 @@
     }
   }
 
-  /* ── ADJUST SECTIONS FOR BREADCRUMB ── */
+  /* ── SECTION SCROLL OFFSET (navbar only, no breadcrumb) ── */
   section {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 80px;
   }
 
   #hero {
@@ -643,12 +653,12 @@
   #experience,
   #github-section,
   #contact {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 80px;
   }
 
   @media (max-width: 480px) {
     section {
-      scroll-margin-top: 80px;
+      scroll-margin-top: 72px;
     }
   }
 

@@ -11,7 +11,6 @@ import { useGsapAnimations } from './hooks/useGsapAnimations';
 // Layout
 import { Navbar }     from './components/layout/Navbar';
 import { MobileMenu } from './components/layout/MobileMenu';
-import { Breadcrumb } from './components/layout/Breadcrumb';
 import { Footer }     from './components/layout/Footer';
 
 // UI
@@ -27,11 +26,10 @@ import { GitHub }     from './components/sections/GitHub';
 import { Contact }    from './components/sections/Contact';
 
 // Data & translations
-import { breadcrumbSections } from './constants/data';
-import { translations }       from './translations';
+import { translations } from './translations';
 
-// Navbar height (72px) + breadcrumb bar (40px) = 112px total fixed header
-const HEADER_HEIGHT = 112;
+// Navbar height only (breadcrumb removed)
+const HEADER_HEIGHT = 72;
 
 function scrollToSection(event, href) {
   event.preventDefault();
@@ -78,6 +76,7 @@ export default function App() {
         toggleTheme={toggleTheme}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
+        activeSection={activeSection}
         scrollToSection={scrollToSection}
       />
 
@@ -90,15 +89,9 @@ export default function App() {
         scrollToSection={scrollToSection}
       />
 
-      <Breadcrumb
-        sections={breadcrumbSections}
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-      />
-
       <Hero       t={t} scrollToSection={scrollToSection} />
       <About      t={t} />
-      <Projects   t={t} scrollToSection={scrollToSection} />
+      <Projects   t={t} />
       <Gallery    t={t} />
       <Experience t={t} />
       <GitHub     t={t} githubStats={githubStats} contributionRows={contributionRows} />
