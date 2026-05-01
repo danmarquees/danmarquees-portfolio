@@ -1210,6 +1210,13 @@
     color: var(--charcoal);
   }
 
+  .project-desc {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
   .project-tech {
     display: flex;
     gap: 0.5rem;
