@@ -425,27 +425,124 @@
     }
   }
 
-  @media (max-width: 420px) {
-    nav {
-      padding: 0 1rem;
+  /* ── BREADCRUMB ──────────────────────────── */
+  .breadcrumb-nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 0 3rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-sep {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    opacity: 0.5;
+  }
+
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .breadcrumb-link {
+    color: var(--muted);
+    cursor: none;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -4px;
+  }
+
+  .breadcrumb-current {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .breadcrumb-nav {
+      padding: 0 1.5rem;
+      height: 36px;
     }
 
-    .nav-logo {
-      font-size: 11px;
+    .breadcrumb-link,
+    .breadcrumb-current {
+      font-size: 10px;
     }
 
-    .nav-actions {
-      gap: 0.4rem;
+    .breadcrumb-sep {
+      font-size: 10px;
     }
+  }
 
-    .lang-option {
-      min-width: 27px;
-      font-size: 9px;
+  @media (max-width: 480px) {
+    .breadcrumb-nav {
+      display: none;
     }
+  }
 
-    .theme-toggle {
-      width: 48px;
+  /* ── ADJUST SECTIONS FOR BREADCRUMB ── */
+  section {
+    scroll-margin-top: 120px;
+  }
+
+  #hero {
+    scroll-margin-top: 0;
+  }
+
+  #about,
+  #projects,
+  #gallery,
+  #experience,
+  #github-section,
+  #contact {
+    scroll-margin-top: 120px;
+  }
+
+  @media (max-width: 480px) {
+    section {
+      scroll-margin-top: 80px;
     }
+  }
+
+  .mobile-menu a {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal);
   }
 
   /* ── HERO ───────────────────────────────────── */

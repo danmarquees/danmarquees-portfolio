@@ -48,6 +48,16 @@ const galleryItems = [
 
 const filterKeys = ['all', 'ui', 'web', 'motion', 'brand'];
 
+const breadcrumbSections = [
+  ['#hero', 'Home'],
+  ['#about', 'About'],
+  ['#projects', 'Projects'],
+  ['#gallery', 'Gallery'],
+  ['#experience', 'Experience'],
+  ['#github-section', 'GitHub'],
+  ['#contact', 'Contact']
+];
+
 function getInitialLanguage() {
   let storedLanguage = null;
   try {
@@ -111,6 +121,38 @@ function ThemeIcon() {
   );
 }
 
+function Breadcrumb({ sections, activeSection, onNavigate }) {
+  return (
+    <nav className="breadcrumb-nav" aria-label="Page navigation breadcrumbs">
+      <ol className="breadcrumb-list">
+        {sections.map(([id, label], index) => {
+          const sectionName = id.slice(1);
+          const isActive = activeSection === sectionName;
+          
+          return (
+            <li key={id} className="breadcrumb-item">
+              {index > 0 && <span className="breadcrumb-sep" aria-hidden="true">/</span>}
+              {isActive ? (
+                <span className="breadcrumb-current" aria-current="page">
+                  {label}
+                </span>
+              ) : (
+                <a 
+                  href={id} 
+                  className="breadcrumb-link"
+                  onClick={event => onNavigate(event, id)}
+                >
+                  {label}
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState(getInitialLanguage);
   const [theme, setTheme] = useState(getInitialTheme);
@@ -118,6 +160,7 @@ function App() {
   const [loaderHidden, setLoaderHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [activeSection, setActiveSection] = useState('hero');
   const [hoverProject, setHoverProject] = useState({ src: '', visible: false, x: 0, y: 0 });
   const [githubStats, setGithubStats] = useState({ repos: '—', stars: '—', followers: '—' });
   const [formStatus, setFormStatus] = useState('idle');
@@ -173,6 +216,24 @@ function App() {
 
     return () => window.clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (loaderHidden) {
+      const handleScroll = () => {
+        let current = 'hero';
+        breadcrumbSections.forEach(([id, _]) => {
+          const element = document.querySelector(id);
+          if (element && window.scrollY >= element.offsetTop - 150) {
+            current = id.slice(1);
+          }
+        });
+        setActiveSection(current);
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [loaderHidden]);
 
   useEffect(() => {
     if (!loaderHidden) return;
@@ -387,6 +448,12 @@ function App() {
         ))}
         <a href="mailto:d.silvamarques@proton.me">{t.hireArrow}</a>
       </div>
+
+      <Breadcrumb 
+        sections={breadcrumbSections} 
+        activeSection={activeSection} 
+        onNavigate={scrollToSection} 
+      />
 
       <section id="hero">
         <div className="hero-bg-grid"></div>
