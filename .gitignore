@@ -1,2 +1,7 @@
 node_modules
 dist
+
+# Local environment variables — never commit secrets
+.env.local
+.env.*.local
+

@@ -72,9 +72,10 @@ export const translations = {
       message: 'Message',
       messagePlaceholder: 'Tell me about your project...',
       send: 'Send Message →',
-      sending: 'Opening...',
-      sent: 'Email opened ✓',
-      success: 'Your email client should open with the message ready to send.'
+      sending: 'Sending...',
+      sent: 'Message sent ✓',
+      error: 'Something went wrong. Please try again.',
+      success: 'Your message was sent successfully. I\'ll get back to you soon!'
     },
     footerRights: '© 2026 Dan Marques All rights reserved.',
     footerBuilt: 'Built with <span style="color:var(--accent)">♥</span> from Space',
@@ -161,9 +162,10 @@ export const translations = {
       message: 'Mensagem',
       messagePlaceholder: 'Conte-me sobre seu projeto...',
       send: 'Enviar mensagem →',
-      sending: 'Abrindo...',
-      sent: 'Email aberto ✓',
-      success: 'Seu cliente de email deve abrir com a mensagem pronta para envio.'
+      sending: 'Enviando...',
+      sent: 'Mensagem enviada ✓',
+      error: 'Algo deu errado. Por favor, tente novamente.',
+      success: 'Sua mensagem foi enviada com sucesso. Responderei em breve!'
     },
     footerRights: '© 2026 Dan Marques Todos os direitos reservados.',
     footerBuilt: 'Feito com <span style="color:var(--accent)">♥</span> do espaço',
@@ -250,9 +252,10 @@ export const translations = {
       message: 'Mensaje',
       messagePlaceholder: 'Cuéntame sobre tu proyecto...',
       send: 'Enviar mensaje →',
-      sending: 'Abriendo...',
-      sent: 'Email abierto ✓',
-      success: 'Tu cliente de email debería abrirse con el mensaje listo para enviar.'
+      sending: 'Enviando...',
+      sent: 'Mensaje enviado ✓',
+      error: 'Algo salió mal. Por favor, inténtalo de nuevo.',
+      success: '¡Tu mensaje fue enviado con éxito. Te responderé pronto!'
     },
     footerRights: '© 2026 Dan Marques Todos los derechos reservados.',
     footerBuilt: 'Hecho con <span style="color:var(--accent)">♥</span> desde el espacio',

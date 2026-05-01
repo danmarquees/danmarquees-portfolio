@@ -2326,6 +2326,24 @@
     letter-spacing: 0.05em;
   }
 
+  .form-error-msg {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #e55;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* form-submit state variants */
+  .form-submit.sending {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .form-submit.sent {
+    opacity: 0.6;
+  }
+
   /* project-link is now a <button> — reset button defaults */
   .project-link {
     -webkit-appearance: none;

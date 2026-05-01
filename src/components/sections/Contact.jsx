@@ -1,38 +1,53 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { ArrowIcon } from '../ui/ArrowIcon';
 import { RichText } from '../ui/RichText';
 
+// EmailJS credentials — configure via .env.local (never commit secrets)
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 export function Contact({ t }) {
-  const [formStatus, setFormStatus] = useState('idle');
+  const [formStatus, setFormStatus] = useState('idle'); // idle | sending | sent | error
+  const formRef = useRef(null);
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name    = formData.get('name');
-    const email   = formData.get('email');
-    const subject = formData.get('subject') || t.form.defaultSubject;
-    const message = formData.get('message');
 
-    const body = [
-      `${t.form.name}: ${name}`,
-      `${t.form.email}: ${email}`,
-      '',
-      message,
-    ].join('\n');
+    // Fallback to mailto: if EmailJS is not configured
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      const formData = new FormData(event.currentTarget);
+      const name    = formData.get('name');
+      const email   = formData.get('email');
+      const subject = formData.get('subject') || t.form.defaultSubject;
+      const message = formData.get('message');
+      const body = [`${t.form.name}: ${name}`, `${t.form.email}: ${email}`, '', message].join('\n');
+      window.location.href = `mailto:d.silvamarques@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setFormStatus('sent');
+      setTimeout(() => { setFormStatus('idle'); event.target.reset(); }, 4000);
+      return;
+    }
 
-    setFormStatus('sent');
-    window.location.href = `mailto:d.silvamarques@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.setTimeout(() => {
-      setFormStatus('idle');
-      event.target.reset();
-    }, 4000);
+    setFormStatus('sending');
+    try {
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, { publicKey: EMAILJS_PUBLIC_KEY });
+      setFormStatus('sent');
+      setTimeout(() => { setFormStatus('idle'); formRef.current?.reset(); }, 5000);
+    } catch (err) {
+      console.error('[EmailJS]', err);
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
   }
 
   const contactLinks = [
-    ['mailto:d.silvamarques@proton.me', 'Email',    'danmarques@proton.me'],
+    ['mailto:d.silvamarques@proton.me', 'Email',    'd.silvamarques@proton.me'],
     ['https://github.com/danmarquees',  'GitHub',   'github.com/danmarquees'],
     ['https://www.linkedin.com/in/danilo-marques', 'LinkedIn', 'linkedin.com/in/danilo-marques'],
   ];
+
+  const isBusy = formStatus === 'sending' || formStatus === 'sent';
 
   return (
     <section id="contact">
@@ -47,7 +62,7 @@ export function Contact({ t }) {
               <a
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="contact-link"
                 key={name}
               >
@@ -63,61 +78,37 @@ export function Contact({ t }) {
 
         <div className="contact-form-wrap reveal">
           <div className="section-label">{t.formLabel}</div>
-          <form onSubmit={handleFormSubmit} style={{ marginTop: '2rem' }}>
+          <form ref={formRef} onSubmit={handleFormSubmit} style={{ marginTop: '2rem' }}>
             <div className="form-row">
               <label className="form-label" htmlFor="fname">{t.form.name}</label>
-              <input
-                type="text"
-                id="fname"
-                name="name"
-                className="form-input"
-                placeholder={t.form.namePlaceholder}
-                required
-              />
+              <input type="text"  id="fname"    name="from_name"    className="form-input" placeholder={t.form.namePlaceholder}    required />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="femail">{t.form.email}</label>
-              <input
-                type="email"
-                id="femail"
-                name="email"
-                className="form-input"
-                placeholder="seuemail@example.com"
-                required
-              />
+              <input type="email" id="femail"   name="from_email"   className="form-input" placeholder="seuemail@example.com"      required />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="fsubject">{t.form.subject}</label>
-              <input
-                type="text"
-                id="fsubject"
-                name="subject"
-                className="form-input"
-                placeholder={t.form.subjectPlaceholder}
-              />
+              <input type="text"  id="fsubject" name="subject"       className="form-input" placeholder={t.form.subjectPlaceholder} />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="fmsg">{t.form.message}</label>
-              <textarea
-                id="fmsg"
-                name="message"
-                className="form-textarea"
-                rows="4"
-                placeholder={t.form.messagePlaceholder}
-                required
-              />
+              <textarea id="fmsg" name="message" className="form-textarea" rows="4" placeholder={t.form.messagePlaceholder} required />
             </div>
 
-            <button type="submit" className="form-submit" disabled={formStatus === 'sent'}>
+            <button type="submit" className={`form-submit ${formStatus}`} disabled={isBusy}>
               <span>
-                {formStatus === 'sent' ? t.form.sent : t.form.send}
+                {formStatus === 'sending' && t.form.sending}
+                {formStatus === 'sent'    && t.form.sent}
+                {(formStatus === 'idle' || formStatus === 'error') && t.form.send}
               </span>
             </button>
 
             {formStatus === 'sent' && (
-              <div id="form-success" className="form-success-msg">
-                {t.form.success}
-              </div>
+              <div className="form-success-msg">{t.form.success}</div>
+            )}
+            {formStatus === 'error' && (
+              <div className="form-error-msg">{t.form.error}</div>
             )}
           </form>
         </div>
