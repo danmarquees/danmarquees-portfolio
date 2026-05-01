@@ -53,12 +53,12 @@ export function MobileMenu({ t, language, setLanguage, mobileMenuOpen, setMobile
       </div>
 
       {navItems.map(([href, index]) => (
-        <a key={href} href={href} onClick={e => scrollToSection(e, href)}>
+        <a key={href} href={href} onClick={e => { setMobileMenuOpen(false); scrollToSection(e, href); }}>
           {t.nav[index]}
         </a>
       ))}
 
-      <a href="mailto:d.silvamarques@proton.me">{t.hireArrow}</a>
+      <a href="mailto:d.silvamarques@proton.me" onClick={() => setMobileMenuOpen(false)}>{t.hireArrow}</a>
     </div>
   );
 }

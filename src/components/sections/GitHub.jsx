@@ -6,7 +6,7 @@ export function GitHub({ t, githubStats, contributionRows }) {
     <section id="github-section">
       <div className="github-inner">
         <div className="reveal">
-          <div className="section-label" style={{ color: 'rgba(245,240,232,0.4)' }}>
+          <div className="section-label github-section-label">
             {t.githubLabel}
           </div>
           <RichText as="h2" className="github-title" html={t.githubTitle} />

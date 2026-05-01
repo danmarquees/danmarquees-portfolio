@@ -77,7 +77,18 @@ export const translations = {
       success: 'Your email client should open with the message ready to send.'
     },
     footerRights: '© 2026 Dan Marques All rights reserved.',
-    footerBuilt: 'Built with <span style="color:var(--accent)">♥</span> from Space'
+    footerBuilt: 'Built with <span style="color:var(--accent)">♥</span> from Space',
+    lightbox: {
+      close: 'Close image',
+      prev: 'Previous image',
+      next: 'Next image',
+    },
+    project: {
+      details: 'View Details',
+      discuss: 'Discuss this project',
+      github: 'View on GitHub',
+      close: 'Close project details',
+    }
   },
   'pt-BR': {
     languageAria: 'Seletor de idioma',
@@ -155,7 +166,18 @@ export const translations = {
       success: 'Seu cliente de email deve abrir com a mensagem pronta para envio.'
     },
     footerRights: '© 2026 Dan Marques Todos os direitos reservados.',
-    footerBuilt: 'Feito com <span style="color:var(--accent)">♥</span> do espaço'
+    footerBuilt: 'Feito com <span style="color:var(--accent)">♥</span> do espaço',
+    lightbox: {
+      close: 'Fechar imagem',
+      prev: 'Imagem anterior',
+      next: 'Próxima imagem',
+    },
+    project: {
+      details: 'Ver detalhes',
+      discuss: 'Falar sobre este projeto',
+      github: 'Ver no GitHub',
+      close: 'Fechar detalhes do projeto',
+    }
   },
   es: {
     languageAria: 'Selector de idioma',
@@ -233,6 +255,17 @@ export const translations = {
       success: 'Tu cliente de email debería abrirse con el mensaje listo para enviar.'
     },
     footerRights: '© 2026 Dan Marques Todos los derechos reservados.',
-    footerBuilt: 'Hecho con <span style="color:var(--accent)">♥</span> desde el espacio'
+    footerBuilt: 'Hecho con <span style="color:var(--accent)">♥</span> desde el espacio',
+    lightbox: {
+      close: 'Cerrar imagen',
+      prev: 'Imagen anterior',
+      next: 'Imagen siguiente',
+    },
+    project: {
+      details: 'Ver detalles',
+      discuss: 'Hablar sobre este proyecto',
+      github: 'Ver en GitHub',
+      close: 'Cerrar detalles del proyecto',
+    }
   }
 };

@@ -19,7 +19,7 @@ export function Hero({ t, scrollToSection }) {
         <div className="hero-bottom reveal">
           <div>
             <div className="hero-desc"><RichText html={t.heroDesc} /></div>
-            <div className="hero-availability" style={{ marginTop: '1.5rem', display: 'inline-flex' }}>
+          <div className="hero-availability">
               <div className="hero-dot" />
               <span>{t.available}</span>
             </div>

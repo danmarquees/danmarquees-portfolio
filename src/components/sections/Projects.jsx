@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { projects } from '../../constants/data';
 import { ArrowIcon } from '../ui/ArrowIcon';
 import { RichText } from '../ui/RichText';
+import { ProjectDrawer } from '../ui/ProjectDrawer';
 
-export function Projects({ t, scrollToSection }) {
+export function Projects({ t }) {
   const [hoverProject, setHoverProject] = useState({ src: '', visible: false, x: 0, y: 0 });
+  const [drawerProject, setDrawerProject] = useState(null); // { project, index }
+
+  const openDrawer  = (project, index) => setDrawerProject({ project, index });
+  const closeDrawer = ()               => setDrawerProject(null);
 
   return (
     <>
@@ -17,6 +22,16 @@ export function Projects({ t, scrollToSection }) {
         <img src={hoverProject.src} alt="" id="proj-hover-src" />
       </div>
 
+      {/* Project detail drawer */}
+      {drawerProject && (
+        <ProjectDrawer
+          project={drawerProject.project}
+          index={drawerProject.index}
+          t={t}
+          onClose={closeDrawer}
+        />
+      )}
+
       <section id="projects">
         <div className="projects-header">
           <div className="reveal">
@@ -27,32 +42,36 @@ export function Projects({ t, scrollToSection }) {
         </div>
 
         <div id="project-list">
-          {projects.map(([name, image, tech], index) => (
-            <div
-              className="project-item reveal"
-              data-img={image}
-              key={name}
-              onMouseEnter={() => setHoverProject(p => ({ ...p, src: image, visible: true }))}
-              onMouseLeave={() => setHoverProject(p => ({ ...p, visible: false }))}
-              onMouseMove={e => setHoverProject(p => ({ ...p, x: e.clientX + 24, y: e.clientY - 90 }))}
-            >
-              <div className="project-num">{String(index + 1).padStart(2, '0')}</div>
-              <div>
-                <div className="project-name">{name}</div>
-                <div className="project-desc">{t.projectDescriptions[index]}</div>
-              </div>
-              <div className="project-tech">
-                {tech.map(item => <span className="tech-badge" key={item}>{item}</span>)}
-              </div>
-              <a
-                href="#contact"
-                className="project-link"
-                onClick={e => scrollToSection(e, '#contact')}
+          {projects.map((project, index) => {
+            const [name, image, tech] = project;
+            return (
+              <div
+                className="project-item reveal"
+                data-img={image}
+                key={name}
+                onMouseEnter={() => setHoverProject(p => ({ ...p, src: image, visible: true }))}
+                onMouseLeave={() => setHoverProject(p => ({ ...p, visible: false }))}
+                onMouseMove={e => setHoverProject(p => ({ ...p, x: e.clientX + 24, y: e.clientY - 90 }))}
               >
-                {t.view} <ArrowIcon />
-              </a>
-            </div>
-          ))}
+                <div className="project-num">{String(index + 1).padStart(2, '0')}</div>
+                <div>
+                  <div className="project-name">{name}</div>
+                  <div className="project-desc">{t.projectDescriptions[index]}</div>
+                </div>
+                <div className="project-tech">
+                  {tech.map(item => <span className="tech-badge" key={item}>{item}</span>)}
+                </div>
+                <button
+                  type="button"
+                  className="project-link"
+                  onClick={() => openDrawer(project, index)}
+                  aria-label={`${t.project.details}: ${name}`}
+                >
+                  {t.project.details} <ArrowIcon />
+                </button>
+              </div>
+            );
+          })}
         </div>
       </section>
     </>

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 // Hooks
 import { useTheme }         from './hooks/useTheme';
@@ -30,11 +30,14 @@ import { Contact }    from './components/sections/Contact';
 import { breadcrumbSections } from './constants/data';
 import { translations }       from './translations';
 
+// Navbar height (72px) + breadcrumb bar (40px) = 112px total fixed header
+const HEADER_HEIGHT = 112;
+
 function scrollToSection(event, href) {
   event.preventDefault();
   const target = href === '#' ? document.body : document.querySelector(href);
   if (!target) return;
-  window.scrollTo({ top: href === '#' ? 0 : target.offsetTop - 72, behavior: 'smooth' });
+  window.scrollTo({ top: href === '#' ? 0 : target.offsetTop - HEADER_HEIGHT, behavior: 'smooth' });
 }
 
 export default function App() {
@@ -43,6 +46,8 @@ export default function App() {
   const { loaderHidden, loaderProgress, loaderRef, loaderNameRef } = useLoader();
   const activeSection           = useScrollSection(loaderHidden);
   const githubStats             = useGitHubStats();
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useGsapAnimations(loaderHidden);
 
@@ -71,6 +76,8 @@ export default function App() {
         setLanguage={setLanguage}
         theme={theme}
         toggleTheme={toggleTheme}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
         scrollToSection={scrollToSection}
       />
 
@@ -78,6 +85,8 @@ export default function App() {
         t={t}
         language={language}
         setLanguage={setLanguage}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
         scrollToSection={scrollToSection}
       />
 

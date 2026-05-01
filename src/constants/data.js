@@ -24,14 +24,15 @@ export const skillGroups = [
 ];
 
 // ─── Projects ───────────────────────────────────────────────────────────────────
-// Each entry: [name, imageUrl, techBadges[]]
+// Each entry: [name, imageUrl, techBadges[], githubUrl]
+// githubUrl is optional — leave as '' if no public repo yet
 export const projects = [
-  ['Portfolio System',           'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80', ['React', 'GSAP', 'Responsive UI']],
-  ['Automation Dashboard',       'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', ['React', 'Data UI', 'APIs']],
-  ['Design System Lab',          'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', ['Components', 'CSS', 'Figma']],
-  ['AI Workflow Prototype',      'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80', ['Python', 'FastAPI', 'AI APIs']],
-  ['Realtime Collaboration Study','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', ['Node.js', 'WebSocket', 'Redis']],
-  ['Backend API Toolkit',        'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&q=80', ['Node.js', 'REST APIs', 'PostgreSQL']],
+  ['Portfolio System',            'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80', ['React', 'GSAP', 'Responsive UI'],  'https://github.com/danmarquees'],
+  ['Automation Dashboard',        'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', ['React', 'Data UI', 'APIs'],          ''],
+  ['Design System Lab',           'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', ['Components', 'CSS', 'Figma'],        ''],
+  ['AI Workflow Prototype',       'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80', ['Python', 'FastAPI', 'AI APIs'],    ''],
+  ['Realtime Collaboration Study','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', ['Node.js', 'WebSocket', 'Redis'],  ''],
+  ['Backend API Toolkit',         'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&q=80', ['Node.js', 'REST APIs', 'PostgreSQL'], ''],
 ];
 
 // ─── Gallery ────────────────────────────────────────────────────────────────────

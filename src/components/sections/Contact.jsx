@@ -115,16 +115,7 @@ export function Contact({ t }) {
             </button>
 
             {formStatus === 'sent' && (
-              <div
-                id="form-success"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 12,
-                  color: 'var(--accent)',
-                  marginTop: '1rem',
-                  letterSpacing: '0.05em',
-                }}
-              >
+              <div id="form-success" className="form-success-msg">
                 {t.form.success}
               </div>
             )}
