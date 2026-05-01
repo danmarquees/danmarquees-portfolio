@@ -195,6 +195,27 @@ function App() {
   }, [language]);
 
   useEffect(() => {
+    document.body.classList.toggle('menu-open', mobileMenuOpen);
+    return () => document.body.classList.remove('menu-open');
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const closeMobileMenu = event => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    };
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 768) setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', closeMobileMenu);
+    window.addEventListener('resize', closeOnDesktop);
+    return () => {
+      window.removeEventListener('keydown', closeMobileMenu);
+      window.removeEventListener('resize', closeOnDesktop);
+    };
+  }, []);
+
+  useEffect(() => {
     gsap.to(loaderNameRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.1 });
     let progress = 0;
     const interval = window.setInterval(() => {
@@ -436,13 +457,36 @@ function App() {
             <ThemeIcon />
           </button>
           <a href="mailto:d.silvamarques@proton.me" className="nav-cta">{t.hire}</a>
-          <button className="hamburger" type="button" id="hamburger" aria-label="Open menu" onClick={() => setMobileMenuOpen(open => !open)}>
+          <button
+            className="hamburger"
+            type="button"
+            id="hamburger"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-controls="mobileMenu"
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(open => !open)}
+          >
             <span></span><span></span><span></span>
           </button>
         </div>
       </nav>
 
       <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`} id="mobileMenu">
+        <div className="mobile-menu-controls">
+          <div className="language-switcher mobile-language-switcher" role="group" aria-label={t.languageAria}>
+            {supportedLanguages.map(lang => (
+              <button
+                key={lang}
+                className={`lang-option ${language === lang ? 'active' : ''}`}
+                type="button"
+                aria-pressed={language === lang}
+                onClick={() => setLanguage(lang)}
+              >
+                {lang === 'pt-BR' ? 'PT' : lang.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
         {navItems.map(([href, index]) => (
           <a key={href} href={href} onClick={event => scrollToSection(event, href)}>{t.nav[index]}</a>
         ))}
