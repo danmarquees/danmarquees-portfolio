@@ -374,7 +374,7 @@ function App() {
           >
             <ThemeIcon />
           </button>
-          <a href="mailto:dharunkumar@email.com" className="nav-cta">{t.hire}</a>
+          <a href="mailto:d.silvamarques@proton.me" className="nav-cta">{t.hire}</a>
           <button className="hamburger" type="button" id="hamburger" aria-label="Open menu" onClick={() => setMobileMenuOpen(open => !open)}>
             <span></span><span></span><span></span>
           </button>
@@ -385,7 +385,7 @@ function App() {
         {navItems.map(([href, index]) => (
           <a key={href} href={href} onClick={event => scrollToSection(event, href)}>{t.nav[index]}</a>
         ))}
-        <a href="mailto:dharunkumar@email.com">{t.hireArrow}</a>
+        <a href="mailto:d.silvamarques@proton.me">{t.hireArrow}</a>
       </div>
 
       <section id="hero">
@@ -465,9 +465,17 @@ function App() {
               className="project-item reveal"
               data-img={image}
               key={name}
+              role="link"
+              tabIndex="0"
+              aria-label={`${name}: ${t.projectDescriptions[index]}. Technologies: ${tech.join(', ')}`}
               onMouseEnter={() => setHoverProject(project => ({ ...project, src: image, visible: true }))}
               onMouseLeave={() => setHoverProject(project => ({ ...project, visible: false }))}
               onMouseMove={event => setHoverProject(project => ({ ...project, x: event.clientX + 24, y: event.clientY - 90 }))}
+              onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  setHoverProject(project => ({ ...project, src: image, visible: !project.visible }));
+                }
+              }}
             >
               <div className="project-num">{String(index + 1).padStart(2, '0')}</div>
               <div>
@@ -506,8 +514,15 @@ function App() {
         </div>
         <div className="gallery-grid" id="galleryGrid">
           {galleryItems.map(([span, category, src, alt], index) => (
-            <div className={`gallery-item ${span}`} data-cat={category} key={src}>
-              <img src={src} alt={alt} loading="lazy" />
+            <div 
+              className={`gallery-item ${span}`} 
+              data-cat={category} 
+              key={src}
+              tabIndex="0"
+              role="img"
+              aria-label={`${t.galleryItems[index]} - ${t.filters[category]}`}
+            >
+              <img src={src} alt={t.galleryItems[index]} loading="lazy" />
               <div className="gallery-overlay">
                 <div className="gallery-item-title">{t.galleryItems[index]}</div>
                 <div className="gallery-item-cat">{t.filters[category]}</div>
