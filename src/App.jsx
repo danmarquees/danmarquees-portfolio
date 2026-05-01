@@ -26,12 +26,12 @@ const skillGroups = [
 ];
 
 const projects = [
-  ['NexCommerce', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80', ['Next.js', 'Stripe', 'MongoDB']],
-  ['Lumina Dashboard', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', ['React', 'D3.js', 'WebSocket']],
-  ['PixelForge Studio', 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', ['Canvas API', 'WebGL', 'GSAP']],
-  ['Cogni AI Chat', 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80', ['Python', 'FastAPI', 'OpenAI']],
-  ['ThreadNest', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', ['Node.js', 'Socket.io', 'Redis']],
-  ['VaultChain', 'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&q=80', ['Solidity', 'IPFS', 'Web3.js']]
+  ['Portfolio System', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80', ['React', 'GSAP', 'Responsive UI']],
+  ['Automation Dashboard', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', ['React', 'Data UI', 'APIs']],
+  ['Design System Lab', 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', ['Components', 'CSS', 'Figma']],
+  ['AI Workflow Prototype', 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80', ['Python', 'FastAPI', 'AI APIs']],
+  ['Realtime Collaboration Study', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80', ['Node.js', 'WebSocket', 'Redis']],
+  ['Backend API Toolkit', 'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&q=80', ['Node.js', 'REST APIs', 'PostgreSQL']]
 ];
 
 const galleryItems = [
@@ -162,7 +162,7 @@ function App() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeSection, setActiveSection] = useState('hero');
   const [hoverProject, setHoverProject] = useState({ src: '', visible: false, x: 0, y: 0 });
-  const [githubStats, setGithubStats] = useState({ repos: '—', stars: '—', followers: '—' });
+  const [githubStats, setGithubStats] = useState({ repos: '21', followers: '96', since: '2022' });
   const [formStatus, setFormStatus] = useState('idle');
   const cursorRef = useRef(null);
   const loaderRef = useRef(null);
@@ -370,10 +370,11 @@ function App() {
         setGithubStats(stats => ({
           ...stats,
           repos: data.public_repos || stats.repos,
-          followers: data.followers || stats.followers
+          followers: data.followers || stats.followers,
+          since: data.created_at ? new Date(data.created_at).getFullYear() : stats.since
         }));
       } catch (error) {
-        setGithubStats({ repos: '30+', stars: '120+', followers: '80+' });
+        setGithubStats({ repos: '21', followers: '96', since: '2022' });
       }
     }
 
@@ -397,12 +398,21 @@ function App() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    setFormStatus('sending');
-    window.setTimeout(() => {
-      setFormStatus('sent');
-      event.currentTarget.reset();
-      window.setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1200);
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject') || t.form.defaultSubject;
+    const message = formData.get('message');
+    const body = [
+      `${t.form.name}: ${name}`,
+      `${t.form.email}: ${email}`,
+      '',
+      message
+    ].join('\n');
+
+    setFormStatus('sent');
+    window.location.href = `mailto:d.silvamarques@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.setTimeout(() => setFormStatus('idle'), 4000);
   }
 
   return (
@@ -427,7 +437,7 @@ function App() {
       </div>
 
       <nav id="navbar">
-        <a href="#" className="nav-logo" onClick={event => scrollToSection(event, '#')}>danmarques<span>.</span>dev</a>
+        <a href="#hero" className="nav-logo" onClick={event => scrollToSection(event, '#hero')}>danmarques<span>.</span>dev</a>
         <ul className="nav-links">
           {navItems.map(([href, index]) => (
             <li key={href}><a href={href} onClick={event => scrollToSection(event, href)}>{t.nav[index]}</a></li>
@@ -542,7 +552,7 @@ function App() {
           <h2 className="about-title reveal"><RichText html={t.aboutTitle} /></h2>
           <p className="about-text reveal">{t.aboutText}</p>
           <div className="about-stats reveal">
-            {[3, 40, 15, 8].map((count, index) => (
+            {[3, 21, 96, 24].map((count, index) => (
               <div className="stat-box" key={t.stats[index]}>
                 <div className="stat-num" data-count={count}>0</div>
                 <div className="stat-label">{t.stats[index]}</div>
@@ -576,17 +586,9 @@ function App() {
               className="project-item reveal"
               data-img={image}
               key={name}
-              role="link"
-              tabIndex="0"
-              aria-label={`${name}: ${t.projectDescriptions[index]}. Technologies: ${tech.join(', ')}`}
               onMouseEnter={() => setHoverProject(project => ({ ...project, src: image, visible: true }))}
               onMouseLeave={() => setHoverProject(project => ({ ...project, visible: false }))}
               onMouseMove={event => setHoverProject(project => ({ ...project, x: event.clientX + 24, y: event.clientY - 90 }))}
-              onKeyDown={event => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  setHoverProject(project => ({ ...project, src: image, visible: !project.visible }));
-                }
-              }}
             >
               <div className="project-num">{String(index + 1).padStart(2, '0')}</div>
               <div>
@@ -596,7 +598,7 @@ function App() {
               <div className="project-tech">
                 {tech.map(item => <span className="tech-badge" key={item}>{item}</span>)}
               </div>
-              <a href="#" className="project-link" onClick={event => scrollToSection(event, '#')}>{t.view} <ArrowIcon /></a>
+              <a href="#contact" className="project-link" onClick={event => scrollToSection(event, '#contact')}>{t.view} <ArrowIcon /></a>
             </div>
           ))}
         </div>
@@ -629,7 +631,6 @@ function App() {
               className={`gallery-item ${span}`} 
               data-cat={category} 
               key={src}
-              tabIndex="0"
               role="img"
               aria-label={`${t.galleryItems[index]} - ${t.filters[category]}`}
             >
@@ -660,13 +661,13 @@ function App() {
             <RichText as="div" className="exp-big-text" html={t.expBig} />
             <div className="section-label">{t.recognitions}</div>
             <ul className="awards-list">
-              {t.awards.map(([name, org], index) => (
+              {t.awards.map(([name, org, year]) => (
                 <li className="award-item" key={name}>
                   <div>
                     <div className="award-name">{name}</div>
                     <div className="award-org">{org}</div>
                   </div>
-                  <div className="award-year">{index === 0 ? '2024' : index === 3 ? '2022' : '2023'}</div>
+                  <div className="award-year">{year}</div>
                 </li>
               ))}
             </ul>
@@ -680,13 +681,13 @@ function App() {
             <div className="section-label" style={{ color: 'rgba(245,240,232,0.4)' }}>{t.githubLabel}</div>
             <RichText as="h2" className="github-title" html={t.githubTitle} />
             <p className="github-desc">{t.githubDesc}</p>
-            <a href="https://github.com" target="_blank" className="github-btn" rel="noreferrer">
+            <a href="https://github.com/danmarquees" target="_blank" className="github-btn" rel="noreferrer">
               <GithubIcon /> {t.githubCta}
             </a>
           </div>
           <div className="reveal">
             <div id="github-stats">
-              {[githubStats.repos, githubStats.stars, githubStats.followers, '1.2K'].map((value, index) => (
+              {[githubStats.repos, githubStats.followers, 'BR', githubStats.since].map((value, index) => (
                 <div className="gh-stat" key={t.githubStats[index]}>
                   <div className="gh-num">{value}</div>
                   <div className="gh-label">{t.githubStats[index]}</div>
@@ -714,9 +715,8 @@ function App() {
             <div className="contact-links reveal">
               {[
                 ['mailto:d.silvamarques@proton.me', 'Email', 'danmarques@proton.me'],
-                ['https://github.com', 'GitHub', 'github.com/danmarquees'],
-                ['https://linkedin.com', 'LinkedIn', 'linkedin.com/in/danmarquees'],
-                ['https://twitter.com', 'Twitter / X', '@childrebeldan']
+                ['https://github.com/danmarquees', 'GitHub', 'github.com/danmarquees'],
+                ['https://www.linkedin.com/in/danilo-marques', 'LinkedIn', 'linkedin.com/in/danilo-marques']
               ].map(([href, name, handle]) => (
                 <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="contact-link" key={name}>
                   <div>
@@ -733,19 +733,19 @@ function App() {
             <form onSubmit={handleFormSubmit} style={{ marginTop: '2rem' }}>
               <div className="form-row">
                 <label className="form-label" htmlFor="fname">{t.form.name}</label>
-                <input type="text" id="fname" className="form-input" placeholder={t.form.namePlaceholder} required />
+                <input type="text" id="fname" name="name" className="form-input" placeholder={t.form.namePlaceholder} required />
               </div>
               <div className="form-row">
                 <label className="form-label" htmlFor="femail">{t.form.email}</label>
-                <input type="email" id="femail" className="form-input" placeholder="seuemail@example.com" required />
+                <input type="email" id="femail" name="email" className="form-input" placeholder="seuemail@example.com" required />
               </div>
               <div className="form-row">
                 <label className="form-label" htmlFor="fsubject">{t.form.subject}</label>
-                <input type="text" id="fsubject" className="form-input" placeholder={t.form.subjectPlaceholder} />
+                <input type="text" id="fsubject" name="subject" className="form-input" placeholder={t.form.subjectPlaceholder} />
               </div>
               <div className="form-row">
                 <label className="form-label" htmlFor="fmsg">{t.form.message}</label>
-                <textarea id="fmsg" className="form-textarea" rows="4" placeholder={t.form.messagePlaceholder} required></textarea>
+                <textarea id="fmsg" name="message" className="form-textarea" rows="4" placeholder={t.form.messagePlaceholder} required></textarea>
               </div>
               <button type="submit" className="form-submit">
                 <span>{formStatus === 'sending' ? t.form.sending : formStatus === 'sent' ? t.form.sent : t.form.send}</span>

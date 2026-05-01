@@ -2014,7 +2014,6 @@
     text-decoration: none;
     color: var(--charcoal);
     transition: padding-left 0.2s;
-    group: true;
     gap: 1rem;
   }
 
