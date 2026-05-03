@@ -7,6 +7,7 @@ import { useLoader }        from './hooks/useLoader';
 import { useScrollSection } from './hooks/useScrollSection';
 import { useGitHubStats }   from './hooks/useGitHubStats';
 import { useGsapAnimations } from './hooks/useGsapAnimations';
+import { useSeo }            from './hooks/useSeo';
 
 // Layout
 import { Navbar }     from './components/layout/Navbar';
@@ -50,6 +51,7 @@ export default function App() {
   useGsapAnimations(loaderHidden);
 
   const t = translations[language];
+  useSeo(language);
 
   // Deterministic contribution grid — computed once per mount
   const contributionRows = useMemo(() => {
