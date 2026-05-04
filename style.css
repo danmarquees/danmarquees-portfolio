@@ -1963,42 +1963,9 @@
     margin-bottom: 1rem;
   }
 
-  .contrib-row {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 3px;
-    min-width: max-content;
-  }
-
-  .contrib-cell {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.05);
-    transition: transform 0.2s, background-color 0.2s;
-    cursor: crosshair;
-  }
-
-  .contrib-cell:hover {
-    transform: scale(1.4);
-    z-index: 10;
-    box-shadow: 0 0 5px rgba(0, 71, 255, 0.5);
-  }
-
-  .contrib-cell.l1 {
-    background: rgba(0, 71, 255, 0.2);
-  }
-
-  .contrib-cell.l2 {
-    background: rgba(0, 71, 255, 0.4);
-  }
-
-  .contrib-cell.l3 {
-    background: rgba(0, 71, 255, 0.65);
-  }
-
-  .contrib-cell.l4 {
-    background: rgba(0, 71, 255, 0.9);
+  /* react-github-calendar overrides */
+  .react-activity-calendar {
+    font-family: var(--font-mono);
   }
 
   @media (max-width: 768px) {
@@ -2009,11 +1976,6 @@
     .github-inner {
       grid-template-columns: 1fr;
       gap: 3rem;
-    }
-
-    .contrib-cell {
-      width: 8px;
-      height: 8px;
     }
   }
 

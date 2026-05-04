@@ -53,14 +53,6 @@ export default function App() {
   const t = translations[language];
   useSeo(language);
 
-  // Deterministic contribution grid — computed once per mount
-  const contributionRows = useMemo(() => {
-    const levels = ['', 'l1', 'l2', 'l3', 'l4'];
-    return Array.from({ length: 7 }, (_, row) =>
-      Array.from({ length: 30 }, (_, col) => levels[(row * 11 + col * 7 + col) % levels.length])
-    );
-  }, []);
-
   return (
     <>
       <Loader
@@ -96,7 +88,7 @@ export default function App() {
       <Projects   t={t} />
       <Gallery    t={t} />
       <Experience t={t} />
-      <GitHub     t={t} githubStats={githubStats} githubLoading={githubLoading} contributionRows={contributionRows} />
+      <GitHub     t={t} githubStats={githubStats} githubLoading={githubLoading} />
       <Contact    t={t} />
 
       <Footer t={t} />

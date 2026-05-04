@@ -1,7 +1,14 @@
+import { GitHubCalendar } from 'react-github-calendar';
 import { GithubIcon } from '../ui/GithubIcon';
 import { RichText } from '../ui/RichText';
 
-export function GitHub({ t, githubStats, githubLoading, contributionRows }) {
+export function GitHub({ t, githubStats, githubLoading }) {
+  // We can pass a custom color theme to GitHubCalendar to match the portfolio
+  const theme = {
+    light: ['rgba(255, 255, 255, 0.05)', 'rgba(0, 71, 255, 0.2)', 'rgba(0, 71, 255, 0.4)', 'rgba(0, 71, 255, 0.65)', 'rgba(0, 71, 255, 0.9)'],
+    dark: ['rgba(255, 255, 255, 0.05)', 'rgba(0, 71, 255, 0.2)', 'rgba(0, 71, 255, 0.4)', 'rgba(0, 71, 255, 0.65)', 'rgba(0, 71, 255, 0.9)']
+  };
+
   return (
     <section id="github-section">
       <div className="github-inner">
@@ -35,13 +42,13 @@ export function GitHub({ t, githubStats, githubLoading, contributionRows }) {
 
           <div className="contribution-grid" id="contribGrid">
             <div className="contrib-title">{t.contribTitle}</div>
-            {contributionRows.map((row, rowIndex) => (
-              <div className="contrib-row" key={rowIndex}>
-                {row.map((level, cellIndex) => (
-                  <div className={`contrib-cell ${level}`} key={cellIndex} />
-                ))}
-              </div>
-            ))}
+            <GitHubCalendar 
+              username="danmarquees" 
+              theme={theme}
+              colorScheme="dark"
+              hideTotalCount={true}
+              hideColorLegend={true}
+            />
           </div>
         </div>
       </div>
