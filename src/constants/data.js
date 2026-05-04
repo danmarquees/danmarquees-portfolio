@@ -1,11 +1,13 @@
 // ─── Navigation ────────────────────────────────────────────────────────────────
 // Each entry: [href, translationIndex]
 export const navItems = [
-  ['#about', 0],
-  ['#projects', 1],
-  ['#gallery', 2],
-  ['#experience', 3],
-  ['#contact', 4],
+  ['#hero', 0],
+  ['#about', 1],
+  ['#projects', 2],
+  ['#gallery', 3],
+  ['#experience', 4],
+  ['#github-section', 5],
+  ['#contact', 6],
 ];
 
 // ─── Marquee ────────────────────────────────────────────────────────────────────
