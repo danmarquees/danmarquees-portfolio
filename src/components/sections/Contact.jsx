@@ -4,9 +4,9 @@ import { ArrowIcon } from '../ui/ArrowIcon';
 import { RichText } from '../ui/RichText';
 
 // EmailJS credentials — configure via .env.local (never commit secrets)
-const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export function Contact({ t }) {
   const [formStatus, setFormStatus] = useState('idle'); // idle | sending | sent | error
@@ -18,8 +18,8 @@ export function Contact({ t }) {
     // Fallback to mailto: if EmailJS is not configured
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
       const formData = new FormData(event.currentTarget);
-      const name    = formData.get('name');
-      const email   = formData.get('email');
+      const name = formData.get('name');
+      const email = formData.get('email');
       const subject = formData.get('subject') || t.form.defaultSubject;
       const message = formData.get('message');
       const body = [`${t.form.name}: ${name}`, `${t.form.email}: ${email}`, '', message].join('\n');
@@ -42,9 +42,9 @@ export function Contact({ t }) {
   }
 
   const contactLinks = [
-    ['mailto:d.silvamarques@proton.me', 'Email',    'd.silvamarques@proton.me'],
-    ['https://github.com/danmarquees',  'GitHub',   'github.com/danmarquees'],
-    ['https://www.linkedin.com/in/danilo-marques', 'LinkedIn', 'linkedin.com/in/danilo-marques'],
+    ['mailto:d.silvamarques@proton.me', 'Email', 'd.silvamarques@proton.me'],
+    ['https://github.com/danmarquees', 'GitHub', 'github.com/danmarquees'],
+    ['https://www.linkedin.com/in/danilomarquesdev', 'LinkedIn', 'linkedin.com/in/danilomarquesdev'],
   ];
 
   const isBusy = formStatus === 'sending' || formStatus === 'sent';
@@ -81,15 +81,15 @@ export function Contact({ t }) {
           <form ref={formRef} onSubmit={handleFormSubmit} style={{ marginTop: '2rem' }}>
             <div className="form-row">
               <label className="form-label" htmlFor="fname">{t.form.name}</label>
-              <input type="text"  id="fname"    name="from_name"    className="form-input" placeholder={t.form.namePlaceholder}    required />
+              <input type="text" id="fname" name="from_name" className="form-input" placeholder={t.form.namePlaceholder} required />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="femail">{t.form.email}</label>
-              <input type="email" id="femail"   name="from_email"   className="form-input" placeholder="seuemail@example.com"      required />
+              <input type="email" id="femail" name="from_email" className="form-input" placeholder="seuemail@example.com" required />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="fsubject">{t.form.subject}</label>
-              <input type="text"  id="fsubject" name="subject"       className="form-input" placeholder={t.form.subjectPlaceholder} />
+              <input type="text" id="fsubject" name="subject" className="form-input" placeholder={t.form.subjectPlaceholder} />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="fmsg">{t.form.message}</label>
@@ -99,7 +99,7 @@ export function Contact({ t }) {
             <button type="submit" className={`form-submit ${formStatus}`} disabled={isBusy}>
               <span>
                 {formStatus === 'sending' && t.form.sending}
-                {formStatus === 'sent'    && t.form.sent}
+                {formStatus === 'sent' && t.form.sent}
                 {(formStatus === 'idle' || formStatus === 'error') && t.form.send}
               </span>
             </button>
