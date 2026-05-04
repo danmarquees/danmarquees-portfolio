@@ -1,7 +1,7 @@
 import { GithubIcon } from '../ui/GithubIcon';
 import { RichText } from '../ui/RichText';
 
-export function GitHub({ t, githubStats, contributionRows }) {
+export function GitHub({ t, githubStats, githubLoading, contributionRows }) {
   return (
     <section id="github-section">
       <div className="github-inner">
@@ -25,7 +25,9 @@ export function GitHub({ t, githubStats, contributionRows }) {
           <div id="github-stats">
             {[githubStats.repos, githubStats.followers, 'BR', githubStats.since].map((value, index) => (
               <div className="gh-stat" key={t.githubStats[index]}>
-                <div className="gh-num">{value}</div>
+                <div className={`gh-num ${githubLoading ? 'skeleton' : ''}`}>
+                  {githubLoading ? '' : value}
+                </div>
                 <div className="gh-label">{t.githubStats[index]}</div>
               </div>
             ))}

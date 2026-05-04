@@ -44,7 +44,7 @@ export default function App() {
   const [language, setLanguage] = useLanguage();
   const { loaderHidden, loaderProgress, loaderRef, loaderNameRef } = useLoader();
   const activeSection           = useScrollSection(loaderHidden);
-  const githubStats             = useGitHubStats();
+  const { data: githubStats, isLoading: githubLoading } = useGitHubStats();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -96,7 +96,7 @@ export default function App() {
       <Projects   t={t} />
       <Gallery    t={t} />
       <Experience t={t} />
-      <GitHub     t={t} githubStats={githubStats} contributionRows={contributionRows} />
+      <GitHub     t={t} githubStats={githubStats} githubLoading={githubLoading} contributionRows={contributionRows} />
       <Contact    t={t} />
 
       <Footer t={t} />

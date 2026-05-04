@@ -6,6 +6,7 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 export function useGitHubStats() {
   const [githubStats, setGithubStats] = useState(FALLBACK);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchGitHub() {
@@ -16,6 +17,7 @@ export function useGitHubStats() {
           const { data, timestamp } = JSON.parse(cached);
           if (Date.now() - timestamp < CACHE_TTL) {
             setGithubStats(data);
+            setIsLoading(false);
             return;
           }
         }
@@ -25,7 +27,10 @@ export function useGitHubStats() {
 
       try {
         const res = await fetch('https://api.github.com/users/danmarquees');
-        if (!res.ok) return;
+        if (!res.ok) {
+          setIsLoading(false);
+          return;
+        }
         const data = await res.json();
         const stats = {
           repos:     String(data.public_repos ?? FALLBACK.repos),
@@ -35,6 +40,7 @@ export function useGitHubStats() {
             : FALLBACK.since,
         };
         setGithubStats(stats);
+        setIsLoading(false);
         try {
           sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data: stats, timestamp: Date.now() }));
         } catch {
@@ -42,11 +48,12 @@ export function useGitHubStats() {
         }
       } catch {
         setGithubStats(FALLBACK);
+        setIsLoading(false);
       }
     }
 
     fetchGitHub();
   }, []);
 
-  return githubStats;
+  return { data: githubStats, isLoading };
 }
