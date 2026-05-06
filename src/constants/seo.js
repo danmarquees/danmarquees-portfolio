@@ -1,5 +1,5 @@
-export const siteUrl = 'https://danmarques.dev/';
-export const siteImage = `${siteUrl}og-image.svg`;
+export const siteUrl = 'https://danmarquesdev.com/';
+export const siteImage = `${siteUrl}og-image.png`;
 export const contactEmail = 'd.silvamarques@proton.me';
 
 export const seoByLanguage = {
@@ -40,6 +40,8 @@ export const jsonLd = {
       name: 'Dan Marques',
       url: siteUrl,
       image: siteImage,
+      description:
+        'Full stack developer in Sao Paulo, Brazil, focused on React, Node.js, APIs, automation, and product interfaces.',
       jobTitle: 'Full Stack Developer',
       email: `mailto:${contactEmail}`,
       address: {
@@ -80,6 +82,9 @@ export const jsonLd = {
       description:
         'Portfolio of Dan Marques, a full stack developer from Sao Paulo focused on web products, React interfaces, APIs, automation, and practical product delivery.',
       inLanguage: ['en', 'pt-BR', 'es'],
+      isPartOf: {
+        '@id': `${siteUrl}#website`,
+      },
       mainEntity: {
         '@id': `${siteUrl}#person`,
       },

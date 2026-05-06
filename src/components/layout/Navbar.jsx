@@ -20,7 +20,7 @@ export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMen
 
       <nav id="navbar">
         <a href="#hero" className="nav-logo" onClick={e => scrollToSection(e, '#hero')}>
-          danmarques<span>.</span>dev
+          danmarquesdev<span>.</span>com
         </a>
 
         <ul className="nav-links">

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://danmarques.dev/sitemap.xml
+Sitemap: https://danmarquesdev.com/sitemap.xml

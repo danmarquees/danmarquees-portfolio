@@ -6,6 +6,11 @@ function setMeta(selector, attribute, value) {
   if (element) element.setAttribute(attribute, value);
 }
 
+function setLink(selector, attribute, value) {
+  const element = document.head.querySelector(selector);
+  if (element) element.setAttribute(attribute, value);
+}
+
 export function useSeo(language) {
   useEffect(() => {
     const seo = seoByLanguage[language] || defaultSeo;
@@ -23,6 +28,7 @@ export function useSeo(language) {
     setMeta('meta[name="twitter:url"]', 'content', siteUrl);
     setMeta('meta[property="og:image"]', 'content', siteImage);
     setMeta('meta[name="twitter:image"]', 'content', siteImage);
+    setLink('link[rel="canonical"]', 'href', siteUrl);
 
     const structuredData = document.getElementById('structured-data');
     if (structuredData) {
