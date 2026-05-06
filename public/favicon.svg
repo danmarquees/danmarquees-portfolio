@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: #FAF7F2; }
+    .line { stroke: rgba(26, 24, 20, 0.18); }
+    .ink { fill: #1A1814; }
+    .accent { stroke: #0047FF; }
+
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0E1116; }
+      .line { stroke: rgba(246, 240, 230, 0.18); }
+      .ink { fill: #F6F0E6; }
+      .accent { stroke: #7AA2FF; }
+    }
+  </style>
+
+  <rect class="bg" x="4" y="4" width="56" height="56" rx="8" />
+  <rect class="line" x="4.5" y="4.5" width="55" height="55" rx="7.5" />
+  <path class="accent" d="M16 46L46 16" stroke-width="2.5" stroke-linecap="square" />
+  <path class="line" d="M17 17H47V47H17V17Z" />
+  <text class="ink" x="32" y="39" text-anchor="middle" font-family="Syne, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="-2">DM</text>
+</svg>
