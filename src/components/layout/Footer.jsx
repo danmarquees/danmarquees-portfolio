@@ -42,7 +42,7 @@ export function Footer({ t }) {
         <div className="footer-logo">danmarquesdev<span>.</span>com</div>
         <div className="footer-socials">
           <a href="https://github.com/danmarquees" target="_blank" rel="noreferrer" className="footer-link">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/danilo-marques" target="_blank" rel="noreferrer" className="footer-link">LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/danilomarquesdev" target="_blank" rel="noreferrer" className="footer-link">LinkedIn ↗</a>
           <a href="mailto:d.silvamarques@proton.me" className="footer-link">Email ↗</a>
         </div>
       </div>
