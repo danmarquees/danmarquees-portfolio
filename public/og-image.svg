@@ -1,13 +1,99 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#101010"/>
-  <rect x="64" y="64" width="1072" height="502" rx="18" fill="#f3efe4"/>
-  <path d="M0 520C206 448 359 454 512 502C692 559 849 563 1200 440V630H0V520Z" fill="#d64f32"/>
-  <path d="M836 104H1100V368H836V104Z" fill="#101010"/>
-  <path d="M884 176L936 228L884 280" stroke="#f3efe4" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M1052 176L1000 228L1052 280" stroke="#f3efe4" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="104" y="190" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Dan Marques</text>
-  <text x="104" y="286" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="800">Full Stack</text>
-  <text x="104" y="382" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="800">Developer</text>
-  <text x="106" y="456" fill="#4b453d" font-family="Arial, Helvetica, sans-serif" font-size="32">React · Node.js · APIs · Product Interfaces</text>
-  <text x="106" y="514" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">danmarquesdev.com</text>
+  <defs>
+    <pattern id="grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(246,240,230,0.065)" stroke-width="1"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect width="1200" height="630"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#171B22"/>
+
+  <!-- Grid texture -->
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- ── Top line + role tag ── -->
+  <rect x="24" y="40" width="36" height="1.5" fill="rgba(246,240,230,0.35)"/>
+  <text x="70" y="44" fill="rgba(246,240,230,0.4)" font-family="'DM Mono','Courier New',monospace" font-size="11" letter-spacing="2.5" font-weight="400">FULL STACK DEVELOPER &amp; SOFTWARE ARCHITECT &amp; IT MANAGER</text>
+
+  <!-- ── "Dan" — Syne 800, massive, cream ── -->
+  <text x="18" y="228" fill="#F5F0E8" font-family="'Syne','Arial Black',Arial,sans-serif" font-size="210" font-weight="800" letter-spacing="-6">Dan</text>
+
+  <!-- ── "Marques" — Fraunces italic, accent blue ── -->
+  <text x="18" y="370" fill="#7AA2FF" font-family="'Fraunces',Georgia,serif" font-size="170" font-weight="300" font-style="italic" letter-spacing="-4">Marques</text>
+
+  <!-- ── Skill tags row 1 — matches .skill-tag style from the project ──
+       Border: 1px solid rgba(246,240,230,0.14)
+       Background: #202631  (--cream dark)
+       Font: DM Mono, 12px, letter-spacing 0.05em, color: #E6DED2 (--ink dark)
+  -->
+
+  <!-- Row 1 badges -->
+  <!-- React -->
+  <rect x="24" y="412" width="74" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="61" y="431" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">React</text>
+
+  <!-- Next.js -->
+  <rect x="106" y="412" width="78" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="145" y="431" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">Next.js</text>
+
+  <!-- Node.js -->
+  <rect x="192" y="412" width="76" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="230" y="431" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">Node.js</text>
+
+  <!-- TypeScript -->
+  <rect x="276" y="412" width="98" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="325" y="431" fill="#7AA2FF" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">TypeScript</text>
+
+  <!-- GSAP -->
+  <rect x="382" y="412" width="62" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="413" y="431" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">GSAP</text>
+
+  <!-- Python -->
+  <rect x="452" y="412" width="74" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="489" y="431" fill="#FF7A45" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">Python</text>
+
+  <!-- Row 2 badges -->
+  <!-- MongoDB -->
+  <rect x="24" y="450" width="84" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="66" y="469" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">MongoDB</text>
+
+  <!-- PostgreSQL -->
+  <rect x="116" y="450" width="98" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="165" y="469" fill="#7AA2FF" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">PostgreSQL</text>
+
+  <!-- Docker -->
+  <rect x="222" y="450" width="72" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="258" y="469" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">Docker</text>
+
+  <!-- AWS -->
+  <rect x="302" y="450" width="56" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="330" y="469" fill="#FF7A45" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">AWS</text>
+
+  <!-- Figma -->
+  <rect x="366" y="450" width="66" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="399" y="469" fill="#E6DED2" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">Figma</text>
+
+  <!-- GraphQL -->
+  <rect x="440" y="450" width="80" height="30" fill="#202631" stroke="rgba(246,240,230,0.14)" stroke-width="1"/>
+  <text x="480" y="469" fill="#7AA2FF" font-family="'DM Mono','Courier New',monospace" font-size="12" letter-spacing="0.6" text-anchor="middle">GraphQL</text>
+
+  <!-- ── Horizontal rule ── -->
+  <rect x="24" y="500" width="520" height="1" fill="rgba(246,240,230,0.1)"/>
+
+  <!-- ── Bottom left: description block ── -->
+  <text x="24" y="530" fill="rgba(246,240,230,0.45)" font-family="'DM Mono','Courier New',monospace" font-size="12.5" letter-spacing="0.3">Building digital experiences</text>
+  <text x="24" y="548" fill="rgba(246,240,230,0.45)" font-family="'DM Mono','Courier New',monospace" font-size="12.5" letter-spacing="0.3">that live at the intersection of</text>
+  <text x="24" y="566" fill="#F5F0E8" font-family="'DM Mono','Courier New',monospace" font-size="12.5" font-weight="700" letter-spacing="0.3">code, craft &amp; creativity.</text>
+
+  <!-- ── Available badge ── -->
+  <rect x="24" y="584" width="200" height="24" rx="3" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+  <circle cx="40" cy="596" r="4.5" fill="#22c55e"/>
+  <text x="53" y="600" fill="rgba(246,240,230,0.65)" font-family="'DM Mono','Courier New',monospace" font-size="11" letter-spacing="0.5">Available for freelance projects</text>
+
+  <!-- ── Bottom right: SCROLL indicator ── -->
+  <rect x="1175" y="578" width="1" height="30" fill="rgba(246,240,230,0.15)"/>
+  <text x="1162" y="600" fill="rgba(246,240,230,0.25)" font-family="'DM Mono','Courier New',monospace" font-size="10" letter-spacing="3" text-anchor="end">SCROLL</text>
 </svg>
