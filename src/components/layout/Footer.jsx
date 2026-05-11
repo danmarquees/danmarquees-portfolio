@@ -17,6 +17,10 @@ export function Footer({ t }) {
     return () => clearInterval(interval);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer>
       <div className="footer-left">
@@ -33,8 +37,22 @@ export function Footer({ t }) {
         </div>
         <div className="footer-copyright" style={{ opacity: 0.7 }}>{t.footerRights}</div>
       </div>
-      <div className="footer-logo">danmarquesdev<span>.</span>com</div>
-      <RichText as="div" className="footer-right" html={t.footerBuilt} />
+
+      <div className="footer-center">
+        <div className="footer-logo">danmarquesdev<span>.</span>com</div>
+        <div className="footer-socials">
+          <a href="https://github.com/danmarquees" target="_blank" rel="noreferrer" className="footer-link">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/danilo-marques" target="_blank" rel="noreferrer" className="footer-link">LinkedIn ↗</a>
+          <a href="mailto:d.silvamarques@proton.me" className="footer-link">Email ↗</a>
+        </div>
+      </div>
+
+      <div className="footer-right">
+        <button onClick={scrollToTop} className="back-to-top">
+          {t.backToTop || 'Back to top'} <span className="arrow-up">→</span>
+        </button>
+        <RichText as="div" html={t.footerBuilt} />
+      </div>
     </footer>
   );
 }
