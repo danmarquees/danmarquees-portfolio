@@ -6,6 +6,12 @@ export const translations = {
     themeLight: 'Switch to dark theme',
     themeDark: 'Switch to light theme',
     nav: ['Home', 'About', 'Projects', 'Gallery', 'Experience', 'GitHub', 'Contact'],
+    cookie: {
+      title: 'Privacy & Cookies',
+      message: 'We use cookies to improve your experience, remember your preferences, and analyze site traffic.',
+      accept: 'Accept',
+      decline: 'Decline'
+    },
     hire: 'Hire Me',
     hireArrow: 'Hire Me →',
     heroRole: 'Full Stack Developer',
@@ -96,6 +102,12 @@ export const translations = {
     themeLight: 'Alternar para tema escuro',
     themeDark: 'Alternar para tema claro',
     nav: ['Início', 'Sobre', 'Projetos', 'Galeria', 'Experiência', 'GitHub', 'Contato'],
+    cookie: {
+      title: 'Privacidade & Cookies',
+      message: 'Utilizamos cookies para melhorar sua experiência, lembrar suas preferências e analisar o tráfego do site.',
+      accept: 'Aceitar',
+      decline: 'Recusar'
+    },
     hire: 'Contrate-me',
     hireArrow: 'Contrate-me →',
     heroRole: 'Desenvolvedor Full Stack',
@@ -186,6 +198,12 @@ export const translations = {
     themeLight: 'Cambiar a tema oscuro',
     themeDark: 'Cambiar a tema claro',
     nav: ['Inicio', 'Sobre mí', 'Proyectos', 'Galería', 'Experiencia', 'GitHub', 'Contacto'],
+    cookie: {
+      title: 'Privacidad & Cookies',
+      message: 'Utilizamos cookies para mejorar su experiencia, recordar sus preferencias y analizar el tráfico del sitio.',
+      accept: 'Aceptar',
+      decline: 'Rechazar'
+    },
     hire: 'Contrátame',
     hireArrow: 'Contrátame →',
     heroRole: 'Desarrollador Full Stack',

@@ -16,6 +16,7 @@ import { Footer }     from './components/layout/Footer';
 
 // UI
 import { Loader } from './components/ui/Loader';
+import { CookieConsent } from './components/ui/CookieConsent';
 
 // Sections
 import { Hero }       from './components/sections/Hero';
@@ -92,6 +93,7 @@ export default function App() {
       <Contact    t={t} />
 
       <Footer t={t} />
+      <CookieConsent t={t} />
     </>
   );
 }
