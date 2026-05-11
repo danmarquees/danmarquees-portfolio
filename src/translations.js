@@ -83,6 +83,7 @@ export const translations = {
       error: 'Something went wrong. Please try again.',
       success: 'Your message was sent successfully. I\'ll get back to you soon!'
     },
+    footerMarquee: "LET'S BUILD SOMETHING TOGETHER",
     footerRights: '© 2026 Dan Marques All rights reserved.',
     backToTop: 'Back to top',
     footerBuilt: 'Built with <span style="color:var(--accent)">♥</span> from Space',
@@ -180,6 +181,7 @@ export const translations = {
       error: 'Algo deu errado. Por favor, tente novamente.',
       success: 'Sua mensagem foi enviada com sucesso. Responderei em breve!'
     },
+    footerMarquee: "VAMOS CONSTRUIR ALGO JUNTOS",
     footerRights: '© 2026 Dan Marques Todos os direitos reservados.',
     backToTop: 'Voltar ao topo',
     footerBuilt: 'Feito com <span style="color:var(--accent)">♥</span> do espaço',
@@ -277,6 +279,7 @@ export const translations = {
       error: 'Algo salió mal. Por favor, inténtalo de nuevo.',
       success: '¡Tu mensaje fue enviado con éxito. Te responderé pronto!'
     },
+    footerMarquee: "VAMOS A CONSTRUIR ALGO JUNTOS",
     footerRights: '© 2026 Dan Marques Todos los derechos reservados.',
     backToTop: 'Volver arriba',
     footerBuilt: 'Hecho con <span style="color:var(--accent)">♥</span> desde el espacio',
