@@ -2206,6 +2206,19 @@
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  @keyframes timePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 209, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 209, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 209, 94, 0); }
+  }
+
+  .time-dot {
+    animation: timePulse 2s infinite;
   }
 
   .footer-logo {
