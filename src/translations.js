@@ -26,9 +26,9 @@ export const translations = {
       'Full-stack ERP refactored to a GraphQL architecture with Go, Rust, and PostgreSQL',
       'Dashboard with real-time event tracking and granular Role-Based Access Control',
       'Personal portfolio built with React, GSAP animations, multilingual content, and security features',
-      'Prototype for connecting product workflows to AI-assisted backend services',
-      'Study of realtime UI patterns for shared updates, presence, and fast feedback',
-      'Backend structure for predictable REST APIs, persistence, validation, and deployment readiness'
+      'Market Intelligence Platform for SaaS validation using quantitative data and sentiment analysis',
+      'Microservice designed to provide sentiment analysis and text summarization via RESTful API',
+      'Low-latency system for fraud detection in financial transactions'
     ],
     galleryLabel: 'Visual Gallery',
     galleryTitle: 'Design<br><span style="font-family:var(--font-serif);font-weight:300;font-style:italic;color:var(--accent);">Works</span>',
@@ -116,9 +116,9 @@ export const translations = {
       'ERP full-stack refatorado para arquitetura GraphQL com Go, Rust e PostgreSQL',
       'Dashboard com rastreamento de eventos em tempo real e controle de acesso baseado em funções (RBAC)',
       'Portfólio pessoal criado com React, animações GSAP, conteúdo multilíngue e recursos de segurança',
-      'Protótipo para conectar fluxos de produto a serviços backend assistidos por IA',
-      'Estudo de padrões realtime para atualizações compartilhadas, presença e feedback rápido',
-      'Estrutura backend para APIs REST previsíveis, persistência, validação e preparo para deploy'
+      'Plataforma de Inteligência de Mercado para validação de SaaS através de análise de dados e sentimentos',
+      'Microsserviço projetado para fornecer análise de sentimento e sumarização de texto via API RESTful',
+      'Sistema de baixa latência para detecção de fraudes em transações financeiras'
     ],
     galleryLabel: 'Galeria visual',
     galleryTitle: 'Design<br><span style="font-family:var(--font-serif);font-weight:300;font-style:italic;color:var(--accent);">Trabalhos</span>',
@@ -206,9 +206,9 @@ export const translations = {
       'ERP full-stack refactorizado a una arquitectura GraphQL con Go, Rust y PostgreSQL',
       'Dashboard con seguimiento de eventos en tiempo real y control de acceso basado en roles (RBAC)',
       'Portafolio personal construido con React, animaciones GSAP, contenido multilingüe y características de seguridad',
-      'Prototipo para conectar flujos de producto con servicios backend asistidos por IA',
-      'Estudio de patrones realtime para actualizaciones compartidas, presencia y feedback rápido',
-      'Estructura backend para APIs REST previsibles, persistencia, validación y preparación para deploy'
+      'Plataforma de Inteligencia de Mercado para validación de SaaS usando análisis de datos y sentimientos',
+      'Microservicio diseñado para proporcionar análisis de sentimiento y resumen de texto vía API RESTful',
+      'Sistema de baja latencia para la detección de fraudes en transacciones financieras'
     ],
     galleryLabel: 'Galería visual',
     galleryTitle: 'Diseño<br><span style="font-family:var(--font-serif);font-weight:300;font-style:italic;color:var(--accent);">Trabajos</span>',
