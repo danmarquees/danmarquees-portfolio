@@ -23,9 +23,9 @@ export const translations = {
     projectsCount: '06 Projects',
     view: 'Discuss',
     projectDescriptions: [
-      'Personal portfolio built with React, GSAP animations, multilingual content, and responsive layouts',
-      'Dashboard concept for turning API data into clear operational views',
-      'Reusable UI patterns for consistent spacing, typography, states, and component behavior',
+      'Full-stack ERP refactored to a GraphQL architecture with Go, Rust, and PostgreSQL',
+      'Dashboard with real-time event tracking and granular Role-Based Access Control',
+      'Personal portfolio built with React, GSAP animations, multilingual content, and security features',
       'Prototype for connecting product workflows to AI-assisted backend services',
       'Study of realtime UI patterns for shared updates, presence, and fast feedback',
       'Backend structure for predictable REST APIs, persistence, validation, and deployment readiness'
@@ -113,9 +113,9 @@ export const translations = {
     projectsCount: '06 Projetos',
     view: 'Conversar',
     projectDescriptions: [
-      'Portfólio pessoal criado com React, animações GSAP, conteúdo multilíngue e layout responsivo',
-      'Conceito de dashboard para transformar dados de APIs em visões operacionais claras',
-      'Padrões reutilizáveis de UI para espaçamento, tipografia, estados e comportamento de componentes',
+      'ERP full-stack refatorado para arquitetura GraphQL com Go, Rust e PostgreSQL',
+      'Dashboard com rastreamento de eventos em tempo real e controle de acesso baseado em funções (RBAC)',
+      'Portfólio pessoal criado com React, animações GSAP, conteúdo multilíngue e recursos de segurança',
       'Protótipo para conectar fluxos de produto a serviços backend assistidos por IA',
       'Estudo de padrões realtime para atualizações compartilhadas, presença e feedback rápido',
       'Estrutura backend para APIs REST previsíveis, persistência, validação e preparo para deploy'
@@ -203,9 +203,9 @@ export const translations = {
     projectsCount: '06 Proyectos',
     view: 'Conversar',
     projectDescriptions: [
-      'Portafolio personal construido con React, animaciones GSAP, contenido multilingüe y layout responsivo',
-      'Concepto de dashboard para convertir datos de APIs en vistas operativas claras',
-      'Patrones reutilizables de UI para espaciado, tipografía, estados y comportamiento de componentes',
+      'ERP full-stack refactorizado a una arquitectura GraphQL con Go, Rust y PostgreSQL',
+      'Dashboard con seguimiento de eventos en tiempo real y control de acceso basado en roles (RBAC)',
+      'Portafolio personal construido con React, animaciones GSAP, contenido multilingüe y características de seguridad',
       'Prototipo para conectar flujos de producto con servicios backend asistidos por IA',
       'Estudio de patrones realtime para actualizaciones compartidas, presencia y feedback rápido',
       'Estructura backend para APIs REST previsibles, persistencia, validación y preparación para deploy'
