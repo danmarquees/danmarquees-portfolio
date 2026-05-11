@@ -27,10 +27,10 @@
   <!-- ── "Marques" — Fraunces italic, accent blue ── -->
   <text x="18" y="370" fill="#7AA2FF" font-family="'Fraunces',Georgia,serif" font-size="170" font-weight="300" font-style="italic" letter-spacing="-4">Marques</text>
 
-  <!-- ── Skill tags row 1 — matches .skill-tag style from the project ──
+  <!-- Skill tags row 1: matches .skill-tag style from the project 
        Border: 1px solid rgba(246,240,230,0.14)
-       Background: #202631  (--cream dark)
-       Font: DM Mono, 12px, letter-spacing 0.05em, color: #E6DED2 (--ink dark)
+       Background: #202631  (cream dark)
+       Font: DM Mono, 12px, letter-spacing 0.05em, color: #E6DED2 (ink dark)
   -->
 
   <!-- Row 1 badges -->
