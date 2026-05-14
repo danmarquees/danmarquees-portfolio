@@ -67,6 +67,8 @@ export const translations = {
     contactLabel: 'Get In Touch',
     contactTitle: "Let's<br><em>build</em><br>together.",
     contactDesc: "Whether you have a project in mind, want to collaborate, or just want to say hello, I'm always up for a good conversation.",
+    contactResume: 'Resume (PDF)',
+    contactResumeHandle: 'Download now',
     formLabel: 'Send A Message',
     form: {
       name: 'Your Name',
@@ -165,6 +167,8 @@ export const translations = {
     contactLabel: 'Entre em contato',
     contactTitle: 'Vamos<br><em>construir</em><br>juntos.',
     contactDesc: 'Se você tem um projeto em mente, quer colaborar ou só quer dizer oi, eu sempre topo uma boa conversa.',
+    contactResume: 'Currículo (PDF)',
+    contactResumeHandle: 'Baixar agora',
     formLabel: 'Envie uma mensagem',
     form: {
       name: 'Seu nome',
@@ -263,6 +267,8 @@ export const translations = {
     contactLabel: 'Ponte en contacto',
     contactTitle: 'Vamos a<br><em>construir</em><br>juntos.',
     contactDesc: 'Si tienes un proyecto en mente, quieres colaborar o solo quieres saludar, siempre estoy listo para una buena conversación.',
+    contactResume: 'Currículum (PDF)',
+    contactResumeHandle: 'Descargar ahora',
     formLabel: 'Envía un mensaje',
     form: {
       name: 'Tu nombre',

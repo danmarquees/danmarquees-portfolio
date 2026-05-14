@@ -45,6 +45,7 @@ export function Contact({ t }) {
     ['mailto:d.silvamarques@proton.me', 'Email', 'd.silvamarques@proton.me'],
     ['https://github.com/danmarquees', 'GitHub', 'github.com/danmarquees'],
     ['https://www.linkedin.com/in/danilomarquesdev', 'LinkedIn', 'linkedin.com/in/danilomarquesdev'],
+    ['/assets/resume-dan-marques.pdf', t.contactResume, t.contactResumeHandle, true],
   ];
 
   const isBusy = formStatus === 'sending' || formStatus === 'sent';
@@ -58,13 +59,23 @@ export function Contact({ t }) {
           <p className="contact-sub reveal">{t.contactDesc}</p>
 
           <div className="contact-links reveal">
-            {contactLinks.map(([href, name, handle]) => (
+            {contactLinks.map(([href, name, handle, isDownload]) => (
               <a
                 href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
+                target={!isDownload && href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
                 className="contact-link"
                 key={name}
+                download={isDownload ? 'Dan_Marques_Resume.pdf' : undefined}
+                onClick={isDownload ? () => {
+                  if (typeof window !== 'undefined') {
+                    if (window.gtag) {
+                      window.gtag('event', 'download_resume', { event_category: 'engagement' });
+                    } else if (window.va) {
+                      window.va('event', { name: 'download_resume' });
+                    }
+                  }
+                } : undefined}
               >
                 <div>
                   <div className="contact-link-name">{name}</div>
