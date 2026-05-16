@@ -965,9 +965,9 @@
 
   .about-portrait-orb {
     position: absolute;
-    top: 1rem;
-    right: -5rem;
-    width: min(520px, 56vw);
+    top: 0.5rem;
+    right: -11rem;
+    width: min(760px, 76vw);
     aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
@@ -981,9 +981,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 56% 24%;
+    object-position: 57% 20%;
     filter: grayscale(1) contrast(1.08);
-    transform: scale(1.18);
+    transform: scale(1.1);
   }
 
   :root[data-theme="dark"] .about-portrait-orb {
@@ -1191,9 +1191,9 @@
     }
 
     .about-portrait-orb {
-      top: 3rem;
-      right: -9rem;
-      width: min(430px, 90vw);
+      top: 3.5rem;
+      right: -12rem;
+      width: min(560px, 120vw);
       opacity: 0.14;
     }
 
