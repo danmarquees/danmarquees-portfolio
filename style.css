@@ -1259,6 +1259,15 @@
     color: var(--muted);
   }
 
+  .education-location {
+    margin-top: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
   .education-main p,
   .academic-card p {
     margin-top: 1.25rem;

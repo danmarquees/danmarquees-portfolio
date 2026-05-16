@@ -31,6 +31,7 @@ export const translations = {
       period: '2022 - 2025',
       degree: 'Information Technology Management',
       school: 'Fatec Padre Danilo José de Oliveira Ohl - Fatec Barueri',
+      location: 'Barueri, Sao Paulo, Brazil',
       summary: 'A technical foundation built through practical projects, architecture discussions, documentation, and product-oriented delivery.'
     },
     academicActivities: [
@@ -147,6 +148,7 @@ export const translations = {
       period: '2022 - 2025',
       degree: 'Gestão da Tecnologia da Informação',
       school: 'Fatec Padre Danilo José de Oliveira Ohl - Fatec Barueri',
+      location: 'Barueri, São Paulo, Brasil',
       summary: 'Base técnica construída com projetos práticos, discussões de arquitetura, documentação e entregas orientadas a produto.'
     },
     academicActivities: [
@@ -263,6 +265,7 @@ export const translations = {
       period: '2022 - 2025',
       degree: 'Gestión de Tecnología de la Información',
       school: 'Fatec Padre Danilo José de Oliveira Ohl - Fatec Barueri',
+      location: 'Barueri, São Paulo, Brasil',
       summary: 'Base técnica construida con proyectos prácticos, discusiones de arquitectura, documentación y entregas orientadas a producto.'
     },
     academicActivities: [

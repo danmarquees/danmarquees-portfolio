@@ -54,6 +54,12 @@ export const jsonLd = {
       alumniOf: {
         '@type': 'CollegeOrUniversity',
         name: 'Fatec Padre Danilo José de Oliveira Ohl - Fatec Barueri',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Barueri',
+          addressRegion: 'SP',
+          addressCountry: 'BR',
+        },
       },
       knowsAbout: [
         'React',

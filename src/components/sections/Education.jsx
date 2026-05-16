@@ -33,6 +33,7 @@ export function Education({ t }) {
           <div className="education-period">{t.education.period}</div>
           <div className="education-degree">{t.education.degree}</div>
           <div className="education-school">{t.education.school}</div>
+          <div className="education-location">{t.education.location}</div>
           <p>{t.education.summary}</p>
         </article>
 
