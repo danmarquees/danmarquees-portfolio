@@ -3,11 +3,12 @@
 export const navItems = [
   ['#hero', 0],
   ['#about', 1],
-  ['#projects', 2],
-  ['#gallery', 3],
-  ['#experience', 4],
-  ['#github-section', 5],
-  ['#contact', 6],
+  ['#education', 2],
+  ['#projects', 3],
+  ['#gallery', 4],
+  ['#experience', 5],
+  ['#github-section', 6],
+  ['#contact', 7],
 ];
 
 // ─── Marquee ────────────────────────────────────────────────────────────────────
@@ -58,6 +59,7 @@ export const filterKeys = ['all', 'ui', 'web', 'motion', 'brand'];
 export const breadcrumbSections = [
   ['#hero',           'Home'],
   ['#about',          'About'],
+  ['#education',      'Education'],
   ['#projects',       'Projects'],
   ['#gallery',        'Gallery'],
   ['#experience',     'Experience'],

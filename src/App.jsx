@@ -21,6 +21,7 @@ import { CookieConsent } from './components/ui/CookieConsent';
 // Sections
 import { Hero }       from './components/sections/Hero';
 import { About }      from './components/sections/About';
+import { Education }  from './components/sections/Education';
 import { Projects }   from './components/sections/Projects';
 import { Gallery }    from './components/sections/Gallery';
 import { Experience } from './components/sections/Experience';
@@ -86,6 +87,7 @@ export default function App() {
 
       <Hero       t={t} scrollToSection={scrollToSection} />
       <About      t={t} />
+      <Education  t={t} />
       <Projects   t={t} />
       <Gallery    t={t} />
       <Experience t={t} />

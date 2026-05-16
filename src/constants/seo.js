@@ -51,6 +51,10 @@ export const jsonLd = {
         addressCountry: 'BR',
       },
       sameAs: ['https://github.com/danmarquees'],
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Fatec Padre Danilo José de Oliveira Ohl - Fatec Barueri',
+      },
       knowsAbout: [
         'React',
         'Next.js',
