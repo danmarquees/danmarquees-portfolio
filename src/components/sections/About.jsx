@@ -2,9 +2,15 @@ import { skillGroups } from '../../constants/data';
 import { RichText } from '../ui/RichText';
 
 export function About({ t }) {
+  const profilePhoto = '/assets/profile-photo.png';
+
   return (
     <section id="about">
-      <div>
+      <div className="about-copy">
+        <div className="about-portrait-orb" aria-hidden="true">
+          <img src={profilePhoto} alt="" />
+        </div>
+
         <div className="section-label reveal">{t.aboutLabel}</div>
         <h2 className="about-title reveal"><RichText html={t.aboutTitle} /></h2>
         <p className="about-text reveal">{t.aboutText}</p>
@@ -19,6 +25,12 @@ export function About({ t }) {
       </div>
 
       <div className="about-right reveal">
+        <div className="about-profile-card" aria-label="Dan Marques profile">
+          <div className="about-profile-tag">[PROFILE]</div>
+          <img src={profilePhoto} alt="Dan Marques" />
+          <div className="about-profile-name">DAN MARQUES</div>
+        </div>
+
         {skillGroups.map((skills, index) => (
           <div className="skills-group" key={t.skills[index]}>
             <div className="skills-group-title">{t.skills[index]}</div>
