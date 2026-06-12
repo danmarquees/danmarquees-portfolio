@@ -4,7 +4,7 @@ import { ArrowIcon } from '../ui/ArrowIcon';
 import { RichText } from '../ui/RichText';
 import { ProjectDrawer } from '../ui/ProjectDrawer';
 
-export function Projects({ t }) {
+export function Projects({ t, prefersReducedMotion }) {
   const [hoverProject, setHoverProject] = useState({ src: '', visible: false, x: 0, y: 0 });
   const [drawerProject, setDrawerProject] = useState(null); // { project, index }
   const drawerTriggerRef = useRef(null);
@@ -34,6 +34,7 @@ export function Projects({ t }) {
           t={t}
           onClose={closeDrawer}
           returnFocusElement={drawerTriggerRef.current}
+          prefersReducedMotion={prefersReducedMotion}
         />
       )}
 

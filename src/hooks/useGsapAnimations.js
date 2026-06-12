@@ -4,9 +4,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function useGsapAnimations(loaderHidden) {
+export function useGsapAnimations(loaderHidden, prefersReducedMotion) {
   useEffect(() => {
     if (!loaderHidden) return;
+
+    if (prefersReducedMotion) {
+      gsap.set('.reveal', { opacity: 1, y: 0 });
+      gsap.set('.gallery-item', { opacity: 1, y: 0 });
+      document.querySelectorAll('[data-count]').forEach(element => {
+        element.textContent = `${element.dataset.count}+`;
+      });
+      return undefined;
+    }
 
     const ctx = gsap.context(() => {
       // ── Hero title lines ──────────────────────────────────────
@@ -83,5 +92,5 @@ export function useGsapAnimations(loaderHidden) {
       ctx.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [loaderHidden]);
+  }, [loaderHidden, prefersReducedMotion]);
 }

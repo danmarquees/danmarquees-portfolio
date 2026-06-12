@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDialogFocus } from '../../hooks/useDialogFocus';
 import { ArrowIcon } from './ArrowIcon';
 
-export function ProjectDrawer({ project, index, t, onClose, returnFocusElement }) {
+export function ProjectDrawer({ project, index, t, onClose, returnFocusElement, prefersReducedMotion }) {
   const [name, image, tech, githubUrl] = project;
   const closeRef = useRef(null);
   const dialogRef = useRef(null);
@@ -28,8 +28,13 @@ export function ProjectDrawer({ project, index, t, onClose, returnFocusElement }
     // Wait for drawer close animation before scrolling
     setTimeout(() => {
       const contact = document.querySelector('#contact');
-      if (contact) window.scrollTo({ top: contact.offsetTop - 72, behavior: 'smooth' });
-    }, 350);
+      if (contact) {
+        window.scrollTo({
+          top: contact.offsetTop - 72,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        });
+      }
+    }, prefersReducedMotion ? 0 : 350);
   }
 
   return createPortal(

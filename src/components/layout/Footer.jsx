@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RichText } from '../ui/RichText';
 
-export function Footer({ t, language }) {
+export function Footer({ t, language, prefersReducedMotion }) {
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function Footer({ t, language }) {
   }, [language]);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   };
 
   return (

@@ -4,7 +4,7 @@ import { galleryItems, filterKeys } from '../../constants/data';
 import { RichText } from '../ui/RichText';
 import { Lightbox } from '../ui/Lightbox';
 
-export function Gallery({ t }) {
+export function Gallery({ t, prefersReducedMotion }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const lightboxTriggerRef = useRef(null);
@@ -12,9 +12,14 @@ export function Gallery({ t }) {
   useEffect(() => {
     document.querySelectorAll('.gallery-item').forEach(item => {
       const show = activeFilter === 'all' || item.dataset.cat === activeFilter;
-      gsap.to(item, { opacity: show ? 1 : 0.2, scale: show ? 1 : 0.97, duration: 0.3 });
+      gsap.killTweensOf(item);
+      if (prefersReducedMotion) {
+        gsap.set(item, { opacity: show ? 1 : 0.2, scale: 1 });
+      } else {
+        gsap.to(item, { opacity: show ? 1 : 0.2, scale: show ? 1 : 0.97, duration: 0.3 });
+      }
     });
-  }, [activeFilter]);
+  }, [activeFilter, prefersReducedMotion]);
 
   const openLightbox  = (index, trigger) => {
     lightboxTriggerRef.current = trigger;

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 // Hooks
 import { useTheme }         from './hooks/useTheme';
@@ -8,6 +8,7 @@ import { useScrollSection } from './hooks/useScrollSection';
 import { useGitHubStats }   from './hooks/useGitHubStats';
 import { useGsapAnimations } from './hooks/useGsapAnimations';
 import { useSeo }            from './hooks/useSeo';
+import { useReducedMotion }  from './hooks/useReducedMotion';
 
 // Layout
 import { Navbar }     from './components/layout/Navbar';
@@ -34,25 +35,30 @@ import { translations } from './translations';
 // Navbar height only (breadcrumb removed)
 const HEADER_HEIGHT = 72;
 
-function scrollToSection(event, href) {
+function scrollToSection(event, href, prefersReducedMotion = false) {
   event.preventDefault();
   const target = href === '#' ? document.body : document.querySelector(href);
   if (!target) return;
-  window.scrollTo({ top: href === '#' ? 0 : target.offsetTop - HEADER_HEIGHT, behavior: 'smooth' });
+  window.scrollTo({
+    top: href === '#' ? 0 : target.offsetTop - HEADER_HEIGHT,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
 }
 
 export default function App() {
   const [theme, toggleTheme]   = useTheme();
   const [language, setLanguage] = useLanguage();
-  const { loaderHidden, loaderProgress, loaderRef, loaderNameRef } = useLoader();
+  const prefersReducedMotion = useReducedMotion();
+  const { loaderHidden, loaderProgress, loaderRef, loaderNameRef } = useLoader(prefersReducedMotion);
   const activeSection           = useScrollSection(loaderHidden);
   const { data: githubStats, isLoading: githubLoading } = useGitHubStats();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useGsapAnimations(loaderHidden);
+  useGsapAnimations(loaderHidden, prefersReducedMotion);
 
   const t = translations[language];
+  const handleSectionScroll = (event, href) => scrollToSection(event, href, prefersReducedMotion);
   useSeo(language);
 
   return (
@@ -73,7 +79,7 @@ export default function App() {
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         activeSection={activeSection}
-        scrollToSection={scrollToSection}
+        scrollToSection={handleSectionScroll}
       />
 
       <MobileMenu
@@ -82,19 +88,19 @@ export default function App() {
         setLanguage={setLanguage}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
-        scrollToSection={scrollToSection}
+        scrollToSection={handleSectionScroll}
       />
 
-      <Hero       t={t} scrollToSection={scrollToSection} />
+      <Hero       t={t} scrollToSection={handleSectionScroll} />
       <About      t={t} />
       <Education  t={t} />
-      <Projects   t={t} />
-      <Gallery    t={t} />
+      <Projects   t={t} prefersReducedMotion={prefersReducedMotion} />
+      <Gallery    t={t} prefersReducedMotion={prefersReducedMotion} />
       <Experience t={t} />
       <GitHub     t={t} githubStats={githubStats} githubLoading={githubLoading} />
       <Contact    t={t} />
 
-      <Footer t={t} language={language} />
+      <Footer t={t} language={language} prefersReducedMotion={prefersReducedMotion} />
       <CookieConsent t={t} />
     </>
   );
