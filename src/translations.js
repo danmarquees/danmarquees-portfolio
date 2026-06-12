@@ -4,7 +4,7 @@ export const languageLabels = {
   en: 'EN',
   'pt-BR': 'PT',
   es: 'ES',
-  ja: 'JA',
+  ja: 'JP',
 };
 
 export const translations = {
