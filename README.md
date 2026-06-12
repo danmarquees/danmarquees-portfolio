@@ -24,7 +24,7 @@ O portfolio tambem inclui configuracoes de SEO para o dominio proprio, metadados
 
 - Hero tipografico responsivo
 - Tema claro/escuro com persistencia em `localStorage`
-- Suporte a idiomas `en`, `pt-BR` e `es`
+- Suporte a idiomas `en`, `pt-BR`, `es` e `ja`
 - Navegacao por secoes com estado ativo
 - Projetos com drawer de detalhes
 - Galeria com filtros e lightbox

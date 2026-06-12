@@ -94,7 +94,7 @@ export default function App() {
       <GitHub     t={t} githubStats={githubStats} githubLoading={githubLoading} />
       <Contact    t={t} />
 
-      <Footer t={t} />
+      <Footer t={t} language={language} />
       <CookieConsent t={t} />
     </>
   );

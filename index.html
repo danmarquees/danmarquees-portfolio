@@ -33,6 +33,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pt_BR" />
   <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="ja_JP" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -43,14 +44,14 @@
   <meta name="twitter:image:alt" content="Dan Marques, full-stack developer portfolio" />
 
   <script id="structured-data" type="application/ld+json">
-    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://danmarquesdev.com/#person","name":"Dan Marques","url":"https://danmarquesdev.com/","image":"https://danmarquesdev.com/og-image.png","description":"Full-stack developer and Software Architect in Sao Paulo, Brazil, focused on clean architecture and practical product work.","jobTitle":"Software Architect","email":"mailto:d.silvamarques@proton.me","address":{"@type":"PostalAddress","addressLocality":"Sao Paulo","addressRegion":"SP","addressCountry":"BR"},"sameAs":["https://github.com/danmarquees"],"knowsAbout":["Software Architecture","React","Node.js","Python","Backend Development","API Development"]},{"@type":"WebSite","@id":"https://danmarquesdev.com/#website","url":"https://danmarquesdev.com/","name":"Dan Marques Portfolio","inLanguage":["en","pt-BR","es"],"publisher":{"@id":"https://danmarquesdev.com/#person"}},{"@type":"ProfilePage","@id":"https://danmarquesdev.com/#profile","url":"https://danmarquesdev.com/","name":"Dan Marques | Software Architect","description":"Portfolio of Dan Marques, a full-stack developer and Software Architect from Sao Paulo focused on clean architecture, APIs, and practical product delivery.","inLanguage":["en","pt-BR","es"],"isPartOf":{"@id":"https://danmarquesdev.com/#website"},"mainEntity":{"@id":"https://danmarquesdev.com/#person"}}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://danmarquesdev.com/#person","name":"Dan Marques","url":"https://danmarquesdev.com/","image":"https://danmarquesdev.com/og-image.png","description":"Full-stack developer and Software Architect in Sao Paulo, Brazil, focused on clean architecture and practical product work.","jobTitle":"Software Architect","email":"mailto:d.silvamarques@proton.me","address":{"@type":"PostalAddress","addressLocality":"Sao Paulo","addressRegion":"SP","addressCountry":"BR"},"sameAs":["https://github.com/danmarquees"],"knowsAbout":["Software Architecture","React","Node.js","Python","Backend Development","API Development"]},{"@type":"WebSite","@id":"https://danmarquesdev.com/#website","url":"https://danmarquesdev.com/","name":"Dan Marques Portfolio","inLanguage":["en","pt-BR","es","ja"],"publisher":{"@id":"https://danmarquesdev.com/#person"}},{"@type":"ProfilePage","@id":"https://danmarquesdev.com/#profile","url":"https://danmarquesdev.com/","name":"Dan Marques | Software Architect","description":"Portfolio of Dan Marques, a full-stack developer and Software Architect from Sao Paulo focused on clean architecture, APIs, and practical product delivery.","inLanguage":["en","pt-BR","es","ja"],"isPartOf":{"@id":"https://danmarquesdev.com/#website"},"mainEntity":{"@id":"https://danmarquesdev.com/#person"}}]}
   </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;1,9..144,300&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;1,9..144,300&family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@300;400&display=swap"
     rel="stylesheet">
 
   <!-- Blocking script: apply theme/language before first paint to prevent flash -->
@@ -66,7 +67,18 @@
     }
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.dataset.theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-    document.documentElement.lang = storedLanguage || 'en';
+    const browserLanguage = navigator.language || 'en';
+    const detectedLanguage = browserLanguage.startsWith('pt')
+      ? 'pt-BR'
+      : browserLanguage.startsWith('es')
+        ? 'es'
+        : browserLanguage.startsWith('ja')
+          ? 'ja'
+          : 'en';
+    const supportedLanguages = ['en', 'pt-BR', 'es', 'ja'];
+    document.documentElement.lang = supportedLanguages.includes(storedLanguage)
+      ? storedLanguage
+      : detectedLanguage;
   </script>
 </head>
 

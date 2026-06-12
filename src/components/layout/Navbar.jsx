@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { navItems } from '../../constants/data';
 import { useCursor } from '../../hooks/useCursor';
 import { ThemeIcon } from '../ui/ThemeIcon';
-import { supportedLanguages } from '../../translations';
+import { languageLabels, supportedLanguages } from '../../translations';
 
 export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMenuOpen, setMobileMenuOpen, activeSection, scrollToSection }) {
   const cursorRef = useRef(null);
@@ -51,7 +51,7 @@ export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMen
                 aria-pressed={language === lang}
                 onClick={() => setLanguage(lang)}
               >
-                {lang === 'pt-BR' ? 'PT' : lang.toUpperCase()}
+                {languageLabels[lang]}
               </button>
             ))}
           </div>
@@ -74,7 +74,7 @@ export function Navbar({ t, language, setLanguage, theme, toggleTheme, mobileMen
             className="hamburger"
             type="button"
             id="hamburger"
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
             aria-controls="mobileMenu"
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(open => !open)}

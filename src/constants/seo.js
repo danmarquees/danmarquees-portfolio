@@ -27,6 +27,14 @@ export const seoByLanguage = {
     keywords:
       'Dan Marques, desarrollador full stack, desarrollador React, desarrollador Node.js, frontend, desarrollador web Sao Paulo, freelance, portafolio',
   },
+  ja: {
+    locale: 'ja_JP',
+    title: 'Dan Marques | サンパウロのフルスタック開発者',
+    description:
+      'Dan Marquesはブラジル・サンパウロを拠点に、React、Node.js、API、オートメーション、プロダクトUIを開発するフルスタック開発者です。',
+    keywords:
+      'Dan Marques, フルスタック開発者, React開発者, Node.js開発者, フロントエンド開発, Web開発, サンパウロ, ポートフォリオ',
+  },
 };
 
 export const defaultSeo = seoByLanguage.en;
@@ -79,7 +87,7 @@ export const jsonLd = {
       '@id': `${siteUrl}#website`,
       url: siteUrl,
       name: 'Dan Marques Portfolio',
-      inLanguage: ['en', 'pt-BR', 'es'],
+      inLanguage: ['en', 'pt-BR', 'es', 'ja'],
       publisher: {
         '@id': `${siteUrl}#person`,
       },
@@ -91,7 +99,7 @@ export const jsonLd = {
       name: 'Dan Marques | Full Stack Developer',
       description:
         'Portfolio of Dan Marques, a full stack developer from Sao Paulo focused on web products, React interfaces, APIs, automation, and practical product delivery.',
-      inLanguage: ['en', 'pt-BR', 'es'],
+      inLanguage: ['en', 'pt-BR', 'es', 'ja'],
       isPartOf: {
         '@id': `${siteUrl}#website`,
       },

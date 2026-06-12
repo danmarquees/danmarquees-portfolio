@@ -25,8 +25,8 @@ export function About({ t }) {
       </div>
 
       <div className="about-right reveal">
-        <div className="about-profile-card" aria-label="Dan Marques profile">
-          <div className="about-profile-tag">[PROFILE]</div>
+        <div className="about-profile-card" aria-label={t.profileAria}>
+          <div className="about-profile-tag">[{t.profileTag}]</div>
           <img src={profilePhoto} alt="Dan Marques" />
           <div className="about-profile-name">DAN MARQUES</div>
         </div>

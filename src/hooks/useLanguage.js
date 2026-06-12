@@ -11,6 +11,7 @@ function getInitialLanguage() {
 
   if (navigator.language.startsWith('pt')) return 'pt-BR';
   if (navigator.language.startsWith('es')) return 'es';
+  if (navigator.language.startsWith('ja')) return 'ja';
   return 'en';
 }
 

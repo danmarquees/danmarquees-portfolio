@@ -42,7 +42,7 @@ export function Contact({ t }) {
   }
 
   const contactLinks = [
-    ['mailto:d.silvamarques@proton.me', 'Email', 'd.silvamarques@proton.me'],
+    ['mailto:d.silvamarques@proton.me', t.emailLink, 'd.silvamarques@proton.me'],
     ['https://github.com/danmarquees', 'GitHub', 'github.com/danmarquees'],
     ['https://www.linkedin.com/in/danilomarquesdev', 'LinkedIn', 'linkedin.com/in/danilomarquesdev'],
     ['/assets/resume-dan-marques.pdf', t.contactResume, t.contactResumeHandle, true],
@@ -96,7 +96,7 @@ export function Contact({ t }) {
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="femail">{t.form.email}</label>
-              <input type="email" id="femail" name="from_email" className="form-input" placeholder="seuemail@example.com" required />
+              <input type="email" id="femail" name="from_email" className="form-input" placeholder={t.form.emailPlaceholder} required />
             </div>
             <div className="form-row">
               <label className="form-label" htmlFor="fsubject">{t.form.subject}</label>

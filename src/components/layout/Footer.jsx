@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import { RichText } from '../ui/RichText';
 
-export function Footer({ t }) {
+export function Footer({ t, language }) {
   const [time, setTime] = useState('');
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
       const options = { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', hour12: false };
-      const formattedTime = new Intl.DateTimeFormat('pt-BR', options).format(now);
+      const formattedTime = new Intl.DateTimeFormat(language, options).format(now);
       setTime(`${formattedTime} BRT`);
     };
 
     updateTime();
     const interval = setInterval(updateTime, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [language]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,7 +33,7 @@ export function Footer({ t }) {
             borderRadius: '50%',
             boxShadow: '0 0 8px rgba(0, 209, 94, 0.6)'
           }}></span>
-          São Paulo, BR — {time}
+          {t.footerLocation} — {time}
         </div>
         <div className="footer-copyright" style={{ opacity: 0.7 }}>{t.footerRights}</div>
       </div>
@@ -43,7 +43,7 @@ export function Footer({ t }) {
         <div className="footer-socials">
           <a href="https://github.com/danmarquees" target="_blank" rel="noreferrer" className="footer-link">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/danilomarquesdev" target="_blank" rel="noreferrer" className="footer-link">LinkedIn ↗</a>
-          <a href="mailto:d.silvamarques@proton.me" className="footer-link">Email ↗</a>
+          <a href="mailto:d.silvamarques@proton.me" className="footer-link">{t.emailLink} ↗</a>
         </div>
       </div>
 

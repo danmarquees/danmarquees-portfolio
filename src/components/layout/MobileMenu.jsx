@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { navItems } from '../../constants/data';
-import { supportedLanguages } from '../../translations';
+import { languageLabels, supportedLanguages } from '../../translations';
 
 export function MobileMenu({ t, language, setLanguage, mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
   // Close on Escape key or when viewport becomes desktop-sized
@@ -46,7 +46,7 @@ export function MobileMenu({ t, language, setLanguage, mobileMenuOpen, setMobile
               aria-pressed={language === lang}
               onClick={() => setLanguage(lang)}
             >
-              {lang === 'pt-BR' ? 'PT' : lang.toUpperCase()}
+              {languageLabels[lang]}
             </button>
           ))}
         </div>
