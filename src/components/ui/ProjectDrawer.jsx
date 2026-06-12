@@ -1,16 +1,18 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useDialogFocus } from '../../hooks/useDialogFocus';
 import { ArrowIcon } from './ArrowIcon';
 
-export function ProjectDrawer({ project, index, t, onClose }) {
+export function ProjectDrawer({ project, index, t, onClose, returnFocusElement }) {
   const [name, image, tech, githubUrl] = project;
   const closeRef = useRef(null);
+  const dialogRef = useRef(null);
+
+  useDialogFocus(dialogRef, closeRef, returnFocusElement);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    // Delay focus so the open animation has started
-    const timer = setTimeout(() => closeRef.current?.focus(), 50);
 
     const onKey = e => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -18,7 +20,6 @@ export function ProjectDrawer({ project, index, t, onClose }) {
     return () => {
       document.body.style.overflow = prev;
       document.removeEventListener('keydown', onKey);
-      clearTimeout(timer);
     };
   }, [onClose]);
 
@@ -38,10 +39,12 @@ export function ProjectDrawer({ project, index, t, onClose }) {
 
       {/* Drawer panel */}
       <div
+        ref={dialogRef}
         className="project-drawer open"
         role="dialog"
         aria-modal="true"
         aria-label={name}
+        tabIndex={-1}
       >
         <button
           ref={closeRef}

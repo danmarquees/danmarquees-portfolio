@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { galleryItems, filterKeys } from '../../constants/data';
 import { RichText } from '../ui/RichText';
@@ -7,6 +7,7 @@ import { Lightbox } from '../ui/Lightbox';
 export function Gallery({ t }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const lightboxTriggerRef = useRef(null);
 
   useEffect(() => {
     document.querySelectorAll('.gallery-item').forEach(item => {
@@ -15,7 +16,10 @@ export function Gallery({ t }) {
     });
   }, [activeFilter]);
 
-  const openLightbox  = index => setLightboxIndex(index);
+  const openLightbox  = (index, trigger) => {
+    lightboxTriggerRef.current = trigger;
+    setLightboxIndex(index);
+  };
   const closeLightbox = ()    => setLightboxIndex(null);
   const prevImage     = ()    => setLightboxIndex(i => Math.max(0, i - 1));
   const nextImage     = ()    => setLightboxIndex(i => Math.min(galleryItems.length - 1, i + 1));
@@ -29,6 +33,7 @@ export function Gallery({ t }) {
           onClose={closeLightbox}
           onPrev={prevImage}
           onNext={nextImage}
+          returnFocusElement={lightboxTriggerRef.current}
           t={t}
         />
       )}
@@ -65,8 +70,13 @@ export function Gallery({ t }) {
               role="button"
               tabIndex={0}
               aria-label={`${t.galleryItems[index]} — ${t.lightbox.close}`}
-              onClick={() => openLightbox(index)}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(index); } }}
+              onClick={e => openLightbox(index, e.currentTarget)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openLightbox(index, e.currentTarget);
+                }
+              }}
             >
               <img src={src} alt={t.galleryItems[index]} loading="lazy" />
               <div className="gallery-overlay">

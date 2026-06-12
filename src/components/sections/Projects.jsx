@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { projects } from '../../constants/data';
 import { ArrowIcon } from '../ui/ArrowIcon';
 import { RichText } from '../ui/RichText';
@@ -7,8 +7,12 @@ import { ProjectDrawer } from '../ui/ProjectDrawer';
 export function Projects({ t }) {
   const [hoverProject, setHoverProject] = useState({ src: '', visible: false, x: 0, y: 0 });
   const [drawerProject, setDrawerProject] = useState(null); // { project, index }
+  const drawerTriggerRef = useRef(null);
 
-  const openDrawer  = (project, index) => setDrawerProject({ project, index });
+  const openDrawer  = (project, index, trigger) => {
+    drawerTriggerRef.current = trigger;
+    setDrawerProject({ project, index });
+  };
   const closeDrawer = ()               => setDrawerProject(null);
 
   return (
@@ -29,6 +33,7 @@ export function Projects({ t }) {
           index={drawerProject.index}
           t={t}
           onClose={closeDrawer}
+          returnFocusElement={drawerTriggerRef.current}
         />
       )}
 
@@ -64,7 +69,7 @@ export function Projects({ t }) {
                 <button
                   type="button"
                   className="project-link"
-                  onClick={() => openDrawer(project, index)}
+                  onClick={event => openDrawer(project, index, event.currentTarget)}
                   aria-label={`${t.project.details}: ${name}`}
                 >
                   {t.project.details} <ArrowIcon />

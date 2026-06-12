@@ -1,15 +1,18 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useDialogFocus } from '../../hooks/useDialogFocus';
 
-export function Lightbox({ items, selectedIndex, onClose, onPrev, onNext, t }) {
+export function Lightbox({ items, selectedIndex, onClose, onPrev, onNext, returnFocusElement, t }) {
   const [, category, src, alt] = items[selectedIndex];
   const closeRef = useRef(null);
+  const dialogRef = useRef(null);
 
-  // Lock body scroll and focus close button on open
+  useDialogFocus(dialogRef, closeRef, returnFocusElement);
+
+  // Lock body scroll while open
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    closeRef.current?.focus();
     return () => { document.body.style.overflow = prev; };
   }, []);
 
@@ -29,11 +32,13 @@ export function Lightbox({ items, selectedIndex, onClose, onPrev, onNext, t }) {
 
   return createPortal(
     <div
+      ref={dialogRef}
       className="lightbox-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={t.lightbox.close}
+      tabIndex={-1}
     >
       {/* Close */}
       <button
