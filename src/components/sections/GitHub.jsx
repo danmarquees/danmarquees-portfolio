@@ -28,7 +28,7 @@ export function GitHub({ t, githubStats, githubLoading }) {
           </a>
         </div>
 
-        <div className="reveal">
+        <div className="github-data-column reveal">
           <div id="github-stats">
             {[githubStats.repos, githubStats.followers, 'BR', githubStats.since].map((value, index) => (
               <div className="gh-stat" key={t.githubStats[index]}>
@@ -43,9 +43,12 @@ export function GitHub({ t, githubStats, githubLoading }) {
           <div className="contribution-grid" id="contribGrid">
             <div className="contrib-title">{t.contribTitle}</div>
             <GitHubCalendar 
-              username="danmarquees" 
+              username="danmarquees"
               theme={theme}
               colorScheme="dark"
+              blockSize={11}
+              blockMargin={3}
+              fontSize={12}
               hideTotalCount={true}
               hideColorLegend={true}
             />
