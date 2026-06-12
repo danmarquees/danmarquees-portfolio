@@ -6,7 +6,7 @@ export function MobileMenu({ t, language, setLanguage, mobileMenuOpen, setMobile
   // Close on Escape key or when viewport becomes desktop-sized
   useEffect(() => {
     const closeOnEscape = e => { if (e.key === 'Escape') setMobileMenuOpen(false); };
-    const closeOnDesktop = () => { if (window.innerWidth > 768) setMobileMenuOpen(false); };
+    const closeOnDesktop = () => { if (window.innerWidth > 1024) setMobileMenuOpen(false); };
 
     window.addEventListener('keydown', closeOnEscape);
     window.addEventListener('resize', closeOnDesktop);
