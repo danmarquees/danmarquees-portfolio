@@ -1586,9 +1586,6 @@
   }
 
   .certification-index {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
     min-width: 0;
   }
 
@@ -1597,76 +1594,6 @@
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.1em;
-  }
-
-  .certification-brand {
-    width: 46px;
-    height: 46px;
-    flex: 0 0 46px;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--line);
-    background: var(--charcoal);
-    color: var(--paper);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .certification-brand::after {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    pointer-events: none;
-  }
-
-  .certification-icon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .certification-brand[data-issuer="mongodb"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%),
-      #0f6b3f;
-  }
-
-  .certification-brand[data-issuer="cisco"],
-  .certification-brand[data-issuer="cisco-academy"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%),
-      #0b76b7;
-  }
-
-  .certification-brand[data-issuer="google"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 45%),
-      #f6c343;
-    color: #1a1814;
-  }
-
-  .certification-brand[data-issuer="dio"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%),
-      #6f42c1;
-  }
-
-  .certification-brand[data-issuer="inova-cps"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%),
-      #c5372d;
-  }
-
-  .certification-brand[data-issuer="bradesco"] {
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%),
-      #b4142b;
-  }
-
-  .certification-brand[data-issuer="google"]::after {
-    border-color: rgba(26, 24, 20, 0.18);
   }
 
   .certification-main {
@@ -1704,6 +1631,16 @@
     letter-spacing: -0.02em;
     line-height: 1.12;
     color: var(--charcoal);
+    overflow-wrap: anywhere;
+  }
+
+  .certification-summary {
+    max-width: 760px;
+    margin-top: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--muted);
     overflow-wrap: anywhere;
   }
 
@@ -1790,7 +1727,7 @@
     }
 
     .certification-item {
-      grid-template-columns: 74px 1fr;
+      grid-template-columns: 40px 1fr;
       align-items: flex-start;
       gap: 1rem;
     }
@@ -1810,7 +1747,7 @@
 
   @media (max-width: 560px) {
     .certification-item {
-      grid-template-columns: 56px 1fr;
+      grid-template-columns: 32px 1fr;
       gap: 0.85rem;
       padding: 1.5rem 0;
     }
@@ -1822,25 +1759,13 @@
       padding-right: 0;
     }
 
-    .certification-index {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .certification-brand {
-      width: 42px;
-      height: 42px;
-      flex-basis: 42px;
-    }
-
-    .certification-icon {
-      width: 22px;
-      height: 22px;
-    }
-
     .certification-name {
       font-size: clamp(22px, 8vw, 32px);
+    }
+
+    .certification-summary {
+      font-size: 11px;
+      line-height: 1.7;
     }
   }
 
