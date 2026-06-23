@@ -2702,6 +2702,14 @@
     color: var(--accent);
   }
 
+  .contact-tight-line {
+    display: block;
+  }
+
+  .contact-big .contact-tight-line em {
+    display: inline;
+  }
+
   .contact-sub {
     font-family: var(--font-mono);
     font-size: 13px;

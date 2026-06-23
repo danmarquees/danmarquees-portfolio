@@ -257,7 +257,7 @@ export const translations = {
     githubStats: ['Repos públicos', 'Seguidores', 'Localização', 'No GitHub desde'],
     contribTitle: 'Padrão de contribuições',
     contactLabel: 'Entre em contato',
-    contactTitle: 'Vamos<br><em>construir</em><br>juntos.',
+    contactTitle: 'Vamos<br><span class="contact-tight-line"><em>construir</em> juntos.</span>',
     contactDesc: 'Se você tem um projeto em mente, quer colaborar ou só quer dizer oi, eu sempre topo uma boa conversa.',
     emailLink: 'Email',
     contactResume: 'Currículo (PDF)',
