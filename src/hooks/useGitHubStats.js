@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const FALLBACK = { repos: '21', followers: '96', since: '2022' };
+const FALLBACK = { repos: '21', followers: '96', since: '2022', avgCommits: '35' };
 const CACHE_KEY = 'github-stats-cache';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
@@ -38,6 +38,7 @@ export function useGitHubStats() {
           since:     data.created_at
             ? String(new Date(data.created_at).getFullYear())
             : FALLBACK.since,
+          avgCommits: FALLBACK.avgCommits,
         };
         setGithubStats(stats);
         setIsLoading(false);

@@ -30,7 +30,7 @@ export function GitHub({ t, githubStats, githubLoading }) {
 
         <div className="github-data-column reveal">
           <div id="github-stats">
-            {[githubStats.repos, githubStats.followers, 'BR', githubStats.since].map((value, index) => (
+            {[githubStats.repos, githubStats.followers, githubStats.avgCommits, githubStats.since].map((value, index) => (
               <div className="gh-stat" key={t.githubStats[index]}>
                 <div className={`gh-num ${githubLoading ? 'skeleton' : ''}`}>
                   {githubLoading ? '' : value}
