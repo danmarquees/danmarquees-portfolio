@@ -2074,37 +2074,342 @@
     grid-row: span 4;
   }
 
-  /* Specific Dada card styling touches */
-  .demo-card-dada .gallery-demo-card-badge {
-    border-color: rgba(230, 57, 70, 0.4);
-    background: rgba(20, 18, 16, 0.88);
+  /* ── ATELIER DADA COLLAGE ART CARD ── */
+  .demo-card-dada {
+    background-color: #f3ede2 !important;
+    background-image:
+      radial-gradient(#d6ccbd 1px, transparent 1px),
+      linear-gradient(to right, rgba(20, 18, 16, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20, 18, 16, 0.03) 1px, transparent 1px) !important;
+    background-size: 18px 18px, 36px 36px, 36px 36px !important;
+    border: 3px solid #141210 !important;
+    box-shadow: 6px 6px 0px #141210;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  }
+
+  .demo-card-dada:hover,
+  .demo-card-dada:focus-visible {
+    transform: translateY(-4px) rotate(-0.5deg);
+    box-shadow: 10px 10px 0px #141210;
+  }
+
+  .dada-collage-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+
+  /* Halftone Overlay */
+  .dada-halftone-layer {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#141210 18%, transparent 18%);
+    background-size: 8px 8px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Drafting marks */
+  .dada-paper-marks {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: rgba(20, 18, 16, 0.55);
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Washi Tapes */
+  .dada-washi-tape {
+    position: absolute;
+    height: 22px;
+    background: rgba(254, 240, 138, 0.88);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+    border-left: 2px dashed rgba(161, 98, 7, 0.45);
+    border-right: 2px dashed rgba(161, 98, 7, 0.45);
+    backdrop-filter: blur(1px);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .dada-washi-tape.tape-tl {
+    top: 12px;
+    left: -12px;
+    width: 95px;
+    transform: rotate(-18deg);
+  }
+
+  .dada-washi-tape.tape-tr {
+    top: 18px;
+    right: 70px;
+    width: 80px;
+    transform: rotate(8deg);
+  }
+
+  .dada-washi-tape.tape-br {
+    bottom: 24px;
+    right: -15px;
+    width: 105px;
+    transform: rotate(-12deg);
+  }
+
+  .dada-washi-tape.washi-tape-red {
+    background: rgba(230, 57, 70, 0.88);
+    border-left-color: rgba(153, 27, 27, 0.5);
+    border-right-color: rgba(153, 27, 27, 0.5);
+  }
+
+  .dada-washi-tape.washi-tape-blue {
+    background: rgba(147, 197, 253, 0.9);
+    border-left-color: rgba(30, 64, 175, 0.45);
+    border-right-color: rgba(30, 64, 175, 0.45);
+  }
+
+  /* Polaroid Frame */
+  .dada-polaroid-frame {
+    position: relative;
+    z-index: 3;
+    width: 72%;
+    max-width: 290px;
+    background: #ffffff;
+    padding: 10px 10px 14px 10px;
+    border: 2.5px solid #141210;
+    box-shadow: 6px 6px 0px #141210;
+    transform: rotate(-2.5deg);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+
+  .demo-card-dada:hover .dada-polaroid-frame,
+  .demo-card-dada:focus-visible .dada-polaroid-frame {
+    transform: rotate(0deg) scale(1.04);
+    box-shadow: 10px 10px 0px #141210;
+  }
+
+  .dada-polaroid-inner {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: #ded6c9;
+    border: 1.5px solid #141210;
+  }
+
+  .dada-polaroid-inner img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    filter: contrast(1.15) grayscale(0.15) !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .demo-card-dada:hover .dada-polaroid-inner img,
+  .demo-card-dada:focus-visible .dada-polaroid-inner img {
+    transform: scale(1.08) !important;
+  }
+
+  /* Pop Censorship Bar */
+  .dada-censor-bar {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-4deg);
+    background: #ffe600;
+    color: #141210;
+    border: 2px solid #141210;
+    padding: 3px 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    box-shadow: 2px 2px 0px #141210;
+    z-index: 4;
+  }
+
+  .dada-vintage-tag {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(2deg);
+    background: #141210;
+    color: #ffffff;
+    padding: 2px 7px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    z-index: 3;
+    white-space: nowrap;
+  }
+
+  .dada-polaroid-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1.5px solid rgba(20, 18, 16, 0.2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: #141210;
+    letter-spacing: 0.04em;
+  }
+
+  .dada-caption-type {
+    color: #e63946;
+  }
+
+  /* Botanical Flora Cutout */
+  .dada-floating-sticker.dada-sticker-flower {
+    position: absolute;
+    bottom: 22px;
+    left: 18px;
+    z-index: 4;
+    width: 72px;
+    background: #fdfaf3;
+    border: 2px solid #141210;
+    padding: 4px;
+    box-shadow: 4px 4px 0px #141210;
+    transform: rotate(10deg);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .demo-card-dada:hover .dada-sticker-flower {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 6px 6px 0px #141210;
+  }
+
+  .dada-flower-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .dada-flower-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 700;
+    text-align: center;
+    border-top: 1px solid #141210;
+    margin-top: 2px;
+    color: #141210;
+  }
+
+  /* Postal Stamp Seal */
+  .dada-stamp-seal {
+    position: absolute;
+    top: 42px;
+    right: 22px;
+    z-index: 4;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 2.5px dashed #1d3557;
+    color: #1d3557;
+    background: rgba(253, 250, 243, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 800;
+    transform: rotate(14deg);
+    box-shadow: 3px 3px 0px rgba(29, 53, 87, 0.2);
+    transition: transform 0.35s ease;
+  }
+
+  .dada-stamp-seal strong {
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .demo-card-dada:hover .dada-stamp-seal {
+    transform: rotate(26deg) scale(1.12);
+  }
+
+  /* Metal Paperclip */
+  .dada-paperclip {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 105px);
+    width: 12px;
+    height: 32px;
+    border: 2.5px solid #8c9096;
+    border-radius: 12px;
+    z-index: 6;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    transform: rotate(-8deg);
+  }
+
+  /* Badges & Overlays for Dada */
+  .gallery-demo-card-badge.dada-badge {
+    border: 2px solid #141210 !important;
+    background: #ffe600 !important;
+    color: #141210 !important;
+    box-shadow: 2px 2px 0px #141210;
+    font-weight: 700 !important;
   }
 
   .demo-card-dada .gallery-demo-pulse-dot {
-    background: #e63946;
-    box-shadow: 0 0 8px rgba(230, 57, 70, 0.85);
+    background: #e63946 !important;
+    box-shadow: 0 0 6px #e63946 !important;
   }
 
-  .demo-card-dada .gallery-demo-card-tag {
-    background: #e63946;
-    color: #ffffff;
-    font-weight: 600;
-    border-color: #e63946;
+  .gallery-demo-card-tag.dada-tag {
+    border: 2px solid #141210 !important;
+    background: #e63946 !important;
+    color: #ffffff !important;
+    box-shadow: 2px 2px 0px #141210;
+    font-weight: 800 !important;
+  }
+
+  .demo-card-dada .gallery-overlay {
+    background: linear-gradient(to top, rgba(20, 18, 16, 0.96) 0%, rgba(20, 18, 16, 0.65) 60%, transparent 92%) !important;
   }
 
   .demo-card-dada .gallery-demo-card-action {
-    background: #e63946;
+    background: #ffe600 !important;
+    color: #141210 !important;
+    border: 2px solid #141210 !important;
+    box-shadow: 3px 3px 0px #141210 !important;
+    font-weight: 800 !important;
   }
 
   .demo-card-dada:hover .gallery-demo-card-action,
   .demo-card-dada:focus-visible .gallery-demo-card-action {
-    background: #c52b37;
+    background: #ffffff !important;
+    color: #e63946 !important;
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0px #141210 !important;
+  }
+
+  .demo-card-dada .gallery-demo-hint {
+    background: #e63946 !important;
+    color: #ffffff !important;
+    border: 2px solid #141210 !important;
+    box-shadow: 3px 3px 0px #141210 !important;
   }
 
   .demo-card-dada:hover .gallery-demo-hint,
   .demo-card-dada:focus-visible .gallery-demo-hint {
-    background: #e63946;
-    color: #ffffff;
+    background: #ffe600 !important;
+    color: #141210 !important;
+    transform: scale(1.15) rotate(10deg);
   }
 
   .gallery-demo-card img {
