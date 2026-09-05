@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KURA — Arquitetura, Objetos & Espaço Silencioso</title>
+
+  <!-- Tipografia Editorial: Cormorant Garamond (Serifa Clássica) e Inter (Estrutura Neutra Suíça) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Inter"', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            kura: {
+              paper: '#faf9f5',
+              stone: '#f2efe9',
+              sand: '#e5e0d8',
+              muted: '#78736b',
+              ink: '#111110',
+              deep: '#0a0a09',
+              accent: '#8c7b6c',
+            }
+          },
+          letterSpacing: {
+            'widest-xl': '0.25em',
+            'tight-fine': '-0.035em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Suavização ultra-fina de fontes */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Linhas milimétricas estilo planta arquitetônica */
+    .hairline-border {
+      border-color: rgba(17, 17, 16, 0.08);
+    }
+    .dark .hairline-border {
+      border-color: rgba(250, 249, 245, 0.1);
+    }
+
+    /* Mascaramento suave e transição de iluminação do simulador */
+    .daylight-transition {
+      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.8s ease;
+    }
+
+    /* Ocultar barra de rolagem mantendo funcionalidade */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Linhas guia de proporção áurea / grid suíço */
+    .grid-guide {
+      background-size: 100% 100%;
+      background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px);
+    }
+    .dark .grid-guide {
+      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-kura-paper text-kura-ink transition-colors duration-700 font-sans selection:bg-kura-ink selection:text-kura-paper dark:bg-kura-deep dark:text-kura-paper">
+
+  <!-- Linha Decorativa Minimalista de Topo -->
+  <div class="w-full h-[2px] bg-kura-ink/10 dark:bg-kura-paper/10"></div>
+
+  <!-- ==================== NAVEGAÇÃO MINIMALISTA & STATUS ==================== -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-kura-paper/85 dark:bg-kura-deep/85 border-b hairline-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+      
+      <!-- Marca Tipográfica Discreta -->
+      <a href="#" class="flex items-baseline gap-3 group">
+        <span class="font-serif text-2xl sm:text-3xl font-light tracking-tight text-kura-ink dark:text-kura-paper group-hover:opacity-70 transition-opacity">
+          KURA
+        </span>
+        <span class="hidden sm:inline text-[10px] uppercase tracking-widest-xl text-kura-muted">
+          Studio 04 / Tóquio & Zurique
+        </span>
+      </a>
+
+      <!-- Links de Navegação Espaçados -->
+      <nav class="hidden md:flex items-center gap-10 text-[11px] font-medium tracking-widest-xl uppercase text-kura-muted">
+        <a href="#filosofia" class="hover:text-kura-ink dark:hover:text-kura-paper transition-colors">01. Filosofia</a>
+        <a href="#obras" class="hover:text-kura-ink dark:hover:text-kura-paper transition-colors">02. Obras</a>
+        <a href="#simulador" class="hover:text-kura-ink dark:hover:text-kura-paper transition-colors">03. Luz Natural</a>
+        <a href="#materiais" class="hover:text-kura-ink dark:hover:text-kura-paper transition-colors">04. Matéria</a>
+        <a href="#contato" class="hover:text-kura-ink dark:hover:text-kura-paper transition-colors">05. Contato</a>
+      </nav>
+
+      <!-- Alternador de Tema e Consulta -->
+      <div class="flex items-center gap-4">
+        <!-- Modo Silencioso / Dark Minimal -->
+        <button 
+          id="themeToggle" 
+          onclick="toggleMinimalTheme()"
+          class="w-8 h-8 rounded-full border hairline-border flex items-center justify-center text-xs text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper transition-colors"
+          title="Alternar Contraste"
+        >
+          <span id="themeIndicator">○</span>
+        </button>
+
+        <a 
+          href="#contato" 
+          class="text-[11px] font-medium tracking-widest-xl uppercase px-5 py-2.5 border hairline-border hover:bg-kura-ink hover:text-kura-paper dark:hover:bg-kura-paper dark:hover:text-kura-ink transition-all duration-300"
+        >
+          Iniciar Projeto
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION: O PODER DO ESPAÇO VAZIO ==================== -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-20 border-b hairline-border">
+      
+      <!-- Metadados de Topo do Estúdio -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[10px] uppercase tracking-widest-xl text-kura-muted pb-8 border-b hairline-border">
+        <span>ESTUDO DE ESPAÇO, LUZ & REDUÇÃO FORMAL</span>
+        <span>LAT 35.6762° N // LONG 139.6503° E</span>
+        <span>ANO 2026 // MONOGRAFIA VOL. IX</span>
+      </div>
+
+      <!-- Título Escultural em Cormorant Garamond -->
+      <div class="py-16 sm:py-24">
+        <h1 class="font-serif font-light text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight-fine max-w-5xl">
+          A pureza da forma no silêncio da matéria.
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-12 items-start">
+          <div class="md:col-span-4 text-kura-muted font-sans text-xs sm:text-sm leading-relaxed font-light">
+            Eliminamos todo o ruído visual descartável até que reste apenas o essencial: a gravidade, a textura do concreto bruto, a madeira japonesa e o percurso imutável do sol durante as horas do dia.
+          </div>
+          <div class="md:col-span-8 flex flex-wrap gap-8 text-[11px] tracking-widest uppercase text-kura-muted md:justify-end">
+            <div>
+              <span class="block text-kura-ink dark:text-kura-paper font-medium text-lg font-serif">48</span>
+              <span>Projetos Realizados</span>
+            </div>
+            <div>
+              <span class="block text-kura-ink dark:text-kura-paper font-medium text-lg font-serif">14</span>
+              <span>Prêmios de Design</span>
+            </div>
+            <div>
+              <span class="block text-kura-ink dark:text-kura-paper font-medium text-lg font-serif">0.00</span>
+              <span>Ornatos Supérfluos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fotografia Principal de Arquitetura Minimalista (Unsplash) -->
+      <div class="relative overflow-hidden group">
+        <div class="aspect-[16/9] sm:aspect-[21/9] w-full bg-kura-stone dark:bg-neutral-900 overflow-hidden">
+          <img 
+            id="heroImage"
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85" 
+            alt="Residência Minimalista de Concreto e Luz" 
+            class="w-full h-full object-cover grayscale contrast-[1.05] brightness-95 group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+            loading="eager"
+            onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/e5e0d8/111110?text=KURA+SPATIAL+DESIGN'"
+          />
+        </div>
+
+        <!-- Legenda Tipográfica Arquitetônica -->
+        <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between text-[10px] tracking-widest uppercase text-kura-muted">
+          <span>FIG 01. RESIDÊNCIA NAVEGAÇÃO DA LUZ — KAMAKURA, JAPÃO</span>
+          <span>FOTOGRAFIA DE ESPAÇO // 35MM MONOCROMÁTICA</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== FILOSOFIA & PRINCÍPIOS SUÍÇOS ==================== -->
+    <section id="filosofia" class="max-w-7xl mx-auto px-6 sm:px-10 py-24 border-b hairline-border">
+      
+      <div class="max-w-xl mb-16">
+        <span class="text-[10px] font-medium tracking-widest-xl uppercase text-kura-muted block mb-3">01 // FILOSOFIA</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-tight-fine text-kura-ink dark:text-kura-paper">
+          Três axiomas fundamentais da contenção.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16">
+        
+        <!-- Princípio 1 -->
+        <div class="space-y-4 pt-6 border-t hairline-border">
+          <span class="font-mono text-xs text-kura-muted">01 / SUBTRAÇÃO</span>
+          <h3 class="font-serif text-2xl font-normal text-kura-ink dark:text-kura-paper">
+            Redução Absoluta
+          </h3>
+          <p class="font-sans text-xs sm:text-sm text-kura-muted leading-relaxed font-light">
+            Não projetamos para acrescentar peças a um ambiente, mas para investigar o que pode ser removido sem que a essência e o abrigo humano percam sua alma.
+          </p>
+        </div>
+
+        <!-- Princípio 2 -->
+        <div class="space-y-4 pt-6 border-t hairline-border">
+          <span class="font-mono text-xs text-kura-muted">02 / HONESTIDADE</span>
+          <h3 class="font-serif text-2xl font-normal text-kura-ink dark:text-kura-paper">
+            Matéria Despida
+          </h3>
+          <p class="font-sans text-xs sm:text-sm text-kura-muted leading-relaxed font-light">
+            O concreto permanece cinza. A madeira preserva seus anéis e ranhuras. O aço escuro aceita a oxidação pelo tempo. Recusamos revestimentos que disfarcem a verdade do material.
+          </p>
+        </div>
+
+        <!-- Princípio 3 -->
+        <div class="space-y-4 pt-6 border-t hairline-border">
+          <span class="font-mono text-xs text-kura-muted">03 / CONTINUIDADE</span>
+          <h3 class="font-serif text-2xl font-normal text-kura-ink dark:text-kura-paper">
+            Silêncio Espacial
+          </h3>
+          <p class="font-sans text-xs sm:text-sm text-kura-muted leading-relaxed font-light">
+            A verdadeira arquitetura não compete com a vida que abriga. Ela cria uma moldura quieta e serena para o pensamento, a leitura, a refeição e o descanso.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== SIMULADOR INTERATIVO DE LUZ NATURAL ==================== -->
+    <section id="simulador" class="max-w-7xl mx-auto px-6 sm:px-10 py-24 border-b hairline-border">
+      
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+        <div class="max-w-xl">
+          <span class="text-[10px] font-medium tracking-widest-xl uppercase text-kura-muted block mb-3">02 // SIMULAÇÃO ESPACIAL</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-tight-fine text-kura-ink dark:text-kura-paper">
+            O comportamento da luz nas 24 horas.
+          </h2>
+          <p class="font-sans text-xs sm:text-sm text-kura-muted mt-3 font-light leading-relaxed">
+            A luz natural é o material de construção mais poderoso e imaterial. Selecione um período do dia abaixo para observar a modulação de calor e sombra sobre os volumes da casa.
+          </p>
+        </div>
+
+        <!-- Botoeira Minimalista de Seleção de Horário -->
+        <div class="flex flex-wrap gap-2 border hairline-border p-1.5 bg-kura-stone/40 dark:bg-neutral-900/40">
+          <button 
+            onclick="setDaylightPhase('dawn')" 
+            id="btn-dawn"
+            class="daylight-btn text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper"
+          >
+            06:00 Alvorada
+          </button>
+          <button 
+            onclick="setDaylightPhase('noon')" 
+            id="btn-noon"
+            class="daylight-btn active text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all bg-kura-ink text-kura-paper dark:bg-kura-paper dark:text-kura-ink font-medium"
+          >
+            12:00 Zênite
+          </button>
+          <button 
+            onclick="setDaylightPhase('dusk')" 
+            id="btn-dusk"
+            class="daylight-btn text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper"
+          >
+            18:00 Crepúsculo
+          </button>
+          <button 
+            onclick="setDaylightPhase('night')" 
+            id="btn-night"
+            class="daylight-btn text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper"
+          >
+            23:00 Madrugada
+          </button>
+        </div>
+      </div>
+
+      <!-- Painel de Amostragem de Luz Dinâmica (Unsplash) -->
+      <div class="relative overflow-hidden border hairline-border">
+        
+        <div id="daylightStage" class="relative w-full aspect-[4/3] sm:aspect-[16/8] overflow-hidden daylight-transition">
+          <img 
+            id="daylightImage"
+            src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1800&q=80" 
+            alt="Interseção da luz e sombra em ambiente zen minimalista"
+            class="w-full h-full object-cover daylight-transition"
+            onerror="this.onerror=null;this.src='https://placehold.co/1800x900/e5e0d8/111110?text=DAYLIGHT+STUDY'"
+          />
+
+          <!-- Overlay Especular Gradual da Hora do Dia -->
+          <div id="daylightOverlay" class="absolute inset-0 pointer-events-none daylight-transition bg-transparent"></div>
+
+          <!-- Indicador de Medição de Lumens e Ângulo Solar -->
+          <div class="absolute bottom-6 left-6 backdrop-blur-md bg-kura-paper/90 dark:bg-kura-deep/90 border hairline-border px-4 py-2.5 font-mono text-[10px] text-kura-muted flex items-center gap-4">
+            <div>FASE: <span id="labelPhase" class="text-kura-ink dark:text-kura-paper font-semibold">ZÊNITE SOLAR</span></div>
+            <div>ÂNGULO: <span id="labelAngle" class="text-kura-ink dark:text-kura-paper font-semibold">88.4° ELEVAÇÃO</span></div>
+            <div>TEMPERATURA: <span id="labelKelvin" class="text-kura-ink dark:text-kura-paper font-semibold">5.500 K</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== OBRAS SELECIONADAS (PORTFÓLIO FILTRÁVEL) ==================== -->
+    <section id="obras" class="max-w-7xl mx-auto px-6 sm:px-10 py-24 border-b hairline-border">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-[10px] font-medium tracking-widest-xl uppercase text-kura-muted block mb-3">03 // PROJETOS</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-tight-fine text-kura-ink dark:text-kura-paper">
+            Acervo de intervenções espaciais.
+          </h2>
+        </div>
+
+        <!-- Filtros Rápidos -->
+        <div class="flex items-center gap-6 text-[10px] uppercase tracking-widest text-kura-muted font-mono">
+          <button onclick="filterGallery('todos', this)" class="filter-btn active text-kura-ink dark:text-kura-paper underline underline-offset-8">TODOS (04)</button>
+          <button onclick="filterGallery('arquitetura', this)" class="filter-btn hover:text-kura-ink dark:hover:text-kura-paper">ARQUITETURA</button>
+          <button onclick="filterGallery('interiores', this)" class="filter-btn hover:text-kura-ink dark:hover:text-kura-paper">INTERIORES</button>
+          <button onclick="filterGallery('objetos', this)" class="filter-btn hover:text-kura-ink dark:hover:text-kura-paper">OBJETOS</button>
+        </div>
+      </div>
+
+      <!-- Grid de Projetos 2x2 Editorial -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16" id="projectsContainer">
+        
+        <!-- Projeto 1: Residência Mono -->
+        <article class="project-card group cursor-pointer" data-category="arquitetura" onclick="openProjectModal('Residência Pavilhão Mono', 'Kioto, Japão (2025)', 'Pavilhão em concreto aparente e ripas de cedro carbonizado (Shou Sugi Ban), projetado para receber o curso das quatro estações através de jardins de pedra internos.', 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80')">
+          <div class="aspect-[4/3] bg-kura-stone dark:bg-neutral-900 overflow-hidden mb-5">
+            <img 
+              src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80" 
+              alt="Pavilhão de Arte em Concreto" 
+              class="w-full h-full object-cover grayscale contrast-[1.08] brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/1200x900/e5e0d8/111110?text=PROJECT+01'"
+            />
+          </div>
+          <div class="flex items-baseline justify-between border-b hairline-border pb-3">
+            <h3 class="font-serif text-xl sm:text-2xl font-light text-kura-ink dark:text-kura-paper group-hover:opacity-75 transition-opacity">
+              01. Pavilhão Mono
+            </h3>
+            <span class="text-[10px] tracking-widest font-mono text-kura-muted uppercase">KIOTO, JP</span>
+          </div>
+          <p class="font-sans text-xs text-kura-muted mt-2 font-light">Concreto ciclópico, ripas de cedro e pátio contemplativo.</p>
+        </article>
+
+        <!-- Projeto 2: Cadeira Escultural -->
+        <article class="project-card group cursor-pointer" data-category="objetos" onclick="openProjectModal('Cadeira Sólida 07', 'Milão, Itália (2024)', 'Peça esculpida em bloco maciço de carvalho cinza, eliminando parafusos visíveis por encaixes tradicionais japoneses de marcenaria Kigumi.', 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1200&q=80')">
+          <div class="aspect-[4/3] bg-kura-stone dark:bg-neutral-900 overflow-hidden mb-5">
+            <img 
+              src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1200&q=80" 
+              alt="Mobiliário Minimalista em Carvalho" 
+              class="w-full h-full object-cover grayscale contrast-[1.08] brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/1200x900/e5e0d8/111110?text=PROJECT+02'"
+            />
+          </div>
+          <div class="flex items-baseline justify-between border-b hairline-border pb-3">
+            <h3 class="font-serif text-xl sm:text-2xl font-light text-kura-ink dark:text-kura-paper group-hover:opacity-75 transition-opacity">
+              02. Mobiliário Sólido 07
+            </h3>
+            <span class="text-[10px] tracking-widest font-mono text-kura-muted uppercase">MILÃO, IT</span>
+          </div>
+          <p class="font-sans text-xs text-kura-muted mt-2 font-light">Madeira de carvalho curada, encaixes sem fixações mecânicas.</p>
+        </article>
+
+        <!-- Projeto 3: Residência e Galeria de Chá -->
+        <article class="project-card group cursor-pointer" data-category="interiores" onclick="openProjectModal('Casa de Chá Vazio Pleno', 'Genebra, Suíça (2025)', 'Reinterpretação alpina do conceito japonês Ma (espaço negativo), com divisórias de papel Washi translúcido e piso contínuo em terra batida.', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80')">
+          <div class="aspect-[4/3] bg-kura-stone dark:bg-neutral-900 overflow-hidden mb-5">
+            <img 
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80" 
+              alt="Interior Calmo com Cerâmica e Linho" 
+              class="w-full h-full object-cover grayscale contrast-[1.08] brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/1200x900/e5e0d8/111110?text=PROJECT+03'"
+            />
+          </div>
+          <div class="flex items-baseline justify-between border-b hairline-border pb-3">
+            <h3 class="font-serif text-xl sm:text-2xl font-light text-kura-ink dark:text-kura-paper group-hover:opacity-75 transition-opacity">
+              03. Casa de Chá Vazio Pleno
+            </h3>
+            <span class="text-[10px] tracking-widest font-mono text-kura-muted uppercase">GENEBRA, CH</span>
+          </div>
+          <p class="font-sans text-xs text-kura-muted mt-2 font-light">Papel de arroz Washi, calcário bruto e acústica amortecida.</p>
+        </article>
+
+        <!-- Projeto 4: Casa de Falésia -->
+        <article class="project-card group cursor-pointer" data-category="arquitetura" onclick="openProjectModal('Torre Falésia do Norte', 'Bornholm, Dinamarca (2024)', 'Edificação monobloco erguida sobre a rocha de granito com abertura panorâmica voltada para as brumas do Mar Báltico.', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80')">
+          <div class="aspect-[4/3] bg-kura-stone dark:bg-neutral-900 overflow-hidden mb-5">
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" 
+              alt="Arquitetura de Concreto na Falésia" 
+              class="w-full h-full object-cover grayscale contrast-[1.08] brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/1200x900/e5e0d8/111110?text=PROJECT+04'"
+            />
+          </div>
+          <div class="flex items-baseline justify-between border-b hairline-border pb-3">
+            <h3 class="font-serif text-xl sm:text-2xl font-light text-kura-ink dark:text-kura-paper group-hover:opacity-75 transition-opacity">
+              04. Torre Falésia do Norte
+            </h3>
+            <span class="text-[10px] tracking-widest font-mono text-kura-muted uppercase">BORNHOLM, DK</span>
+          </div>
+          <p class="font-sans text-xs text-kura-muted mt-2 font-light">Granito cinzento autóctone, vidro triplo de controle térmico.</p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== MATERIAIS NATURAIS & PALETA TÁTIL ==================== -->
+    <section id="materiais" class="max-w-7xl mx-auto px-6 sm:px-10 py-24 border-b hairline-border">
+      
+      <div class="max-w-2xl mb-16">
+        <span class="text-[10px] font-medium tracking-widest-xl uppercase text-kura-muted block mb-3">04 // PALETA TÁTIL</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-tight-fine text-kura-ink dark:text-kura-paper">
+          A verdade intrínseca de cada matéria.
+        </h2>
+        <p class="font-sans text-xs sm:text-sm text-kura-muted mt-3 font-light leading-relaxed">
+          Nossa prática arquitetônica recusa polímeros sintéticos e impressões plásticas. Trabalhamos com quatro matérias que envelhecem com nobreza e dignidade ao longo das décadas.
+        </p>
+      </div>
+
+      <!-- Tabela de Materiais em Grid Limpo -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <div class="border-t hairline-border pt-5 space-y-2">
+          <span class="font-mono text-[10px] text-kura-muted uppercase">ELEMENTO 01</span>
+          <h4 class="font-serif text-xl text-kura-ink dark:text-kura-paper">Concreto Aparente</h4>
+          <p class="text-xs text-kura-muted font-light leading-relaxed">
+            Formulado com agregados minerais finos e desenformado sob ripas de pinho cru para imprimir os veios na pedra artificial.
+          </p>
+          <div class="text-[10px] font-mono text-kura-muted pt-2">MASSA TÉRMICA // ALTA</div>
+        </div>
+
+        <div class="border-t hairline-border pt-5 space-y-2">
+          <span class="font-mono text-[10px] text-kura-muted uppercase">ELEMENTO 02</span>
+          <h4 class="font-serif text-xl text-kura-ink dark:text-kura-paper">Cipreste Hinoki</h4>
+          <p class="text-xs text-kura-muted font-light leading-relaxed">
+            Madeira de aroma doce e resistência centenária à umidade, colhida sob manejo florestal controlado na província de Nagano.
+          </p>
+          <div class="text-[10px] font-mono text-kura-muted pt-2">ORIGEM // NAGANO, JP</div>
+        </div>
+
+        <div class="border-t hairline-border pt-5 space-y-2">
+          <span class="font-mono text-[10px] text-kura-muted uppercase">ELEMENTO 03</span>
+          <h4 class="font-serif text-xl text-kura-ink dark:text-kura-paper">Aço Negro Laminado</h4>
+          <p class="text-xs text-kura-muted font-light leading-relaxed">
+            Perfis estruturais delgados com acabamento em cera de abelha quente, preservando a camada de carepa natural de usina.
+          </p>
+          <div class="text-[10px] font-mono text-kura-muted pt-2">ESPESSURA // 8MM A 22MM</div>
+        </div>
+
+        <div class="border-t hairline-border pt-5 space-y-2">
+          <span class="font-mono text-[10px] text-kura-muted uppercase">ELEMENTO 04</span>
+          <h4 class="font-serif text-xl text-kura-ink dark:text-kura-paper">Linho Cru Lavado</h4>
+          <p class="text-xs text-kura-muted font-light leading-relaxed">
+            Tecido orgânico sem alvejamento químico, utilizado para amortecer a acústica de salas de estar e filtrar a luz solar rasante.
+          </p>
+          <div class="text-[10px] font-mono text-kura-muted pt-2">PESO // 420 G/M²</div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== CITAÇÃO EDITORIAL ==================== -->
+    <section class="max-w-5xl mx-auto px-6 sm:px-10 py-24 text-center border-b hairline-border">
+      <blockquote class="font-serif text-2xl sm:text-4xl md:text-5xl font-light italic leading-relaxed text-kura-ink dark:text-kura-paper max-w-4xl mx-auto">
+        "O silêncio não é a ausência de som. É o momento em que a arquitetura para de gritar e o mundo finalmente se faz compreensível."
+      </blockquote>
+      <div class="mt-8 font-mono text-[10px] tracking-widest-xl uppercase text-kura-muted">
+        KENZO TSUKADA — DIRETOR CRIATIVO KURA (MONOGRAFIA DE ARQUITETURA, 2026)
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO MINIMALISTA & DIÁLOGO DIRETO ==================== -->
+    <section id="contato" class="max-w-7xl mx-auto px-6 sm:px-10 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-[10px] font-medium tracking-widest-xl uppercase text-kura-muted block">05 // DIÁLOGO</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light tracking-tight-fine text-kura-ink dark:text-kura-paper">
+            Inicie uma conversa espacial.
+          </h2>
+          <p class="font-sans text-xs sm:text-sm text-kura-muted leading-relaxed font-light">
+            Aceitamos apenas oito comissões arquitetônicas por ano para garantir rigor de detalhamento e presença direta no canteiro de obras.
+          </p>
+
+          <div class="pt-6 space-y-3 font-mono text-xs text-kura-muted">
+            <div>ATELIER TÓQUIO: <span class="text-kura-ink dark:text-kura-paper">MINATO-KU, MINAMI-AOYAMA 5-7</span></div>
+            <div>ATELIER ZURIQUE: <span class="text-kura-ink dark:text-kura-paper">SEEFELDSTRASSE 114, 8008</span></div>
+            <div>CORRESPONDÊNCIA: <span class="text-kura-ink dark:text-kura-paper">STUDIO@KURA-ARCH.COM</span></div>
+          </div>
+        </div>
+
+        <!-- Formulário Ultra-Despojado -->
+        <div class="lg:col-span-7">
+          <form id="minimalContactForm" onsubmit="handleContactSubmit(event)" class="space-y-8">
+            
+            <div class="border-b hairline-border pb-2 focus-within:border-kura-ink dark:focus-within:border-kura-paper transition-colors">
+              <label for="clientName" class="block font-mono text-[10px] uppercase tracking-widest text-kura-muted mb-1">Seu Nome Completo</label>
+              <input 
+                type="text" 
+                id="clientName"
+                required
+                placeholder="ex. Dra. Helena Silveira" 
+                class="w-full bg-transparent text-kura-ink dark:text-kura-paper font-serif text-xl sm:text-2xl placeholder-kura-muted/40 focus:outline-none"
+              />
+            </div>
+
+            <div class="border-b hairline-border pb-2 focus-within:border-kura-ink dark:focus-within:border-kura-paper transition-colors">
+              <label for="clientEmail" class="block font-mono text-[10px] uppercase tracking-widest text-kura-muted mb-1">Endereço de Correio Eletrônico</label>
+              <input 
+                type="email" 
+                id="clientEmail"
+                required
+                placeholder="helena@dominio.com" 
+                class="w-full bg-transparent text-kura-ink dark:text-kura-paper font-serif text-xl sm:text-2xl placeholder-kura-muted/40 focus:outline-none"
+              />
+            </div>
+
+            <div class="border-b hairline-border pb-2 focus-within:border-kura-ink dark:focus-within:border-kura-paper transition-colors">
+              <label for="projectNature" class="block font-mono text-[10px] uppercase tracking-widest text-kura-muted mb-1">Natureza da Intervenção</label>
+              <input 
+                type="text" 
+                id="projectNature"
+                required
+                placeholder="ex. Residência em encosta de serra, 450 m²" 
+                class="w-full bg-transparent text-kura-ink dark:text-kura-paper font-serif text-xl sm:text-2xl placeholder-kura-muted/40 focus:outline-none"
+              />
+            </div>
+
+            <div class="flex items-center justify-between pt-4">
+              <span class="text-[10px] font-mono text-kura-muted uppercase tracking-widest">RESPOSTA ESTIMADA: 48 HORAS</span>
+              
+              <button 
+                type="submit" 
+                class="text-[11px] font-medium tracking-widest-xl uppercase px-8 py-3.5 bg-kura-ink text-kura-paper hover:bg-kura-muted dark:bg-kura-paper dark:text-kura-ink dark:hover:bg-kura-sand transition-all duration-300"
+              >
+                Enviar Protocolo →
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== MODAL MINIMALISTA DE DETALHE DE PROJETO ==================== -->
+  <div id="projectModal" class="fixed inset-0 z-50 bg-kura-deep/70 backdrop-blur-md hidden items-center justify-center p-6 sm:p-10 transition-opacity duration-300">
+    <div class="bg-kura-paper dark:bg-kura-deep border hairline-border max-w-3xl w-full p-8 sm:p-12 relative shadow-2xl space-y-6">
+      
+      <button 
+        onclick="closeProjectModal()" 
+        class="absolute top-6 right-6 font-mono text-xs text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper p-2"
+        title="Fechar"
+      >
+        ✕ FECHAR
+      </button>
+
+      <div class="space-y-1">
+        <span id="modalLocation" class="font-mono text-[10px] text-kura-muted uppercase tracking-widest">LOCALIZAÇÃO</span>
+        <h3 id="modalTitle" class="font-serif text-3xl sm:text-4xl text-kura-ink dark:text-kura-paper font-light">Título da Obra</h3>
+      </div>
+
+      <div class="aspect-[16/9] w-full bg-kura-stone dark:bg-neutral-900 overflow-hidden">
+        <img id="modalImage" src="" alt="Detalhe do Projeto" class="w-full h-full object-cover grayscale contrast-105" />
+      </div>
+
+      <p id="modalDescription" class="font-sans text-xs sm:text-sm text-kura-muted leading-relaxed font-light">
+        Descrição do projeto.
+      </p>
+
+      <div class="pt-4 border-t hairline-border flex items-center justify-between text-[10px] font-mono text-kura-muted uppercase tracking-widest">
+        <span>KURA ARCHITECTURAL ARCHIVE</span>
+        <button onclick="triggerToast('Ficha técnica arquivada baixada.')" class="hover:text-kura-ink dark:hover:text-kura-paper underline">
+          BAIXAR MEMORIAL DESCRITIVO (PDF)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== RODAPÉ SUÍÇO ==================== -->
+  <footer class="border-t hairline-border bg-kura-stone/30 dark:bg-neutral-950 py-12 px-6 sm:px-10 font-mono text-[10px] text-kura-muted">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      
+      <div>
+        <span class="font-serif text-lg text-kura-ink dark:text-kura-paper font-normal">KURA</span>
+        <span class="ml-2">© 2026 KURA ARCHITECTURE CORP. TODOS OS DIREITOS RESERVADOS.</span>
+      </div>
+
+      <div class="flex items-center gap-8">
+        <a href="#filosofia" class="hover:text-kura-ink dark:hover:text-kura-paper">MANIFESTO</a>
+        <a href="#obras" class="hover:text-kura-ink dark:hover:text-kura-paper">PROJETOS</a>
+        <a href="#materiais" class="hover:text-kura-ink dark:hover:text-kura-paper">ESPECIFICAÇÕES</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span>SISTEMA ATIVO: LUZ PURA</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Notificação Toast Minimalista -->
+  <div id="minimalToast" class="fixed bottom-8 right-8 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-kura-ink text-kura-paper dark:bg-kura-paper dark:text-kura-ink px-5 py-3 border hairline-border font-mono text-xs tracking-widest uppercase shadow-lg flex items-center gap-3">
+      <span class="w-1.5 h-1.5 rounded-full bg-kura-accent"></span>
+      <span id="toastText">Protocolo registrado com sucesso.</span>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT: SIMULADOR DE LUZ & FILTROS ==================== -->
+  <script>
+    // --- ALTERNÂNCIA DE TEMA (MODO CLARO DE PAPEL / MODO ESCURO GRAFITE) ---
+    let isDarkTheme = false;
+    function toggleMinimalTheme() {
+      isDarkTheme = !isDarkTheme;
+      const htmlEl = document.documentElement;
+      const indicator = document.getElementById('themeIndicator');
+      
+      if (isDarkTheme) {
+        htmlEl.classList.add('dark');
+        indicator.textContent = '●';
+        triggerToast('Ambiente: Grafite Noturno');
+      } else {
+        htmlEl.classList.remove('dark');
+        indicator.textContent = '○';
+        triggerToast('Ambiente: Papel Claro');
+      }
+    }
+
+    // --- SIMULADOR DE LUZ NATURAL DAS 24H ---
+    const daylightPresets = {
+      dawn: {
+        filter: 'sepia(30%) saturate(85%) contrast(95%) brightness(88%)',
+        overlayColor: 'rgba(255, 200, 150, 0.12)',
+        phase: 'ALVORADA (06:00)',
+        angle: '12.2° ELEVAÇÃO',
+        kelvin: '3.200 K (QUENTE DOURADO)'
+      },
+      noon: {
+        filter: 'sepia(0%) saturate(100%) contrast(105%) brightness(100%)',
+        overlayColor: 'transparent',
+        phase: 'ZÊNITE SOLAR (12:00)',
+        angle: '88.4° ELEVAÇÃO',
+        kelvin: '5.500 K (BRANCO NEUTRO)'
+      },
+      dusk: {
+        filter: 'sepia(50%) saturate(120%) contrast(110%) brightness(75%)',
+        overlayColor: 'rgba(180, 80, 30, 0.18)',
+        phase: 'CREPÚSCULO (18:00)',
+        angle: '8.1° ELEVAÇÃO',
+        kelvin: '2.400 K (BRASA ÂMBAR)'
+      },
+      night: {
+        filter: 'grayscale(75%) contrast(125%) brightness(40%) hue-rotate(190deg)',
+        overlayColor: 'rgba(10, 15, 30, 0.45)',
+        phase: 'MADRUGADA (23:00)',
+        angle: '-45.0° LUNAR',
+        kelvin: '7.800 K (AZUL SILENCIOSO)'
+      }
+    };
+
+    function setDaylightPhase(phaseKey) {
+      const preset = daylightPresets[phaseKey];
+      if (!preset) return;
+
+      const imgEl = document.getElementById('daylightImage');
+      const overlayEl = document.getElementById('daylightOverlay');
+      const labelPhase = document.getElementById('labelPhase');
+      const labelAngle = document.getElementById('labelAngle');
+      const labelKelvin = document.getElementById('labelKelvin');
+
+      // Aplica tratamentos de luz óptica
+      imgEl.style.filter = preset.filter;
+      overlayEl.style.backgroundColor = preset.overlayColor;
+
+      labelPhase.textContent = preset.phase;
+      labelAngle.textContent = preset.angle;
+      labelKelvin.textContent = preset.kelvin;
+
+      // Atualiza botões
+      document.querySelectorAll('.daylight-btn').forEach(b => {
+        b.className = 'daylight-btn text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all text-kura-muted hover:text-kura-ink dark:hover:text-kura-paper';
+      });
+      const activeBtn = document.getElementById(`btn-${phaseKey}`);
+      if (activeBtn) {
+        activeBtn.className = 'daylight-btn active text-[10px] tracking-widest uppercase px-3.5 py-2 transition-all bg-kura-ink text-kura-paper dark:bg-kura-paper dark:text-kura-ink font-medium';
+      }
+
+      triggerToast(`Fase Solar: ${preset.phase}`);
+    }
+
+    // --- FILTRAGEM DE GALERIA DE PROJETOS ---
+    function filterGallery(category, triggerBtn = (typeof event !== 'undefined' ? (event?.currentTarget || event?.target) : null)) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'text-kura-ink', 'dark:text-kura-paper', 'underline', 'underline-offset-8');
+        btn.classList.add('text-kura-muted');
+      });
+
+      if (triggerBtn) {
+        triggerBtn.classList.add('active', 'text-kura-ink', 'dark:text-kura-paper', 'underline', 'underline-offset-8');
+        triggerBtn.classList.remove('text-kura-muted');
+      }
+
+      cards.forEach(card => {
+        if (category === 'todos' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // --- MODAL DE DETALHES DE PROJETO ---
+    function openProjectModal(title, location, desc, imageUrl) {
+      const modal = document.getElementById('projectModal');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalLocation').textContent = location;
+      document.getElementById('modalDescription').textContent = desc;
+      document.getElementById('modalImage').src = imageUrl;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Fecha modal clicando no backdrop
+    document.getElementById('projectModal').addEventListener('click', (e) => {
+      if (e.target.id === 'projectModal') closeProjectModal();
+    });
+
+    // --- SUBMISSÃO DE FORMULÁRIO DE CONTATO ---
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      if (!name) return;
+
+      document.getElementById('minimalContactForm').reset();
+      triggerToast(`Recebido: Entraremos em contato com ${name}.`);
+    }
+
+    // --- FEEDBACK TOAST MINIMALISTA ---
+    function triggerToast(message) {
+      const toast = document.getElementById('minimalToast');
+      const textEl = document.getElementById('toastText');
+      textEl.textContent = message;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2600);
+    }
+  </script>
+</body>
+</html>
+

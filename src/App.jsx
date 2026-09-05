@@ -17,7 +17,7 @@ import { Footer }     from './components/layout/Footer';
 
 // UI
 import { Loader } from './components/ui/Loader';
-import { CookieConsent } from './components/ui/CookieConsent';
+import { PreferencesNotice } from './components/ui/PreferencesNotice';
 
 // Sections
 import { Hero }       from './components/sections/Hero';
@@ -103,7 +103,7 @@ export default function App() {
       <Contact    t={t} />
 
       <Footer t={t} language={language} prefersReducedMotion={prefersReducedMotion} />
-      <CookieConsent t={t} />
+      <PreferencesNotice t={t} />
     </>
   );
 }
