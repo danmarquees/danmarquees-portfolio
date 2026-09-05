@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export function CookieConsent({ t }) {
+export function PreferencesNotice({ t }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
+    const consent = localStorage.getItem('site-preferences-consent');
     if (!consent) {
       // Show with a slight delay for better UX
       const timer = setTimeout(() => setVisible(true), 2000);
@@ -13,24 +13,24 @@ export function CookieConsent({ t }) {
   }, []);
 
   const accept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    localStorage.setItem('site-preferences-consent', 'accepted');
     setVisible(false);
   };
 
   const decline = () => {
-    localStorage.setItem('cookie-consent', 'declined');
+    localStorage.setItem('site-preferences-consent', 'declined');
     setVisible(false);
   };
 
   // Fallback texts just in case translation hasn't loaded properly
-  const title = t.cookie?.title || 'Privacy & Cookies';
-  const message = t.cookie?.message || 'We use cookies to improve your experience, remember your preferences, and analyze site traffic.';
+  const title = t.cookie?.title || 'Privacy & Preferences';
+  const message = t.cookie?.message || 'We use preferences to improve your experience, remember your choices, and analyze site usage.';
   const acceptBtn = t.cookie?.accept || 'Accept';
   const declineBtn = t.cookie?.decline || 'Decline';
 
   return (
     <div 
-      className="cookie-consent"
+      className="preferences-notice"
       style={{
         position: 'fixed',
         bottom: visible ? '2rem' : '-100%',
@@ -115,3 +115,4 @@ export function CookieConsent({ t }) {
     </div>
   );
 }
+

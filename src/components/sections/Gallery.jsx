@@ -3,15 +3,19 @@ import gsap from 'gsap';
 import { galleryItems, filterKeys } from '../../constants/data';
 import { RichText } from '../ui/RichText';
 import { Lightbox } from '../ui/Lightbox';
+import { GalleryDemo } from '../ui/GalleryDemo';
 
 export function Gallery({ t, prefersReducedMotion }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const lightboxTriggerRef = useRef(null);
 
+  const isDemoActive = activeFilter === 'all' || activeFilter === 'web' || activeFilter === 'ui';
+
   useEffect(() => {
     document.querySelectorAll('.gallery-item').forEach(item => {
-      const show = activeFilter === 'all' || item.dataset.cat === activeFilter;
+      const cats = item.dataset.cat ? item.dataset.cat.split(' ') : [];
+      const show = activeFilter === 'all' || cats.includes(activeFilter);
       gsap.killTweensOf(item);
       if (prefersReducedMotion) {
         gsap.set(item, { opacity: show ? 1 : 0.2, scale: 1 });
@@ -67,6 +71,13 @@ export function Gallery({ t, prefersReducedMotion }) {
         </div>
 
         <div className="gallery-grid" id="galleryGrid">
+          {/* Live Static Demo directly inside the image grid */}
+          <GalleryDemo
+            t={t}
+            isFilterActive={isDemoActive}
+            prefersReducedMotion={prefersReducedMotion}
+          />
+
           {galleryItems.map(([span, category, src, alt], index) => (
             <div
               className={`gallery-item ${span}`}
