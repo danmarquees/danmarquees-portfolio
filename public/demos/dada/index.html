@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATELIER DADA — Manifesto & Estúdio de Colagem Visual</title>
+  
+  <!-- Fontes do Google: Playfair Display, Space Mono, Bebas Neue e Permanent Marker -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,400;1,700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            marker: ['"Permanent Marker"', 'cursive'],
+            mono: ['"Courier Prime"', 'monospace'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            paper: '#f3ede2',
+            paperDark: '#e5dcce',
+            kraft: '#c8ad8d',
+            ink: '#141210',
+            dadaRed: '#e63946',
+            electricYellow: '#ffe600',
+            blueprint: '#1d3557',
+            censorBlack: '#0a0a0a',
+          },
+          boxShadow: {
+            'brutal': '6px 6px 0px #141210',
+            'brutal-lg': '10px 10px 0px #141210',
+            'brutal-sm': '3px 3px 0px #141210',
+            'paper': '0 8px 24px rgba(20,18,16,0.14), 0 2px 6px rgba(20,18,16,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Textura de papel envelhecido e granulado */
+    body {
+      background-color: #f3ede2;
+      background-image: 
+        radial-gradient(#d6ccbd 1px, transparent 1px),
+        linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 24px 24px, 40px 40px, 40px 40px;
+      color: #141210;
+      overflow-x: hidden;
+    }
+
+    /* Fita Washi Adesiva */
+    .washi-tape {
+      position: absolute;
+      background: rgba(254, 240, 138, 0.78);
+      height: 26px;
+      z-index: 25;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      border-left: 2px dashed rgba(161, 98, 7, 0.35);
+      border-right: 2px dashed rgba(161, 98, 7, 0.35);
+      backdrop-filter: blur(1px);
+    }
+    .washi-tape-red {
+      background: rgba(248, 113, 113, 0.72);
+      border-left-color: rgba(153, 27, 27, 0.4);
+      border-right-color: rgba(153, 27, 27, 0.4);
+    }
+    .washi-tape-blue {
+      background: rgba(147, 197, 253, 0.75);
+      border-left-color: rgba(30, 64, 175, 0.4);
+      border-right-color: rgba(30, 64, 175, 0.4);
+    }
+
+    /* Efeito de Borda Rasgada (Torn Edge) */
+    .torn-top {
+      clip-path: polygon(
+        0% 0%, 5% 4px, 10% 1px, 15% 5px, 20% 0px, 25% 4px, 30% 1px, 35% 6px, 
+        40% 1px, 45% 5px, 50% 0px, 55% 4px, 60% 1px, 65% 5px, 70% 2px, 75% 6px, 
+        80% 0px, 85% 5px, 90% 1px, 95% 4px, 100% 0%, 100% 100%, 0% 100%
+      );
+    }
+    .torn-bottom {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% calc(100% - 4px), 
+        95% 100%, 90% calc(100% - 3px), 85% 100%, 80% calc(100% - 5px), 
+        75% 100%, 70% calc(100% - 2px), 65% 100%, 60% calc(100% - 4px), 
+        55% 100%, 50% calc(100% - 2px), 45% 100%, 40% calc(100% - 5px), 
+        35% 100%, 30% calc(100% - 3px), 25% 100%, 20% calc(100% - 4px), 
+        15% 100%, 10% calc(100% - 2px), 5% 100%, 0% calc(100% - 4px)
+      );
+    }
+
+    /* Estilo Halftone (Padrão de Retícula de Impressão) */
+    .halftone-dots {
+      background-image: radial-gradient(#141210 20%, transparent 20%);
+      background-position: 0 0;
+      background-size: 8px 8px;
+      opacity: 0.15;
+    }
+
+    /* Carimbo Rotativo Vintage */
+    .stamp {
+      border: 3px dashed #e63946;
+      color: #e63946;
+      text-transform: uppercase;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.15em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 12px;
+      mask-image: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.7));
+      user-select: none;
+    }
+
+    /* Letras estilo Carta de Resgate / Recorte de Jornal */
+    .ransom-box {
+      display: inline-block;
+      padding: 2px 7px;
+      font-weight: 800;
+      line-height: 1.1;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+      margin: 1px;
+    }
+
+    /* Grampo Metálico */
+    .paperclip {
+      position: absolute;
+      width: 14px;
+      height: 38px;
+      border: 3px solid #8c9096;
+      border-radius: 12px;
+      z-index: 30;
+      box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    }
+
+    /* Elementos Draggables no Ateliê */
+    .collage-item {
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .collage-item:active {
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body class="selection:bg-yellow-300 selection:text-black">
+
+  <!-- ==================== TOPO: JORNAL & CABEÇALHO DADAÍSTA ==================== -->
+  <header class="border-b-4 border-ink bg-[#eae2d3] relative z-40">
+    <!-- Faixa Superior de Classificados -->
+    <div class="border-b border-ink/30 px-4 py-1 flex items-center justify-between text-[11px] font-mono tracking-tight bg-paper overflow-hidden">
+      <div class="flex items-center gap-4 animate-pulse">
+        <span class="font-bold text-dadaRed">● EDIÇÃO ESPECIAL Nº 74</span>
+        <span class="hidden sm:inline">TIRAGEM LIMITADA: ARQUIVO ANALÓGICO-DIGITAL</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>ESTOCOLMO — PARIS — SÃO PAULO</span>
+        <span id="liveClock" class="font-bold">00:00:00</span>
+      </div>
+    </div>
+
+    <!-- Masthead / Logotipo Principal -->
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <!-- Ícone / Carimbo Dada -->
+        <div class="w-12 h-12 bg-ink text-paper flex items-center justify-center font-marker text-2xl -rotate-6 shadow-brutal-sm">
+          ✂
+        </div>
+        <div>
+          <a href="#" class="font-bebas text-4xl sm:text-5xl tracking-wider hover:text-dadaRed transition-colors flex items-baseline gap-2">
+            ATELIER DADA
+            <span class="text-xs font-mono font-normal tracking-widest text-ink/70 px-2 py-0.5 bg-electricYellow border border-ink rotate-2">LAB. ART</span>
+          </a>
+          <p class="font-mono text-xs uppercase tracking-widest text-ink/70 -mt-1">Manifesto do Caos Gráfico, Tesoura e Cola</p>
+        </div>
+      </div>
+
+      <!-- Links de Navegação como Recortes -->
+      <nav class="flex flex-wrap items-center gap-2 text-xs font-mono font-bold">
+        <a href="#atelie" class="px-3 py-1.5 bg-paper hover:bg-electricYellow border-2 border-ink -rotate-1 shadow-brutal-sm transition-all hover:scale-105">
+          ✂ O ATELIÊ INTERATIVO
+        </a>
+        <a href="#manifesto" class="px-3 py-1.5 bg-paper hover:bg-electricYellow border-2 border-ink rotate-2 shadow-brutal-sm transition-all hover:scale-105">
+          MANIFESTO
+        </a>
+        <a href="#galeria" class="px-3 py-1.5 bg-paper hover:bg-electricYellow border-2 border-ink -rotate-2 shadow-brutal-sm transition-all hover:scale-105">
+          RECORTES
+        </a>
+        <a href="#planos" class="px-3 py-1.5 bg-dadaRed text-white border-2 border-ink rotate-1 shadow-brutal-sm transition-all hover:scale-105">
+          ASSINAR ZINE
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION: GRANDE COLAGEM VISUAL ==================== -->
+  <main class="relative z-10">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-20 overflow-hidden">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Coluna de Texto: Letras Ransom & Tipografia Mista -->
+        <div class="lg:col-span-7 z-20 space-y-6">
+          
+          <!-- Badge Carimbada com Fita -->
+          <div class="relative inline-block">
+            <div class="washi-tape -top-3 left-4 w-28 -rotate-3"></div>
+            <div class="bg-paper px-4 py-2 border-2 border-ink shadow-brutal-sm rotate-1 font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-dadaRed rounded-full animate-ping"></span>
+              <span>100% Texturas Orgânicas • Zero Grids Digitais Monótonos</span>
+            </div>
+          </div>
+
+          <!-- Título Estilo Resgate de Jornal -->
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-black leading-[1.05] tracking-tight">
+            DESTRUA A ORDEM. <br />
+            <span class="font-bebas text-5xl sm:text-7xl md:text-8xl tracking-normal text-dadaRed block mt-2">
+              <span class="ransom-box bg-ink text-white -rotate-2">C</span><!--
+           --><span class="ransom-box bg-dadaRed text-white rotate-3">O</span><!--
+           --><span class="ransom-box bg-electricYellow text-ink -rotate-3">L</span><!--
+           --><span class="ransom-box bg-white text-ink border-2 border-ink rotate-1">E</span><!--
+           --><span class="ransom-box bg-blueprint text-white -rotate-1">.</span>
+              O NOVO MUNDO.
+            </span>
+          </h1>
+
+          <!-- Parágrafo Datilografado -->
+          <div class="relative bg-white/80 p-5 border-2 border-ink shadow-brutal rotate-[-0.5deg] max-w-xl">
+            <div class="paperclip -top-4 right-6"></div>
+            <p class="font-mono text-sm sm:text-base leading-relaxed text-ink/90">
+              Somos um coletivo que resgata revistas de 1968, fitas cassete, carimbos postais e papéis rasgados para dar vida a marcas, embalagens e experiências digitais livres da pasteurização algorítmica.
+            </p>
+          </div>
+
+          <!-- Botões de Ação estilo Cupom com Picote -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="#atelie" class="relative group px-6 py-4 bg-electricYellow border-3 border-ink font-bebas text-2xl tracking-wider text-ink shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm transition-all flex items-center gap-3">
+              <span>✂ ENTRAR NO LABORATÓRIO DE COLAGEM</span>
+              <span class="group-hover:rotate-45 transition-transform font-mono font-bold text-lg">→</span>
+            </a>
+            
+            <div class="relative">
+              <div class="stamp rotate-6">
+                APROVADO PELO CAOS
+              </div>
+            </div>
+          </div>
+
+          <!-- Citações Datilografadas Rápidas -->
+          <div class="flex items-center gap-4 text-xs font-mono text-ink/70 pt-2">
+            <span>[+] 4.800+ recortes digitalizados</span>
+            <span>•</span>
+            <span>[+] Shaders de retícula halftone</span>
+          </div>
+
+        </div>
+
+        <!-- Coluna Visual: Composição de Colagem Complexa -->
+        <div class="lg:col-span-5 relative min-h-[480px] sm:min-h-[550px] flex items-center justify-center">
+          
+          <!-- Elemento 1: Fundo de Papel Pardo Kraft Amassado -->
+          <div class="absolute w-80 sm:w-96 h-96 sm:h-[460px] bg-[#d3b898] border-3 border-ink shadow-brutal rotate-3 torn-bottom z-0">
+            <div class="halftone-dots absolute inset-0"></div>
+            <div class="absolute bottom-4 right-4 font-mono text-[10px] text-ink/60">FIG_01: MATRIZ ANALÓGICA</div>
+          </div>
+
+          <!-- Elemento 2: Washi Tapes nos cantos -->
+          <div class="washi-tape washi-tape-red -top-2 left-10 w-32 -rotate-6 z-30"></div>
+          <div class="washi-tape washi-tape-blue -bottom-3 right-12 w-28 rotate-12 z-30"></div>
+
+          <!-- Elemento 3: Estátua Grega / Arte Clássica com Tarja nos Olhos -->
+          <div class="relative z-10 w-64 sm:w-72 bg-white p-3 border-3 border-ink shadow-brutal -rotate-3 transition-transform hover:rotate-0 hover:scale-105 duration-300">
+            
+            <!-- Foto em estilo Impressão Monocromática com Ilustração SVG -->
+            <div class="relative h-72 sm:h-80 bg-[#ded6c9] overflow-hidden border border-ink flex flex-col justify-end p-4">
+              
+              <!-- Padrão gráfico de fundo da gravura -->
+              <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="0" y1="0" x2="100" y2="100" stroke="#000" stroke-width="0.5" stroke-dasharray="2 2" />
+                <line x1="100" y1="0" x2="0" y2="100" stroke="#000" stroke-width="0.5" stroke-dasharray="2 2" />
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#e63946" stroke-width="1.5" />
+              </svg>
+
+              <!-- Ilustração Vetorial da Estátua Clássica (Recorte Vintage) -->
+              <div class="relative mx-auto mb-2 text-center">
+                <svg class="w-44 h-56 mx-auto drop-shadow-md" viewBox="0 0 160 200" fill="none">
+                  <!-- Busto Clássico estilizado em gravura -->
+                  <path d="M40 180 C40 130, 50 110, 55 90 C58 75, 55 50, 75 40 C95 30, 110 45, 115 65 C120 85, 115 110, 125 180 Z" fill="#b8afa2" stroke="#141210" stroke-width="2.5" />
+                  <!-- Cabelo grego -->
+                  <path d="M60 48 C65 35, 95 30, 110 42 C115 50, 105 60, 95 55 C85 50, 75 52, 60 48 Z" fill="#696257" stroke="#141210" stroke-width="2" />
+                  <!-- Nariz & Lábios clássicos -->
+                  <path d="M85 68 L82 82 L90 85" stroke="#141210" stroke-width="2" fill="none" />
+                  <path d="M80 94 Q88 98 94 94" stroke="#141210" stroke-width="2" fill="none" />
+                  <!-- Queixo esculpido -->
+                  <path d="M78 108 Q88 114 96 108" stroke="#141210" stroke-width="1.5" fill="none" />
+                </svg>
+
+                <!-- Tarja de Censura Neon (Elemento Pop Dadaísta) -->
+                <div class="absolute top-[68px] left-1/2 -translate-x-1/2 bg-electricYellow text-ink border-2 border-ink px-3 py-0.5 font-marker text-xs font-bold tracking-widest rotate-[-4deg] shadow-brutal-sm whitespace-nowrap">
+                  VERDADE PURA
+                </div>
+
+                <!-- Destaque: Óculos Escuros Pop Colados por Cima -->
+                <div class="absolute top-[52px] left-1/2 -translate-x-1/2 bg-ink text-white px-4 py-1 text-[10px] font-mono tracking-tighter rounded-sm -rotate-2">
+                  [ 1920 × 2026 ]
+                </div>
+              </div>
+
+              <!-- Anotação manual de rodapé na Polaroid -->
+              <div class="border-t border-ink pt-2 flex items-center justify-between font-mono text-[11px]">
+                <span class="font-bold tracking-widest text-ink">DAVID REBUILT #04</span>
+                <span class="text-dadaRed font-marker">Original</span>
+              </div>
+            </div>
+
+            <!-- Etiqueta de Preço / Tag Vermelha Presa com Alfinete -->
+            <div class="absolute -top-4 -right-4 bg-dadaRed text-white font-bebas text-xl px-3 py-1 border-2 border-ink shadow-brutal-sm rotate-12">
+              PEÇA RARA
+            </div>
+          </div>
+
+          <!-- Elemento 4: Flor Botânica Antiga Recortada (SVG) -->
+          <div class="absolute -bottom-6 -left-6 z-20 w-32 sm:w-40 p-2 bg-paper border-2 border-ink shadow-brutal rotate-12">
+            <svg viewBox="0 0 100 100" class="w-full h-auto">
+              <path d="M50 85 Q45 50 50 15" stroke="#2d6a4f" stroke-width="4" fill="none"/>
+              <circle cx="50" cy="20" r="14" fill="#e63946" stroke="#141210" stroke-width="2"/>
+              <ellipse cx="38" cy="22" rx="10" ry="6" fill="#f4a261" stroke="#141210" stroke-width="1.5"/>
+              <ellipse cx="62" cy="22" rx="10" ry="6" fill="#f4a261" stroke="#141210" stroke-width="1.5"/>
+              <ellipse cx="50" cy="10" rx="6" ry="10" fill="#f4a261" stroke="#141210" stroke-width="1.5"/>
+              <path d="M48 60 Q30 55 35 45 Q45 50 49 55" fill="#52b788" stroke="#141210" stroke-width="1.5"/>
+              <path d="M52 45 Q70 40 65 30 Q55 35 51 40" fill="#52b788" stroke="#141210" stroke-width="1.5"/>
+            </svg>
+            <div class="font-mono text-[9px] text-center border-t border-ink mt-1 font-bold">FLORA 1892</div>
+          </div>
+
+          <!-- Elemento 5: Carimbo Circular Datado -->
+          <div class="absolute top-4 -right-6 z-20 w-24 h-24 rounded-full border-4 border-dashed border-blueprint flex flex-col items-center justify-center text-blueprint font-mono text-[9px] font-bold rotate-12 bg-paper/90 p-1 text-center shadow-sm">
+            <span>COLLECTION</span>
+            <span class="text-xs font-black">N° 88</span>
+            <span>ARCHIVE</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== FAIXA ZEBRADA / TAPE DE SEGURANÇA ==================== -->
+    <div class="border-y-4 border-ink bg-electricYellow py-3 overflow-hidden shadow-brutal-sm relative z-30">
+      <div class="flex items-center gap-6 whitespace-nowrap font-bebas text-2xl sm:text-3xl tracking-widest text-ink select-none animate-marquee">
+        <span>✂ RECORTE SEUS PRÓPRIOS PADRÕES</span>
+        <span class="text-dadaRed">✦</span>
+        <span>REJEITE O MINIMALISMO ESTÉRIL</span>
+        <span class="text-dadaRed">✦</span>
+        <span>A TEXTURA SALVA O DESIGN</span>
+        <span class="text-dadaRed">✦</span>
+        <span>ARTE COLAGEM É RESISTÊNCIA</span>
+        <span class="text-dadaRed">✦</span>
+        <span>RECORTE SEUS PRÓPRIOS PADRÕES</span>
+        <span class="text-dadaRed">✦</span>
+        <span>REJEITE O MINIMALISMO ESTÉRIL</span>
+        <span class="text-dadaRed">✦</span>
+        <span>A TEXTURA SALVA O DESIGN</span>
+      </div>
+    </div>
+
+    <!-- ==================== O ATELIÊ INTERATIVO (CANVAS DE COLAGEM AO VIVO) ==================== -->
+    <section id="atelie" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="inline-block washi-tape washi-tape-blue w-32 -rotate-2 -mb-2"></div>
+        <div class="stamp mb-3 rotate-1">EXPERIMENTO INTERATIVO</div>
+        <h2 class="font-bebas text-5xl sm:text-6xl tracking-wide text-ink">O ATELIÊ DE RECORTES</h2>
+        <p class="font-mono text-sm sm:text-base text-ink/80 mt-2">
+          Clique nos recortes da gaveta abaixo para adicioná-los à prancheta. Você pode <strong>arrastar</strong>, <strong>rotacionar</strong> e <strong>construir seu próprio manifesto visual</strong>.
+        </p>
+      </div>
+
+      <!-- Container do Estúdio -->
+      <div class="bg-paperDark border-4 border-ink shadow-brutal-lg p-4 sm:p-8 rounded-none relative">
+        
+        <!-- Barra de Ferramentas / Controles da Prancheta -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b-2 border-ink mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 bg-dadaRed rounded-full border border-ink"></span>
+            <span class="w-3 h-3 bg-electricYellow rounded-full border border-ink"></span>
+            <span class="w-3 h-3 bg-blueprint rounded-full border border-ink"></span>
+            <span class="font-mono text-xs font-bold uppercase ml-2">PRANCHETA DE TRABALHO #01</span>
+          </div>
+
+          <!-- Ações Rápidas -->
+          <div class="flex items-center gap-2">
+            <button onclick="randomizeCollagePositions()" class="px-3 py-1.5 bg-paper hover:bg-white border-2 border-ink text-xs font-mono font-bold shadow-brutal-sm active:translate-y-0.5 transition-all">
+              🎲 EMBALALHAR TUDO
+            </button>
+            <button onclick="clearCollageBoard()" class="px-3 py-1.5 bg-paper hover:bg-dadaRed hover:text-white border-2 border-ink text-xs font-mono font-bold shadow-brutal-sm active:translate-y-0.5 transition-all">
+              🗑 LIMPAR MESA
+            </button>
+            <button onclick="stampRandomSeal()" class="px-3 py-1.5 bg-electricYellow hover:bg-yellow-300 border-2 border-ink text-xs font-mono font-bold shadow-brutal-sm active:translate-y-0.5 transition-all">
+              🖃 CARIMBAR
+            </button>
+          </div>
+        </div>
+
+        <!-- Mesa de Trabalho da Colagem (Canvas Interativo HTML) -->
+        <div id="collageArtboard" class="relative w-full h-[480px] sm:h-[550px] bg-[#f8f4ec] border-3 border-ink overflow-hidden shadow-inner cursor-crosshair">
+          
+          <!-- Fita métrica nas margens para sensação técnica -->
+          <div class="absolute top-0 left-0 right-0 h-4 bg-paperDark border-b border-ink/40 flex items-center justify-between px-2 text-[8px] font-mono text-ink/40 pointer-events-none select-none">
+            <span>0cm</span><span>10cm</span><span>20cm</span><span>30cm</span><span>40cm</span><span>50cm</span><span>60cm</span><span>70cm</span>
+          </div>
+          
+          <!-- Grade quadriculada sutil de caderno -->
+          <div class="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+
+          <!-- Elemento 1 Colado Inicial -->
+          <div class="collage-item absolute top-16 left-12 p-3 bg-white border-2 border-ink shadow-brutal -rotate-6" style="touch-action:none;">
+            <div class="washi-tape -top-3 left-6 w-20 rotate-3 pointer-events-none"></div>
+            <div class="font-bebas text-3xl text-dadaRed tracking-wider select-none">ARTE É CAOS</div>
+            <div class="font-mono text-[10px] text-ink/70">ZURICH 1916 // ATELIER</div>
+          </div>
+
+          <!-- Elemento 2 Colado Inicial: Gravura Clássica -->
+          <div class="collage-item absolute top-32 right-20 p-2 bg-[#eae2d3] border-2 border-ink shadow-brutal rotate-6" style="touch-action:none;">
+            <div class="paperclip -top-3 left-4 pointer-events-none"></div>
+            <svg class="w-32 h-36 mx-auto" viewBox="0 0 100 100">
+              <rect width="100" height="100" fill="#dfd6c5"/>
+              <circle cx="50" cy="45" r="28" fill="#141210"/>
+              <path d="M50 15 L55 35 L75 35 L60 48 L65 70 L50 55 L35 70 L40 48 L25 35 L45 35 Z" fill="#ffe600"/>
+              <rect x="25" y="80" width="50" height="8" fill="#e63946"/>
+            </svg>
+            <div class="font-mono text-[9px] text-center font-bold mt-1">ESTRELA DADA #09</div>
+          </div>
+
+          <!-- Elemento 3 Colado Inicial: Letra Gigante de Revista -->
+          <div class="collage-item absolute bottom-12 left-1/3 p-4 bg-ink text-electricYellow font-marker text-5xl shadow-brutal rotate-12 select-none" style="touch-action:none;">
+            !DADA!
+          </div>
+
+          <!-- Elemento 4 Colado Inicial: Selo Postal -->
+          <div class="collage-item absolute bottom-16 right-16 p-2 bg-paper border-2 border-dashed border-blueprint rotate-[-10deg] shadow-sm select-none" style="touch-action:none;">
+            <div class="font-mono text-[9px] font-bold text-blueprint">AIR MAIL // 50 CTS</div>
+            <div class="text-xl">✈</div>
+          </div>
+
+          <!-- Dica Flutuante no Canto -->
+          <div class="absolute bottom-3 left-3 bg-white/90 border border-ink px-2 py-1 font-mono text-[10px] text-ink/70 pointer-events-none select-none flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>Arraste qualquer item ou dê duplo clique para rotacionar!</span>
+          </div>
+        </div>
+
+        <!-- A Gaveta de Recortes (Caixa de Peças para Inserir) -->
+        <div class="mt-6 pt-6 border-t-2 border-ink">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink flex items-center gap-2">
+              <span>✂ GAVETA DE RECORTES (CLIQUE PARA ADICIONAR):</span>
+            </span>
+            <span class="font-mono text-[11px] text-ink/60">Recortes prontos para uso</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            <!-- Botão Peça 1: Busto -->
+            <button onclick="addCutoutToBoard('statue')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">🗿</span>
+              <span class="font-bold">Busto Grego</span>
+            </button>
+
+            <!-- Botão Peça 2: Flor -->
+            <button onclick="addCutoutToBoard('flower')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">🥀</span>
+              <span class="font-bold">Botânica 1890</span>
+            </button>
+
+            <!-- Botão Peça 3: Olho Surrealista -->
+            <button onclick="addCutoutToBoard('eye')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">👁</span>
+              <span class="font-bold">Olho Místico</span>
+            </button>
+
+            <!-- Botão Peça 4: Código de Barras Punk -->
+            <button onclick="addCutoutToBoard('barcode')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">▌║█║▌</span>
+              <span class="font-bold">Código Postal</span>
+            </button>
+
+            <!-- Botão Peça 5: Palavra Ransom -->
+            <button onclick="addCutoutToBoard('ransom')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">⚡</span>
+              <span class="font-bold">Palavra Choque</span>
+            </button>
+
+            <!-- Botão Peça 6: Washi Tape Colorida -->
+            <button onclick="addCutoutToBoard('tape')" class="p-2 bg-paper hover:bg-white border-2 border-ink text-left font-mono text-xs shadow-brutal-sm hover:-translate-y-1 transition-all flex flex-col items-center gap-1.5">
+              <span class="text-2xl">🏷</span>
+              <span class="font-bold">Fita Adesiva</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== MANIFESTO & PILARES (POLAROIDS PREGADAS) ==================== -->
+    <section id="manifesto" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      
+      <div class="border-b-4 border-ink pb-4 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="stamp -rotate-3 mb-2">PRINCÍPIOS DO ATELIÊ</div>
+          <h2 class="font-bebas text-5xl sm:text-6xl tracking-wide text-ink">POR QUE COLAGEM EM 2026?</h2>
+        </div>
+        <p class="font-mono text-sm max-w-md text-ink/80">
+          Quando todo mundo usa as mesmas inteligências artificiais com o mesmo acabamento plástico, o rasgo físico do papel se torna a assinatura mais valiosa do mundo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        
+        <!-- Cartão 1: Polaroid com Fita Vermelha -->
+        <div class="relative bg-white p-5 border-3 border-ink shadow-brutal -rotate-2 hover:rotate-0 transition-transform duration-300">
+          <div class="washi-tape washi-tape-red -top-3 left-1/3 w-28 -rotate-1"></div>
+          
+          <div class="h-56 bg-paperDark border-2 border-ink relative overflow-hidden flex items-center justify-center p-4 mb-4">
+            <div class="halftone-dots absolute inset-0"></div>
+            <!-- Composição Gráfica -->
+            <div class="relative text-center">
+              <span class="font-marker text-5xl text-dadaRed block -rotate-6">100%</span>
+              <span class="font-bebas text-3xl text-ink tracking-wider">MATÉRIA TÁTIL</span>
+            </div>
+          </div>
+
+          <h3 class="font-bebas text-2xl tracking-wider text-ink mb-2">01. PAPÉIS RESGATADOS</h3>
+          <p class="font-mono text-xs leading-relaxed text-ink/80">
+            Digitalizamos tipografias de chumbo, panfletos políticos dos anos 1970, notas fiscais centenárias e papéis japoneses feitos à mão com escaneamento óptico de 2400 DPI.
+          </p>
+          <div class="mt-4 pt-3 border-t border-ink/20 flex justify-between font-mono text-[10px] text-ink/60">
+            <span>REGISTRO #091</span>
+            <span>AUTÊNTICO</span>
+          </div>
+        </div>
+
+        <!-- Cartão 2: Fita Azul e Rotação Oposta -->
+        <div class="relative bg-white p-5 border-3 border-ink shadow-brutal rotate-3 hover:rotate-0 transition-transform duration-300 md:translate-y-6">
+          <div class="washi-tape washi-tape-blue -top-3 right-10 w-28 rotate-3"></div>
+          
+          <div class="h-56 bg-[#1d3557] text-white border-2 border-ink relative overflow-hidden flex flex-col items-center justify-center p-4 mb-4">
+            <!-- Efeito Blueprint -->
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:10px_10px]"></div>
+            <span class="text-4xl mb-1">⚡</span>
+            <span class="font-bebas text-3xl tracking-widest text-electricYellow">ANARQUIA FORMAL</span>
+            <span class="font-mono text-[10px] text-slate-300">SEM TEMPLATES PRONTOS</span>
+          </div>
+
+          <h3 class="font-bebas text-2xl tracking-wider text-ink mb-2">02. COMPOSIÇÃO ASSIMÉTRICA</h3>
+          <p class="font-mono text-xs leading-relaxed text-ink/80">
+            Adeus às grades simétricas corporativas que deixam todos os sites iguais. Usamos colisão de estilos, sobreposições agressivas e hierarquias que despertam a atenção.
+          </p>
+          <div class="mt-4 pt-3 border-t border-ink/20 flex justify-between font-mono text-[10px] text-ink/60">
+            <span>REGISTRO #092</span>
+            <span>REBELDE</span>
+          </div>
+        </div>
+
+        <!-- Cartão 3: Postal Kraft com Grampo -->
+        <div class="relative bg-paper p-5 border-3 border-ink shadow-brutal -rotate-1 hover:rotate-0 transition-transform duration-300">
+          <div class="paperclip -top-4 left-8"></div>
+          
+          <div class="h-56 bg-electricYellow border-2 border-ink relative overflow-hidden flex flex-col items-center justify-center p-4 mb-4">
+            <div class="stamp text-2xl rotate-[-12deg] mb-2">
+              DADA DIGITAL
+            </div>
+            <p class="font-mono text-xs text-ink text-center max-w-[200px]">
+              "A beleza reside na imprevisibilidade do recorte cego."
+            </p>
+          </div>
+
+          <h3 class="font-bebas text-2xl tracking-wider text-ink mb-2">03. CODES & COLAGEM VIVA</h3>
+          <p class="font-mono text-xs leading-relaxed text-ink/80">
+            Misturamos CSS clip-path moderno, WebGL de retícula, shaders de meio-tom e microinterações de arrastar e soltar para criar landing pages que parecem zines interativas.
+          </p>
+          <div class="mt-4 pt-3 border-t border-ink/20 flex justify-between font-mono text-[10px] text-ink/60">
+            <span>REGISTRO #093</span>
+            <span>VIVO</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== GALERIA DE RECORTES / PROJETOS ==================== -->
+    <section id="galeria" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <span class="font-mono text-xs font-bold uppercase tracking-widest text-dadaRed">[+] ACERVO DO ATELIÊ</span>
+          <h2 class="font-bebas text-5xl sm:text-6xl tracking-wide text-ink">OBRAS & ENCOMENDAS</h2>
+        </div>
+        <div class="font-mono text-xs bg-paper border-2 border-ink px-3 py-1 shadow-brutal-sm">
+          MOSTRANDO: 4 PROJETOS DESTAQUE
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Projeto 1 -->
+        <div class="group bg-white p-3 border-3 border-ink shadow-brutal hover:shadow-brutal-lg hover:-translate-y-1.5 transition-all">
+          <div class="relative h-64 bg-[#cbb89d] border border-ink overflow-hidden flex items-center justify-center">
+            <div class="halftone-dots absolute inset-0"></div>
+            <!-- Composição Artística -->
+            <div class="text-center p-4">
+              <span class="text-5xl block group-hover:scale-125 transition-transform duration-300">📻</span>
+              <div class="mt-2 bg-ink text-white font-mono text-[10px] px-2 py-0.5 inline-block">ÁUDIO PIRATA</div>
+            </div>
+            <div class="washi-tape -top-2 left-4 w-16 rotate-12"></div>
+          </div>
+          <div class="pt-3">
+            <h4 class="font-bebas text-xl text-ink tracking-wide">FESTIVAL ONDA CURTA</h4>
+            <p class="font-mono text-[11px] text-ink/70">Identidade visual e cartazes serigrafados para rádio independente.</p>
+          </div>
+        </div>
+
+        <!-- Projeto 2 -->
+        <div class="group bg-white p-3 border-3 border-ink shadow-brutal hover:shadow-brutal-lg hover:-translate-y-1.5 transition-all sm:translate-y-4">
+          <div class="relative h-64 bg-[#f1807e] border border-ink overflow-hidden flex items-center justify-center">
+            <div class="halftone-dots absolute inset-0"></div>
+            <div class="text-center p-4">
+              <span class="text-5xl block group-hover:scale-125 transition-transform duration-300">☕</span>
+              <div class="mt-2 bg-electricYellow text-ink font-mono text-[10px] px-2 py-0.5 inline-block font-bold">CAFÉ DISSIDENTE</div>
+            </div>
+            <div class="washi-tape washi-tape-blue -top-2 right-4 w-16 -rotate-6"></div>
+          </div>
+          <div class="pt-3">
+            <h4 class="font-bebas text-xl text-ink tracking-wide">ROASTERS COLETIVO</h4>
+            <p class="font-mono text-[11px] text-ink/70">Embalagens de café especial com recortes de dicionários de 1910.</p>
+          </div>
+        </div>
+
+        <!-- Projeto 3 -->
+        <div class="group bg-white p-3 border-3 border-ink shadow-brutal hover:shadow-brutal-lg hover:-translate-y-1.5 transition-all">
+          <div class="relative h-64 bg-[#2a9d8f] border border-ink overflow-hidden flex items-center justify-center text-white">
+            <div class="halftone-dots absolute inset-0"></div>
+            <div class="text-center p-4">
+              <span class="text-5xl block group-hover:scale-125 transition-transform duration-300">🏛</span>
+              <div class="mt-2 bg-white text-ink font-mono text-[10px] px-2 py-0.5 inline-block font-bold">EXPOSIÇÃO 2026</div>
+            </div>
+            <div class="washi-tape washi-tape-red -top-2 left-6 w-16 -rotate-3"></div>
+          </div>
+          <div class="pt-3">
+            <h4 class="font-bebas text-xl text-ink tracking-wide">MUSEU DA DISRUPÇÃO</h4>
+            <p class="font-mono text-[11px] text-ink/70">Catálogo digital interativo com estética de fanzine impresso.</p>
+          </div>
+        </div>
+
+        <!-- Projeto 4 -->
+        <div class="group bg-white p-3 border-3 border-ink shadow-brutal hover:shadow-brutal-lg hover:-translate-y-1.5 transition-all sm:translate-y-4">
+          <div class="relative h-64 bg-[#f4a261] border border-ink overflow-hidden flex items-center justify-center">
+            <div class="halftone-dots absolute inset-0"></div>
+            <div class="text-center p-4">
+              <span class="text-5xl block group-hover:scale-125 transition-transform duration-300">🎷</span>
+              <div class="mt-2 bg-dadaRed text-white font-mono text-[10px] px-2 py-0.5 inline-block font-bold">DISCO DE VINIL</div>
+            </div>
+            <div class="washi-tape -top-2 right-4 w-16 rotate-6"></div>
+          </div>
+          <div class="pt-3">
+            <h4 class="font-bebas text-xl text-ink tracking-wide">JAZZ SUBTERRÂNEO</h4>
+            <p class="font-mono text-[11px] text-ink/70">Capa de LP encartada com retalhos de partituras destruídas.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== PLANOS: ETIQUETAS POSTAIS / GUIA DE CORREIO ==================== -->
+    <section id="planos" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+      
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <div class="stamp rotate-3 mb-2">REMANESCENTES MENSAIS</div>
+        <h2 class="font-bebas text-5xl sm:text-6xl tracking-wide text-ink">ASSINE O ZINE & ACERVO</h2>
+        <p class="font-mono text-sm text-ink/80">Receba pacotes físicos pelo correio e acesse o repositório de texturas em alta resolução.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Pacote 1 -->
+        <div class="bg-white p-6 border-3 border-ink shadow-brutal flex flex-col justify-between relative">
+          <div class="washi-tape -top-3 left-8 w-24 -rotate-6"></div>
+          <div>
+            <div class="flex justify-between items-start border-b-2 border-ink pb-3 mb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase font-bold text-ink/60">TICKET SIMPLES</span>
+                <h3 class="font-bebas text-3xl text-ink">LEITOR CURIOSO</h3>
+              </div>
+              <span class="font-bebas text-3xl text-ink">R$ 35<span class="text-xs font-mono text-ink/60">/mês</span></span>
+            </div>
+            <p class="font-mono text-xs text-ink/80 leading-relaxed mb-6">
+              Para quem deseja se inspirar mensalmente com o nosso zine editorial impresso.
+            </p>
+            <ul class="space-y-2.5 font-mono text-xs text-ink/90">
+              <li class="flex items-center gap-2"><span>[✓]</span> 1 Fanzine físico encadernado à mão</li>
+              <li class="flex items-center gap-2"><span>[✓]</span> Cartela de adesivos vinílicos</li>
+              <li class="flex items-center gap-2"><span>[✓]</span> Acesso ao manifesto em PDF</li>
+            </ul>
+          </div>
+          <button onclick="triggerFeedback('Assinatura do Zine selecionada!')" class="w-full mt-8 py-3 bg-paper hover:bg-ink hover:text-white border-2 border-ink font-bebas text-xl tracking-wider transition-colors shadow-brutal-sm">
+            PEDIR MEU EXEMPLAR
+          </button>
+        </div>
+
+        <!-- Pacote 2: Destaque Envelope Kraft -->
+        <div class="bg-[#dcc5a7] p-6 border-4 border-ink shadow-brutal-lg flex flex-col justify-between relative md:-translate-y-4">
+          <div class="washi-tape washi-tape-red -top-3 left-1/2 -translate-x-1/2 w-36 rotate-2"></div>
+          <div class="absolute -top-3 -right-3 bg-dadaRed text-white font-bebas text-base px-3 py-0.5 border-2 border-ink shadow-brutal-sm rotate-12">
+            MAIS DISPUTADO
+          </div>
+          <div>
+            <div class="flex justify-between items-start border-b-2 border-ink pb-3 mb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase font-bold text-dadaRed">CLUBE DOS RECORTADORES</span>
+                <h3 class="font-bebas text-3xl text-ink">ATELIÊ PRO</h3>
+              </div>
+              <span class="font-bebas text-4xl text-dadaRed">R$ 89<span class="text-xs font-mono text-ink/70">/mês</span></span>
+            </div>
+            <p class="font-mono text-xs text-ink/90 leading-relaxed mb-6">
+              O pacote definitivo para designers, diretores de arte e entusiastas do caos gráfico.
+            </p>
+            <ul class="space-y-2.5 font-mono text-xs text-ink/90">
+              <li class="flex items-center gap-2"><span>[✦]</span> Envelope surpresa com recortes reais vintage</li>
+              <li class="flex items-center gap-2"><span>[✦]</span> Acesso à nuvem RAW (4.800+ scans 2400 DPI)</li>
+              <li class="flex items-center gap-2"><span>[✦]</span> Pincéis de meio-tom e texturas para Photoshop/Figma</li>
+              <li class="flex items-center gap-2"><span>[✦]</span> Desconto de 30% em oficinas presenciais</li>
+            </ul>
+          </div>
+          <button onclick="triggerFeedback('Bem-vindo ao Ateliê PRO!')" class="w-full mt-8 py-3.5 bg-electricYellow hover:bg-yellow-300 border-3 border-ink font-bebas text-2xl tracking-wider text-ink shadow-brutal hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+            ✂ ADQUIRIR O PACOTE COMPLETO
+          </button>
+        </div>
+
+        <!-- Pacote 3 -->
+        <div class="bg-white p-6 border-3 border-ink shadow-brutal flex flex-col justify-between relative">
+          <div class="washi-tape washi-tape-blue -top-3 right-8 w-24 6"></div>
+          <div>
+            <div class="flex justify-between items-start border-b-2 border-ink pb-3 mb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase font-bold text-ink/60">CORPORATIVO / ESTÚDIO</span>
+                <h3 class="font-bebas text-3xl text-ink">ENCOMENDA TOTAL</h3>
+              </div>
+              <span class="font-bebas text-3xl text-ink">SOB CONSULTA</span>
+            </div>
+            <p class="font-mono text-xs text-ink/80 leading-relaxed mb-6">
+              Criamos identidades visuais inteiras, murais físicos de grande porte e colagens comerciais.
+            </p>
+            <ul class="space-y-2.5 font-mono text-xs text-ink/90">
+              <li class="flex items-center gap-2"><span>[✓]</span> Direção de arte exclusiva</li>
+              <li class="flex items-center gap-2"><span>[✓]</span> Peças originais emolduradas em vidro</li>
+              <li class="flex items-center gap-2"><span>[✓]</span> Cessão total de direitos autorais</li>
+            </ul>
+          </div>
+          <button onclick="triggerFeedback('Entraremos em contato via correio/email!')" class="w-full mt-8 py-3 bg-paper hover:bg-ink hover:text-white border-2 border-ink font-bebas text-xl tracking-wider transition-colors shadow-brutal-sm">
+            FALAR COM OS CURADORES
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== CONTATO / CARTÃO POSTAL VINTAGE ==================== -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <div class="bg-[#fcf9f2] p-8 sm:p-12 border-4 border-ink shadow-brutal-lg relative">
+        <div class="washi-tape -top-3 left-1/2 -translate-x-1/2 w-48 -rotate-1"></div>
+        <div class="paperclip -top-4 right-10"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-7 space-y-4">
+            <div class="stamp rotate-[-4deg]">CORREIO VISUAL</div>
+            <h3 class="font-bebas text-4xl sm:text-5xl text-ink tracking-wide">RECEBA NOSSO ZINE DIGITAL</h3>
+            <p class="font-mono text-xs leading-relaxed text-ink/80">
+              Enviamos a cada duas semanas uma seleção de novos recortes escaneados, referências do dadaísmo histórico e links secretos do submundo da arte independente.
+            </p>
+
+            <form id="postcardForm" onsubmit="handlePostcardSubmit(event)" class="space-y-3 pt-2">
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input 
+                  type="email" 
+                  id="postcardEmail" 
+                  required
+                  placeholder="seu.email@anticonvencional.com" 
+                  class="flex-1 px-4 py-3 bg-white border-2 border-ink font-mono text-xs text-ink placeholder-ink/50 focus:outline-none focus:bg-yellow-50"
+                />
+                <button type="submit" class="px-6 py-3 bg-dadaRed hover:bg-red-700 text-white font-bebas text-xl tracking-wider border-2 border-ink shadow-brutal-sm active:translate-y-0.5 transition-all">
+                  POSTAR AGORA
+                </button>
+              </div>
+              <div id="postcardFeedback" class="hidden font-mono text-xs text-dadaRed font-bold flex items-center gap-1.5">
+                <span>✓</span> Mensagem lacrada com cera vermelha e enviada!
+              </div>
+            </form>
+          </div>
+
+          <!-- Lado Direito do Cartão Postal: Selos e Carimbos -->
+          <div class="md:col-span-5 border-t-2 md:border-t-0 md:border-l-2 border-ink md:pl-8 flex flex-col justify-between min-h-[220px]">
+            <div class="flex justify-end">
+              <!-- Selo Postal Impresso -->
+              <div class="w-20 h-24 border-3 border-dashed border-dadaRed bg-paper p-1 flex flex-col items-center justify-between text-center rotate-3 shadow-sm">
+                <span class="font-mono text-[8px] font-bold text-dadaRed">BRASIL 2026</span>
+                <span class="text-3xl">✂</span>
+                <span class="font-bebas text-sm text-ink">R$ 2,50</span>
+              </div>
+            </div>
+
+            <!-- Linhas de Endereço Datilografadas -->
+            <div class="space-y-3 pt-4 font-mono text-xs border-b border-ink/40 pb-2">
+              <div class="text-ink/60">PARA: Todo criador cansado da mesmice</div>
+              <div class="text-ink/60">ENDEREÇO: Qualquer canto com papel e tesoura</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== RODAPÉ: CLASSIFICADOS DE JORNAL ==================== -->
+  <footer class="border-t-4 border-ink bg-[#ded5c5] py-12 px-6 relative z-30 font-mono text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 border-b-2 border-ink/40 pb-8">
+      
+      <div>
+        <div class="font-bebas text-2xl text-ink mb-2">ATELIER DADA // 1916-2026</div>
+        <p class="text-ink/70 leading-relaxed text-[11px]">
+          Um tributo perpétuo a Hannah Höch, Kurt Schwitters, John Heartfield e todos os anarquistas da tesoura que ousaram recortar a realidade.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-bold text-ink mb-2">[ SEÇÕES DO JORNAL ]</div>
+        <ul class="space-y-1 text-ink/80 text-[11px]">
+          <li><a href="#atelie" class="hover:text-dadaRed hover:underline">O Ateliê de Recortes</a></li>
+          <li><a href="#manifesto" class="hover:text-dadaRed hover:underline">Manifesto Anti-Simetria</a></li>
+          <li><a href="#galeria" class="hover:text-dadaRed hover:underline">Arquivo de Peças Raras</a></li>
+          <li><a href="#planos" class="hover:text-dadaRed hover:underline">Clube de Assinatura Zine</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-bold text-ink mb-2">[ RECURSOS DIGITAIS ]</div>
+        <ul class="space-y-1 text-ink/80 text-[11px]">
+          <li><a href="#" class="hover:text-dadaRed hover:underline">Pack de Texturas (4K)</a></li>
+          <li><a href="#" class="hover:text-dadaRed hover:underline">Pincéis Halftone SVG</a></li>
+          <li><a href="#" class="hover:text-dadaRed hover:underline">Fontes Desalinhadas</a></li>
+          <li><a href="#" class="hover:text-dadaRed hover:underline">Licença de Caos Aberto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-bold text-ink mb-2">[ AVISO LEGAL DADAÍSTA ]</div>
+        <p class="text-ink/70 text-[10px] leading-relaxed">
+          Nenhuma árvore foi derrubada para este website. Todos os papéis usados são reaproveitados de sebos, gavetas empoeiradas e esquecimentos seculares.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-ink/60">
+      <div>© 2026 ATELIER DADA — FEITO COM COLA, CAFÉ E CÓDIGO BRUTALISTA.</div>
+      <div class="flex items-center gap-4">
+        <span>IMPRESSO NO NAVEGADOR</span>
+        <span>•</span>
+        <span class="font-bold text-ink">SEM COOKIES CORPORATIVOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notificador de Ações -->
+  <div id="toastMessage" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-electricYellow border-3 border-ink p-3 shadow-brutal font-mono text-xs font-bold text-ink flex items-center gap-2">
+      <span class="text-base">✂</span>
+      <span id="toastContent">Ação registrada no ateliê!</span>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT: MOTOR INTERATIVO DA COLAGEM ==================== -->
+  <script>
+    // --- RELÓGIO AO VIVO NO TOPO DO JORNAL ---
+    function updateLiveClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('liveClock');
+      if (el) el.textContent = `${hours}:${minutes}:${seconds} BRT`;
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+
+    // --- SÍNTESE DE ÁUDIO WEB ANALÓGICA (SOM DE CORTE DE PAPEL / TESOURA) ---
+    // Cria um efeito tátil puro sem dependência de URLs externas de áudio
+    function playPaperSnipSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        
+        // Burst de ruído branco simulando atrito de tesoura no papel
+        const bufferSize = ctx.sampleRate * 0.08;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        // Filtro passa-banda para dar o tom agudo metálico do corte
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 3200;
+        filter.Q.value = 2.0;
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.07);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        noise.start();
+      } catch (err) {
+        // Fallback silencioso caso áudio seja bloqueado pelo navegador
+      }
+    }
+
+    // --- MOTOR DRAG & DROP DO ATELIÊ ---
+    const artboard = document.getElementById('collageArtboard');
+    let activeDragItem = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    function initDraggable(el) {
+      el.addEventListener('mousedown', startDrag);
+      el.addEventListener('touchstart', startDrag, { passive: false });
+      
+      // Duplo clique ou toque duplo para girar a peça
+      el.addEventListener('dblclick', () => {
+        rotateElement(el);
+        playPaperSnipSound();
+      });
+    }
+
+    function rotateElement(el) {
+      const currentRotate = el.dataset.rotation ? parseInt(el.dataset.rotation) : 0;
+      const nextRotate = (currentRotate + 25) % 360;
+      el.dataset.rotation = nextRotate;
+      el.style.transform = `rotate(${nextRotate}deg)`;
+      showToast(`Peça rotacionada para ${nextRotate}°`);
+    }
+
+    function startDrag(e) {
+      e.preventDefault();
+      activeDragItem = e.currentTarget;
+      
+      // Traz o item para a camada mais alta (Z-Index)
+      bringToFront(activeDragItem);
+
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+      const rect = activeDragItem.getBoundingClientRect();
+      const boardRect = artboard.getBoundingClientRect();
+
+      dragOffsetX = clientX - rect.left;
+      dragOffsetY = clientY - rect.top;
+
+      window.addEventListener('mousemove', onDragMove);
+      window.addEventListener('touchmove', onDragMove, { passive: false });
+      window.addEventListener('mouseup', endDrag);
+      window.addEventListener('touchend', endDrag);
+      
+      playPaperSnipSound();
+    }
+
+    function onDragMove(e) {
+      if (!activeDragItem) return;
+      e.preventDefault();
+
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+      const boardRect = artboard.getBoundingClientRect();
+
+      let x = clientX - boardRect.left - dragOffsetX;
+      let y = clientY - boardRect.top - dragOffsetY;
+
+      // Limita suavemente dentro dos limites da mesa
+      x = Math.max(-50, Math.min(boardRect.width - 50, x));
+      y = Math.max(-20, Math.min(boardRect.height - 40, y));
+
+      activeDragItem.style.left = `${x}px`;
+      activeDragItem.style.top = `${y}px`;
+    }
+
+    function endDrag() {
+      if (!activeDragItem) return;
+      activeDragItem = null;
+      window.removeEventListener('mousemove', onDragMove);
+      window.removeEventListener('touchmove', onDragMove);
+      window.removeEventListener('mouseup', endDrag);
+      window.removeEventListener('touchend', endDrag);
+    }
+
+    let highestZIndex = 40;
+    function bringToFront(el) {
+      highestZIndex += 1;
+      el.style.zIndex = highestZIndex;
+    }
+
+    // Inicializa todos os itens presentes no artboard
+    document.querySelectorAll('.collage-item').forEach(initDraggable);
+
+    // --- ADIÇÃO DINÂMICA DE RECORTES DA GAVETA ---
+    const cutoutTemplates = {
+      statue: `
+        <div class="washi-tape washi-tape-red -top-3 left-4 w-16 -rotate-3 pointer-events-none"></div>
+        <div class="text-4xl text-center">🗿</div>
+        <div class="font-mono text-[9px] font-bold text-center mt-1 bg-ink text-white px-1">CLÁSSICO_1920</div>
+      `,
+      flower: `
+        <div class="text-4xl text-center">🥀</div>
+        <div class="font-mono text-[9px] text-dadaRed font-bold text-center border-t border-ink">HERBÁRIO N°4</div>
+      `,
+      eye: `
+        <div class="paperclip -top-3 right-2 pointer-events-none"></div>
+        <div class="text-4xl text-center">👁️</div>
+        <div class="font-bebas text-xs tracking-wider text-center text-ink">SUBTERRÂNEO</div>
+      `,
+      barcode: `
+        <div class="font-mono text-xl tracking-tighter text-center select-none">||||| | |||| |||</div>
+        <div class="font-mono text-[8px] text-center font-bold">SERIAL_0078_DADA</div>
+      `,
+      ransom: `
+        <div class="font-marker text-2xl text-dadaRed px-2 py-1 bg-yellow-200 border border-ink select-none">!RUPTURA!</div>
+      `,
+      tape: `
+        <div class="w-28 h-6 bg-amber-200/90 border-l-2 border-r-2 border-dashed border-amber-600 shadow-sm flex items-center justify-center font-mono text-[9px] font-bold text-amber-900 select-none">FRÁGIL // VIDRO</div>
+      `
+    };
+
+    function addCutoutToBoard(type) {
+      playPaperSnipSound();
+      const template = cutoutTemplates[type];
+      if (!template) return;
+
+      const newEl = document.createElement('div');
+      newEl.className = 'collage-item absolute p-2 bg-white border-2 border-ink shadow-brutal select-none';
+      
+      // Posição no centro com variação aleatória de recorte
+      const boardRect = artboard.getBoundingClientRect();
+      const randomX = (boardRect.width / 2 - 60) + (Math.random() * 120 - 60);
+      const randomY = (boardRect.height / 2 - 60) + (Math.random() * 120 - 60);
+      const randomRot = Math.floor(Math.random() * 40 - 20);
+
+      newEl.style.left = `${randomX}px`;
+      newEl.style.top = `${randomY}px`;
+      newEl.dataset.rotation = randomRot;
+      newEl.style.transform = `rotate(${randomRot}deg)`;
+      newEl.style.zIndex = ++highestZIndex;
+      newEl.innerHTML = template;
+
+      artboard.appendChild(newEl);
+      initDraggable(newEl);
+
+      showToast(`Recorte adicionado à prancheta!`);
+    }
+
+    // --- CARIMBO ALEATÓRIO NO ARTBOARD ---
+    const sealWords = ['APROVADO', 'CONFIDENCIAL', '100% CAOS', 'ARQUIVO DADA', 'SEM CENSURA'];
+    function stampRandomSeal() {
+      playPaperSnipSound();
+      const word = sealWords[Math.floor(Math.random() * sealWords.length)];
+      const seal = document.createElement('div');
+      seal.className = 'collage-item absolute stamp text-lg rotate-[-15deg] bg-white/60 select-none';
+      
+      const boardRect = artboard.getBoundingClientRect();
+      seal.style.left = `${Math.random() * (boardRect.width - 160)}px`;
+      seal.style.top = `${Math.random() * (boardRect.height - 100)}px`;
+      seal.style.zIndex = ++highestZIndex;
+      seal.textContent = `🖃 ${word}`;
+
+      artboard.appendChild(seal);
+      initDraggable(seal);
+      showToast(`Carimbado com sucesso!`);
+    }
+
+    // --- EMBALALHAR E LIMPAR A MESA ---
+    function randomizeCollagePositions() {
+      playPaperSnipSound();
+      const items = artboard.querySelectorAll('.collage-item');
+      const boardRect = artboard.getBoundingClientRect();
+
+      items.forEach(item => {
+        const x = Math.random() * (boardRect.width - 140);
+        const y = Math.random() * (boardRect.height - 140);
+        const rot = Math.floor(Math.random() * 60 - 30);
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.dataset.rotation = rot;
+        item.style.transform = `rotate(${rot}deg)`;
+      });
+
+      showToast(`Mesa embaralhada.`);
+    }
+
+    function clearCollageBoard() {
+      playPaperSnipSound();
+      const items = artboard.querySelectorAll('.collage-item');
+      items.forEach(item => item.remove());
+      showToast(`Prancheta esvaziada.`);
+    }
+
+    // --- FEEDBACK TOAST BRUTALISTA ---
+    function showToast(text) {
+      const toast = document.getElementById('toastMessage');
+      const content = document.getElementById('toastContent');
+      content.textContent = text;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    function triggerFeedback(msg) {
+      playPaperSnipSound();
+      showToast(msg);
+    }
+
+    function handlePostcardSubmit(e) {
+      e.preventDefault();
+      playPaperSnipSound();
+      const email = document.getElementById('postcardEmail').value;
+      if (!email) return;
+
+      document.getElementById('postcardForm').reset();
+      const feedback = document.getElementById('postcardFeedback');
+      feedback.classList.remove('hidden');
+      showToast('Inscrição no Zine realizada!');
+
+      setTimeout(() => {
+        feedback.classList.add('hidden');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
